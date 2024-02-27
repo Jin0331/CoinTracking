@@ -23,6 +23,7 @@ enum DesignSystem {
     }
     
     enum systemImage {
-        static let favorite = UIImage(systemName: "star")
+        static let favorite = UIImage(named: "btn_star")
+        static let favoriteFill = UIImage(named: "btn_star_fill")
     }
 }

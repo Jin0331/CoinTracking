@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 import Then
 
-//TODO: - search start -> Search API 호출 -> Realm Create 또는 Update (항목이 없다면, create 있다면 ID 중심으로 Update 되어야 함) -> sort(내림차순) 및 쵀대 상위 25개까지 tableView에 뿌림
-
 class SearchViewTableViewCell: BaseTableViewCell {
     
     let symbolImage = UIImageView().then {
@@ -29,8 +27,10 @@ class SearchViewTableViewCell: BaseTableViewCell {
     }
     
     let favoriteButton = UIButton().then {
-        $0.setImage(DesignSystem.systemImage.favorite, for: .normal)
-        $0.setTitleColor(DesignSystem.colorSet.purple, for: .normal)
+        var config = UIButton.Configuration.plain()
+        config.image = DesignSystem.systemImage.favorite!.applyingSymbolConfiguration(.init(pointSize: 50)) // systemImage에만 적용됨.. 추후 찾아보자
+        
+        $0.configuration = config
     }
     
     override func configureHierarchy() {
@@ -55,6 +55,12 @@ class SearchViewTableViewCell: BaseTableViewCell {
             make.leading.equalTo(nameLabel)
             make.top.equalTo(nameLabel.snp.bottom).offset(3)
             make.width.equalTo(100)
+        }
+        
+        favoriteButton.snp.makeConstraints { make in
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(5)
+            make.centerY.equalTo(contentView.safeAreaLayoutGuide)
+            make.size.equalTo(50)
         }
     }
 
