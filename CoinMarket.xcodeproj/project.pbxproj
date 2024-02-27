@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */; };
+		DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */; };
+		DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A599E2B8E445A00F4A82F /* SearchView.swift */; };
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
 		DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */; };
 		DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38472B8DADB200C1D69B /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		DB0A599E2B8E445A00F4A82F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		DBBC383B2B8DADB000C1D69B /* CoinMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB0A599B2B8E431C00F4A82F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		DBBC38322B8DADB000C1D69B = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +121,7 @@
 		DBBC38532B8DAF6B00C1D69B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				DB0A599B2B8E431C00F4A82F /* Extension */,
 				DBBC38542B8DB16200C1D69B /* NetworkManager */,
 				DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */,
 				DBFF0B072B8E1FED00A33A65 /* RealmRepository.swift */,
@@ -127,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				DBFF0B022B8E160A00A33A65 /* Cell */,
+				DB0A599E2B8E445A00F4A82F /* SearchView.swift */,
 				DBBC38632B8DD16400C1D69B /* SearchViewController.swift */,
 			);
 			path = View;
@@ -153,6 +169,7 @@
 			children = (
 				DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */,
 				DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */,
+				DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -252,13 +269,16 @@
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
 				DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */,
 				DBFF0B062B8E1FDF00A33A65 /* RealmModel.swift in Sources */,
+				DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */,
 				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
 				DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */,
 				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
+				DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */,
 				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
 				DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */,
+				DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */,
 				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

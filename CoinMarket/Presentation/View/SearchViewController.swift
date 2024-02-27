@@ -6,19 +6,16 @@
 //
 
 import UIKit
-import SnapKit
-import Then
 
 //MARK: - TableView만 있으므로, Custom View 없이 바로 진행
 class SearchViewController: BaseViewController {
-    
-    let mainTableView = UITableView().then { _ in
-        
-    }
-    
+
+    let mainView = SearchView()
     let repository = RealmRepository()
     
-    
+    override func loadView() {
+        self.view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +47,11 @@ class SearchViewController: BaseViewController {
     }
     
     
-//    override func configureView() {
-//        mainTableView.delegate = self
-//        mainTableView.dataSource = self
-//    }
+    
+    override func configureView() {
+        mainView.mainTableView.delegate = self
+        mainView.mainTableView.dataSource = self
+    }
     
     override func configureNavigation() {
         super.configureNavigation()
@@ -68,13 +66,20 @@ class SearchViewController: BaseViewController {
     }
 }
 
-//extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    }
-//    
-//    
-//}
+extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewTableViewCell.identifier, for: indexPath) as! SearchViewTableViewCell
+        
+        cell.symbolImage.image = DesignSystem.systemImage.favorite
+        cell.nameLabel.text = "BitCoin"
+        cell.symbolLabel.text = "BTC"
+
+        return cell
+    }
+    
+    
+}

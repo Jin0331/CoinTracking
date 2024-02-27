@@ -21,4 +21,8 @@ enum DesignSystem {
         static let red = UIColor.uRed
         static let white = UIColor.uWhite
     }
+    
+    enum systemImage {
+        static let favorite = UIImage(systemName: "star")
+    }
 }
