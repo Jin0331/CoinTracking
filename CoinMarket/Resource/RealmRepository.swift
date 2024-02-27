@@ -30,10 +30,10 @@ final class RealmRepository {
         }
     }
     
-    // UPDATE
+    // CREATE OR UPDATE
     func searchCreateOrUpdateItem(coinID : String, coinName : String,
                                   conSymbol : String, rank : Int?,
-                                  thumb : String, priority : String?) {
+                                  thumb : String) {
         do {
             try realm.write {
                 realm.create(Search.self,
@@ -41,7 +41,8 @@ final class RealmRepository {
                                      "coinName":coinName,
                                      "conSymbol": conSymbol,
                                      "rank" : rank,
-                                     "thumb": thumb
+                                     "thumb": thumb,
+                                     "upDate":Date()
                                     ],
                              update: .modified)
             }
@@ -49,6 +50,22 @@ final class RealmRepository {
             print(error)
         }
     }
+    
+    
+    
+    // FAVORITE TOGGLE
+    func updateFavoriteToggle(_ item : Search) {
+        
+        do {
+            try realm.write {
+                item.favorite.toggle()
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     
     
 }

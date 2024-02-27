@@ -16,8 +16,37 @@ class SearchViewController: BaseViewController {
         
     }
     
+    let repository = RealmRepository()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: "bitcoin")) { response, error in
+            if let error = error {
+                
+            } else {
+                guard let response = response else { return }
+                
+                
+                response.coins.forEach { item in
+                    self.repository.searchCreateOrUpdateItem(coinID: item.id,
+                                                             coinName: item.name,
+                                                             conSymbol: item.symbol,
+                                                             rank: item.marketCapRank,
+                                                             thumb: item.thumb)
+                }
+                
+
+                
+                self.repository.realmLocation()
+            }
+        }
+        
+//
+        
     }
     
     

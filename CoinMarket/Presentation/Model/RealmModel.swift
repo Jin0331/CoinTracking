@@ -9,9 +9,9 @@ import Foundation
 import RealmSwift
 
 //MARK: - SearchTrend
-class SearchTrend : Object {
-    
-}
+//class SearchTrend : Object {
+//    
+//}
 
 class Search : Object {
     @Persisted(primaryKey: true) var coinID : String // 중복되지 않는 coin의 아이디
@@ -20,6 +20,7 @@ class Search : Object {
     @Persisted var rank : Int?
     @Persisted var thumb : String // 썸네일 이미지
     @Persisted var favorite : Bool
+    @Persisted var upDate : Date
     @Persisted var regDate : Date
     
     @Persisted var market : List<Market>
@@ -32,6 +33,7 @@ class Search : Object {
         self.rank = rank
         self.thumb = thumb
         self.favorite = false
+        self.upDate = Date()
         self.regDate = Date()
     }
 }
@@ -44,6 +46,7 @@ class Market : Object {
     @Persisted var lastUpdated : Date
     @Persisted var change : CoinChange?
     @Persisted var sparkline_in_7d : List<Double>
+    @Persisted var regDate : Date
     
     @Persisted(originProperty: "market") var search : LinkingObjects<Search>
 }
