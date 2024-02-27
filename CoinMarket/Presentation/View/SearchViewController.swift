@@ -12,6 +12,7 @@ import UIKit
 class SearchViewController: BaseViewController {
 
     let mainView = SearchView()
+    let viewModel = SearchViewModel()
     let repository = RealmRepository()
     
     override func loadView() {
@@ -20,34 +21,8 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: "bitcoin")) { response, error in
-            if let error = error {
                 
-            } else {
-                guard let response = response else { return }
-                
-                
-                response.coins.forEach { item in
-                    self.repository.searchCreateOrUpdateItem(coinID: item.id,
-                                                             coinName: item.name,
-                                                             conSymbol: item.symbol,
-                                                             rank: item.marketCapRank,
-                                                             thumb: item.thumb)
-                }
-                
-
-                
-                self.repository.realmLocation()
-            }
-        }
-        
-//
-        
     }
-    
-    
     
     override func configureView() {
         super.configureView()
@@ -92,8 +67,11 @@ extension SearchViewController : UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        print(#function)
+
+        viewModel.inputSearchText.value = searchBar.text
+        
         mainView.searchController.isActive = false
-        print(searchText)
+        
     }
 }
