@@ -10,9 +10,13 @@
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
 		DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */; };
 		DBBC38432B8DADB000C1D69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38422B8DADB000C1D69B /* ViewController.swift */; };
-		DBBC38462B8DADB000C1D69B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38442B8DADB000C1D69B /* Main.storyboard */; };
 		DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38472B8DADB200C1D69B /* Assets.xcassets */; };
 		DBBC384B2B8DADB200C1D69B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38492B8DADB200C1D69B /* LaunchScreen.storyboard */; };
+		DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38552B8DB1F800C1D69B /* CoinAPI.swift */; };
+		DBBC38592B8DB69D00C1D69B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DBBC38582B8DB69D00C1D69B /* Alamofire */; };
+		DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */; };
+		DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */; };
+		DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38632B8DD16400C1D69B /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +24,13 @@
 		DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DBBC38422B8DADB000C1D69B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DBBC38452B8DADB000C1D69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBBC38472B8DADB200C1D69B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBBC384A2B8DADB200C1D69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBBC384C2B8DADB200C1D69B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBBC38552B8DB1F800C1D69B /* CoinAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPI.swift; sourceTree = "<group>"; };
+		DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPIManager.swift; sourceTree = "<group>"; };
+		DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		DBBC38632B8DD16400C1D69B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBBC38592B8DB69D00C1D69B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +64,66 @@
 		DBBC383D2B8DADB000C1D69B /* CoinMarket */ = {
 			isa = PBXGroup;
 			children = (
+				DBBC38532B8DAF6B00C1D69B /* Resource */,
+				DBBC38522B8DAF5E00C1D69B /* Presentation */,
 				DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */,
 				DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */,
 				DBBC38422B8DADB000C1D69B /* ViewController.swift */,
-				DBBC38442B8DADB000C1D69B /* Main.storyboard */,
 				DBBC38472B8DADB200C1D69B /* Assets.xcassets */,
 				DBBC38492B8DADB200C1D69B /* LaunchScreen.storyboard */,
 				DBBC384C2B8DADB200C1D69B /* Info.plist */,
 			);
 			path = CoinMarket;
+			sourceTree = "<group>";
+		};
+		DBBC38522B8DAF5E00C1D69B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC385E2B8DB7E900C1D69B /* View */,
+				DBBC385F2B8DB7F000C1D69B /* ViewModel */,
+				DBBC38602B8DB7F500C1D69B /* Model */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DBBC38532B8DAF6B00C1D69B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC38542B8DB16200C1D69B /* NetworkManager */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DBBC38542B8DB16200C1D69B /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC38552B8DB1F800C1D69B /* CoinAPI.swift */,
+				DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		DBBC385E2B8DB7E900C1D69B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC38632B8DD16400C1D69B /* SearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBBC385F2B8DB7F000C1D69B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DBBC38602B8DB7F500C1D69B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +142,9 @@
 			dependencies = (
 			);
 			name = CoinMarket;
+			packageProductDependencies = (
+				DBBC38582B8DB69D00C1D69B /* Alamofire */,
+			);
 			productName = CoinMarket;
 			productReference = DBBC383B2B8DADB000C1D69B /* CoinMarket.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +173,9 @@
 				Base,
 			);
 			mainGroup = DBBC38322B8DADB000C1D69B;
+			packageReferences = (
+				DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = DBBC383C2B8DADB000C1D69B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +192,6 @@
 			files = (
 				DBBC384B2B8DADB200C1D69B /* LaunchScreen.storyboard in Resources */,
 				DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */,
-				DBBC38462B8DADB000C1D69B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,22 +203,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBBC38432B8DADB000C1D69B /* ViewController.swift in Sources */,
+				DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */,
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
 				DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */,
+				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
+				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
+				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DBBC38442B8DADB000C1D69B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DBBC38452B8DADB000C1D69B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DBBC38492B8DADB200C1D69B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +357,7 @@
 				INFOPLIST_FILE = CoinMarket/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -330,7 +390,7 @@
 				INFOPLIST_FILE = CoinMarket/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -373,6 +433,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DBBC38582B8DB69D00C1D69B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DBBC38332B8DADB000C1D69B /* Project object */;
 }
