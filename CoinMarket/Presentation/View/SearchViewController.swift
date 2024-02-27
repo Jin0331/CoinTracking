@@ -8,13 +8,26 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        CoinAPIManager.shared.callRequest(type: SearchCoinModel.self, api: .trend) { value, error in
+        
+        //trend API
+        CoinAPIManager.shared.callRequest(type: SearchTrendingModel.self, api: .trend) { value, error in
             
-            print(value)
+        dump(value)
         }
+
+        CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: "bitcoinpow")) { value, error in
+
+            dump(value)
+        }
+        
+        //TODO: - market에서 ids 받을 때, Array -> join 형태로 진행하면 될 듯
+        CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: "bitcoinpow")) { value, error in
+
+            dump(value)
+        }
+        
     }
 }

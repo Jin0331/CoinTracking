@@ -8,27 +8,36 @@
 import Foundation
 
 
-//MARK: - Search /  SearchTrending 동시에 사용. 이에 따라, 공통되지 않는 항목에 대한 Default 값의 지정 필요
-struct SearchCoinModel : Decodable {
-    let coins : [Coins]
-//    let nfts : [NFTs]
+//MARK: - Search-Trending
+// 아래의 Coins가 하위 항목임
+struct SearchTrendingModel : Decodable {
+    let coins : [CoinsSearchTrending]
+    let nfts : [NFTs]
 }
 
-struct Coins : Decodable {
+struct CoinsSearchTrending : Decodable {
     let item : CoinsItems
 }
 
+//MARK: - Search
+struct SearchModel : Decodable {
+    let coins : [CoinsItems]
+}
+
+
+//MARK: - Search-Trending과 Search에서 공통적인 Model
 struct CoinsItems : Decodable {
     let id: String
     let coinID: Int
-    let name, symbol: String
-    let small: String
+    let name, symbol, small, thumb: String
+    let marketCapRank : Int
     let data: CoinData
     
     enum CodingKeys: String, CodingKey {
         case id
         case coinID = "coin_id"
-        case name, symbol, small, data
+        case marketCapRank = "market_cap_rank"
+        case name, symbol, small, thumb, data
     }
     
     //TODO: - Nil 예외처리
@@ -38,7 +47,9 @@ struct CoinsItems : Decodable {
         self.coinID = (try? container.decode(Int.self, forKey: .coinID)) ?? -999
         self.name = try container.decode(String.self, forKey: .name)
         self.symbol = try container.decode(String.self, forKey: .symbol)
-        self.small = try container.decode(String.self, forKey: .small)
+        self.small = (try? container.decode(String.self, forKey: .small)) ?? ""
+        self.thumb = (try? container.decode(String.self, forKey: .thumb)) ?? ""
+        self.marketCapRank = (try? container.decode(Int.self, forKey: .marketCapRank)) ?? -999
         self.data = (try? container.decode(CoinData.self, forKey: .data)) ?? CoinData(price: "", priceChangePercentage24H: [:], sparkline: "")
     }
     
@@ -75,14 +86,13 @@ struct NFTData: Decodable {
 
 
 //MARK: - Market
-struct MarketCoinModel : Decodable {
+struct MarketCoin : Decodable {
     let id, symbol, name: String
     let image: String
-    let currentPrice, high24H, low24H: Double
-    let priceChangePercentage24H: Double
-    let ath: Int
+    let currentPrice, high24H, low24H, priceChangePercentage24H: Double
+    let ath: Double
     let athDate: String
-    let atl: Int
+    let atl: Double
     let atlDate, lastUpdated: String
     let sparklineIn7D: SparklineIn7D
 
@@ -100,8 +110,9 @@ struct MarketCoinModel : Decodable {
         case sparklineIn7D = "sparkline_in_7d"
     }
 }
-
-// MARK: - SparklineIn7D
+// SparklineIn7D
 struct SparklineIn7D: Decodable {
     let price: [Double]
 }
+
+typealias MarketCoinModel = [MarketCoin]

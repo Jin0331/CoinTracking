@@ -31,7 +31,7 @@ enum CoinAPI : CaseIterable {
         case .search:
             return URL(string: CoinAPI.baseURL + "search")!
         case .market:
-            return URL(string: CoinAPI.baseURL + "coin/markets")!
+            return URL(string: CoinAPI.baseURL + "coins/markets")!
         }
     }
     
@@ -41,10 +41,8 @@ enum CoinAPI : CaseIterable {
             return ["query": coinName]
         case .market(ids: let ids):
             return ["ids":ids, "vs_currency" : "krw", "sparkline" : "true"]
-            
         default :
             return [:]
-            
         }
     }
     
