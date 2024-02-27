@@ -19,6 +19,9 @@
 		DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */; };
 		DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */; };
 		DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */; };
+		DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0AFD2B8E156300A33A65 /* SnapKit */; };
+		DBFF0B012B8E156C00A33A65 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0B002B8E156C00A33A65 /* Then */; };
+		DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,7 @@
 		DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBBC38592B8DB69D00C1D69B /* Alamofire in Frameworks */,
+				DBFF0B012B8E156C00A33A65 /* Then in Frameworks */,
+				DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +117,7 @@
 		DBBC385E2B8DB7E900C1D69B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DBFF0B022B8E160A00A33A65 /* Cell */,
 				DBBC38632B8DD16400C1D69B /* SearchViewController.swift */,
 			);
 			path = View;
@@ -140,6 +147,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		DBFF0B022B8E160A00A33A65 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,6 +173,8 @@
 			name = CoinMarket;
 			packageProductDependencies = (
 				DBBC38582B8DB69D00C1D69B /* Alamofire */,
+				DBFF0AFD2B8E156300A33A65 /* SnapKit */,
+				DBFF0B002B8E156C00A33A65 /* Then */,
 			);
 			productName = CoinMarket;
 			productReference = DBBC383B2B8DADB000C1D69B /* CoinMarket.app */;
@@ -189,6 +206,8 @@
 			mainGroup = DBBC38322B8DADB000C1D69B;
 			packageReferences = (
 				DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DBFF0AFF2B8E156C00A33A65 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = DBBC383C2B8DADB000C1D69B /* Products */;
 			projectDirPath = "";
@@ -224,6 +243,7 @@
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
 				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
+				DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */,
 				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +479,22 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		DBFF0AFF2B8E156C00A33A65 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -466,6 +502,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DBFF0AFD2B8E156300A33A65 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		DBFF0B002B8E156C00A33A65 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBFF0AFF2B8E156C00A33A65 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

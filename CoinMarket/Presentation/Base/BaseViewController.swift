@@ -28,7 +28,7 @@ class BaseViewController : UIViewController {
     
     func configureView() {
         
-        view.backgroundColor = .black
+        view.backgroundColor = DesignSystem.colorSet.white
     }
 
     // navigation controller가 있다면 적용되는 사항
@@ -36,6 +36,9 @@ class BaseViewController : UIViewController {
         // 배경색
         navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = DesignSystem.colorSet.white
         navigationController?.navigationBar.barTintColor = DesignSystem.colorSet.white
+        
+        // title 크게
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         // back button
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil) // title 부분 수정
