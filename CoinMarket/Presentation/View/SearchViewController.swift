@@ -50,20 +50,17 @@ class SearchViewController: BaseViewController {
     
     
     override func configureView() {
+        super.configureView()
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
+        mainView.searchController.delegate = self
+        mainView.searchController.searchBar.delegate = self
     }
     
     override func configureNavigation() {
         super.configureNavigation()
-        
-        // UISearchContoller
-        let searchController = UISearchController(searchResultsController: nil) // UISearchController
-        searchController.searchBar.placeholder = ""
-        searchController.hidesNavigationBarDuringPresentation = false
-        
         self.navigationItem.title = "Search"
-        self.navigationItem.searchController = searchController
+        self.navigationItem.searchController = mainView.searchController
     }
 }
 
@@ -83,4 +80,20 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension SearchViewController : UISearchControllerDelegate {
+    
+}
+
+extension SearchViewController : UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        mainView.searchController.isActive = false
+        print(searchText)
+    }
 }

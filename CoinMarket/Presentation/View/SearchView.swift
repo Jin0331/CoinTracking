@@ -17,6 +17,12 @@ class SearchView : BaseView {
         $0.separatorStyle = .none
     }
     
+    lazy var searchController = UISearchController(searchResultsController: nil).then {
+        $0.searchBar.placeholder = ""
+        $0.hidesNavigationBarDuringPresentation = false
+        $0.obscuresBackgroundDuringPresentation = false
+    }
+    
     override func configureHierarchy() {
         addSubview(mainTableView)
     }
