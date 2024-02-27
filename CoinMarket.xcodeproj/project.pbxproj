@@ -17,6 +17,7 @@
 		DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */; };
 		DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */; };
 		DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38632B8DD16400C1D69B /* SearchViewController.swift */; };
+		DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPIManager.swift; sourceTree = "<group>"; };
 		DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		DBBC38632B8DD16400C1D69B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				DBBC38542B8DB16200C1D69B /* NetworkManager */,
+				DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */,
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
 				DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */,
+				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
 				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
 				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
 				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
