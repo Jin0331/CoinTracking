@@ -75,8 +75,20 @@ class CharView: BaseView {
     }
     
     let bottomChartView = LineChartView(frame: .zero).then {
-        $0.backgroundColor = .red
-               
+        $0.setScaleEnabled(false)
+        $0.animate(xAxisDuration: 1.5)
+        $0.drawGridBackgroundEnabled = false
+        $0.xAxis.drawAxisLineEnabled = false
+        $0.xAxis.drawGridLinesEnabled = false
+        $0.leftAxis.drawAxisLineEnabled = false
+        $0.leftAxis.drawGridLinesEnabled = false
+        $0.rightAxis.drawAxisLineEnabled = false
+        $0.rightAxis.drawGridLinesEnabled = false
+        $0.legend.enabled = false
+        $0.xAxis.enabled = false
+        $0.leftAxis.enabled = false
+        $0.rightAxis.enabled = false
+        $0.xAxis.drawLabelsEnabled = false
     }
     
     override func configureHierarchy() {
