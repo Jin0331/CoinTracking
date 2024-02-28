@@ -25,6 +25,11 @@
 		DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */; };
 		DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38632B8DD16400C1D69B /* SearchViewController.swift */; };
 		DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */; };
+		DBBD06D12B8F497300A73E22 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBD06D02B8F497300A73E22 /* ChartViewController.swift */; };
+		DBBD06D32B8F498F00A73E22 /* CharView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBD06D22B8F498F00A73E22 /* CharView.swift */; };
+		DBCEB4DC2B8F60CA0073E546 /* ChartPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB4DB2B8F60CA0073E546 /* ChartPriceView.swift */; };
+		DBCEB4DF2B8F63CF0073E546 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = DBCEB4DE2B8F63CF0073E546 /* DGCharts */; };
+		DBCEB4E12B8F63CF0073E546 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = DBCEB4E02B8F63CF0073E546 /* DGChartsDynamic */; };
 		DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */; };
 		DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */; };
 		DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0AFD2B8E156300A33A65 /* SnapKit */; };
@@ -54,6 +59,9 @@
 		DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		DBBC38632B8DD16400C1D69B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		DBBD06D02B8F497300A73E22 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		DBBD06D22B8F498F00A73E22 /* CharView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharView.swift; sourceTree = "<group>"; };
+		DBCEB4DB2B8F60CA0073E546 /* ChartPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPriceView.swift; sourceTree = "<group>"; };
 		DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -66,12 +74,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCEB4DF2B8F63CF0073E546 /* DGCharts in Frameworks */,
 				DB0A59B22B8EE45200F4A82F /* Kingfisher in Frameworks */,
 				DBBC38592B8DB69D00C1D69B /* Alamofire in Frameworks */,
 				DBFF0B012B8E156C00A33A65 /* Then in Frameworks */,
 				DBFF0B0B2B8E201200A33A65 /* Realm in Frameworks */,
 				DBFF0B0D2B8E201200A33A65 /* RealmSwift in Frameworks */,
 				DB20B4E32B8F30F70070FC5F /* Toast in Frameworks */,
+				DBCEB4E12B8F63CF0073E546 /* DGChartsDynamic in Frameworks */,
 				DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,9 +162,12 @@
 		DBBC385E2B8DB7E900C1D69B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DBCEB4DA2B8F60830073E546 /* CustomView */,
 				DBFF0B022B8E160A00A33A65 /* Cell */,
 				DB0A599E2B8E445A00F4A82F /* SearchView.swift */,
 				DBBC38632B8DD16400C1D69B /* SearchViewController.swift */,
+				DBBD06D22B8F498F00A73E22 /* CharView.swift */,
+				DBBD06D02B8F497300A73E22 /* ChartViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +188,14 @@
 				DBFF0B052B8E1FDF00A33A65 /* RealmModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DBCEB4DA2B8F60830073E546 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				DBCEB4DB2B8F60CA0073E546 /* ChartPriceView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		DBFF0AF72B8E101600A33A65 /* Base */ = {
@@ -219,6 +240,8 @@
 				DBFF0B0C2B8E201200A33A65 /* RealmSwift */,
 				DB0A59B12B8EE45200F4A82F /* Kingfisher */,
 				DB20B4E22B8F30F70070FC5F /* Toast */,
+				DBCEB4DE2B8F63CF0073E546 /* DGCharts */,
+				DBCEB4E02B8F63CF0073E546 /* DGChartsDynamic */,
 			);
 			productName = CoinMarket;
 			productReference = DBBC383B2B8DADB000C1D69B /* CoinMarket.app */;
@@ -255,6 +278,7 @@
 				DBFF0B092B8E201200A33A65 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				DB0A59B02B8EE45200F4A82F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DB20B4E12B8F30F70070FC5F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				DBCEB4DD2B8F63CF0073E546 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = DBBC383C2B8DADB000C1D69B /* Products */;
 			projectDirPath = "";
@@ -287,6 +311,7 @@
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
 				DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */,
 				DBFF0B062B8E1FDF00A33A65 /* RealmModel.swift in Sources */,
+				DBBD06D12B8F497300A73E22 /* ChartViewController.swift in Sources */,
 				DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */,
 				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
 				DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */,
@@ -296,9 +321,11 @@
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
 				DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */,
 				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
+				DBCEB4DC2B8F60CA0073E546 /* ChartPriceView.swift in Sources */,
 				DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */,
 				DB0A59A32B8E506100F4A82F /* SearchViewModel.swift in Sources */,
 				DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */,
+				DBBD06D32B8F498F00A73E22 /* CharView.swift in Sources */,
 				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +577,14 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		DBCEB4DD2B8F63CF0073E546 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -591,6 +626,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DBCEB4DE2B8F63CF0073E546 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBCEB4DD2B8F63CF0073E546 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		DBCEB4E02B8F63CF0073E546 /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBCEB4DD2B8F63CF0073E546 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
 		};
 		DBFF0AFD2B8E156300A33A65 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

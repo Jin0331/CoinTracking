@@ -64,6 +64,13 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+        
+        let vc = ChartViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SearchViewController : UISearchControllerDelegate {

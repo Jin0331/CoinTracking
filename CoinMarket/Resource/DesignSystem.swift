@@ -10,15 +10,15 @@ import UIKit
 enum DesignSystem {
     
     enum colorSet  {
-        static let black = UIColor.uBlack
-        static let blue = UIColor.uBlue
+        static let black = UIColor.ublack
+        static let blue = UIColor.ublue
         static let gray = UIColor.uGray
-        static let lightBlack = UIColor.uLightBlack
-        static let lightBlue = UIColor.uLightBlue
-        static let lightGray = UIColor.uLightGray
-        static let pink = UIColor.uPink
-        static let purple = UIColor.uPurple
-        static let red = UIColor.uRed
+        static let lightBlack = UIColor.ulightBlack
+        static let lightBlue = UIColor.ulightBlue
+        static let lightGray = UIColor.ulightGray
+        static let pink = UIColor.upink
+        static let purple = UIColor.upurple
+        static let red = UIColor.ured
         static let white = UIColor.uWhite
     }
     
