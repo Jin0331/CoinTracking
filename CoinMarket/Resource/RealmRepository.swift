@@ -36,16 +36,10 @@ final class RealmRepository {
                                   large : String) {
         do {
             try realm.write {
-                realm.create(Search.self,
-                             value: ["coinID": coinID,
-                                     "coinName":coinName,
-                                     "conSymbol": conSymbol,
-                                     "rank" : rank,
-                                     "large": large,
-                                     "upDate":Date()
-                                    ],
-                             update: .modified)
-            }
+                realm.create(Search.self, value: ["coinID": coinID, "coinName":coinName,
+                                                  "conSymbol": conSymbol,"rank" : rank,
+                                                  "large": large,"upDate":Date()
+                                                 ], update: .modified) }
         } catch {
             print(error)
         }
@@ -61,8 +55,7 @@ final class RealmRepository {
     func fetchItem(coinID : String) -> Results<Search> {
         let result = realm.objects(Search.self)
             .where {
-                $0.coinID == coinID
-            }
+                $0.coinID == coinID }
         
         return result
     }
@@ -76,15 +69,14 @@ final class RealmRepository {
         
         return Array(result)
     }
-
+    
     
     // FAVORITE TOGGLE
-    func updateFavoriteToggle(_ item : Search) {
+    func updateFavoriteToggle(_ coinID : String, _ favorite : Bool) {
         
         do {
             try realm.write {
-                item.favorite.toggle()
-            }
+                realm.create(Search.self, value: ["coinID": coinID, "favorite" : favorite, "upDate":Date()], update: .modified) }
         } catch {
             print(error)
         }

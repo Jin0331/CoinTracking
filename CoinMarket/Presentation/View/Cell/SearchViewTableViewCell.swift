@@ -30,7 +30,6 @@ class SearchViewTableViewCell: BaseTableViewCell {
     
     let favoriteButton = UIButton().then {
         var config = UIButton.Configuration.plain()
-        config.image = DesignSystem.systemImage.favorite!.applyingSymbolConfiguration(.init(pointSize: 50)) // systemImage에만 적용됨.. 추후 찾아보자
         $0.configuration = config
     }
     
@@ -68,10 +67,14 @@ class SearchViewTableViewCell: BaseTableViewCell {
         
         print(#function)
         
-        favoriteButton.addAction(UIAction(handler: { action in
+        favoriteButton.addAction(UIAction(handler: { _ in
             self.viewModel.outputFavoriteBool.value.toggle()
+            self.viewModel.favoriteButtonClicked.value = ()
+            
+            
         }), for: .touchUpInside)
         
+        // toggle 될 때마다, button 이미지 변경 됨.
         favoriteButton.configurationUpdateHandler = { button in
             var config = button.configuration
             config?.image = self.viewModel.outputFavoriteBool.value ? DesignSystem.systemImage.favoriteFill : DesignSystem.systemImage.favorite
