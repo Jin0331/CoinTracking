@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 extension UIView {
     static var identifier: String {

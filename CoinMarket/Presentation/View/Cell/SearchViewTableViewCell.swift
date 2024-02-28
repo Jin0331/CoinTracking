@@ -43,7 +43,7 @@ class SearchViewTableViewCell: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func bindData() {
+    private func bindData() {
         
         viewModel.search.bind { value in
             guard let value = value else { return }
@@ -68,11 +68,10 @@ class SearchViewTableViewCell: BaseTableViewCell {
         print(#function)
         
         favoriteButton.addAction(UIAction(handler: { _ in
-            self.viewModel.outputFavoriteBool.value.toggle()
-            self.viewModel.favoriteButtonClicked.value = ()
             
-            
-        }), for: .touchUpInside)
+            //TODO: - 즐겨찾기 10개 초과 토스트 여기서 해야됨. 10개 초과시 return으로 아래 코드 실행되지 않도록
+            let status = self.viewModel.getCase(self.viewModel.fetchFavoriteTrueRowNumber())
+            self.makeToast(status.textValue, duration: 1) }), for: .touchUpInside)
         
         // toggle 될 때마다, button 이미지 변경 됨.
         favoriteButton.configurationUpdateHandler = { button in
@@ -81,7 +80,6 @@ class SearchViewTableViewCell: BaseTableViewCell {
             button.configuration = config
         }
     }
-    
     
     override func configureHierarchy() {
         [symbolImage, nameLabel, symbolLabel, favoriteButton].forEach{ contentView.addSubview($0)}
@@ -112,6 +110,13 @@ class SearchViewTableViewCell: BaseTableViewCell {
             make.top.equalTo(nameLabel.snp.bottom).offset(3)
             make.trailing.equalTo(nameLabel)
         }
+    }
+    
+    override func prepareForReuse() {
+        symbolImage.image = nil
+        nameLabel.text = nil
+        symbolLabel.text = nil
+        favoriteButton.addAction(UIAction(handler: { _ in }), for: .touchUpInside)
     }
     
 }

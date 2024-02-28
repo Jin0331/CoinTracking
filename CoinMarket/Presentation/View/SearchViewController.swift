@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - TableView만 있으므로, Custom View 없이 바로 진행
-//TODO: - search start -> Search API 호출 -> Realm Create 또는 Update (항목이 없다면, create 있다면 ID 중심으로 Update 되어야 함) -> sort(내림차순) 및 쵀대 상위 25개까지 tableView에 뿌림
+//TODO: - search start -> Search API 호출 -> Realm Create 또는 Update (항목이 없다면, create 있다면 ID 중심으로 Update 되어야 함) -> sort(내림차순) 및 쵀대 상위 25개까지 tableView에 뿌림 - 완료
 class SearchViewController: BaseViewController {
 
     let mainView = SearchView()
@@ -27,7 +27,7 @@ class SearchViewController: BaseViewController {
         
     }
     
-    func dataBind() {
+    private func dataBind() {
         viewModel.outputData.bind { value in
             
             print(#function)
