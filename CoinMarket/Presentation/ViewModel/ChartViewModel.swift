@@ -36,23 +36,17 @@ class ChartViewModel {
                     guard let data = response.first else { return }
                     
                     // embedd class
-                    let embeddedItem = self.createEmbeddedItem(data)
+                    let embeddedItem = self.repository.createEmbeddedItem(data)
                     self.repository.searchCreateOrUpdateItem(coinID: data.id, coinName: data.name, conSymbol: data.symbol, currentPrice: data.currentPrice, lastUpdated: data.lastUpdated.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!, change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
+                    
+                    // Search Table과 연결
+                    let currentSearchTable = self.repository.fetchSearchItem(coinID: value).first!
+                    let currentMarketTable = self.repository.fetchMarkethItem(coinID: value).first!
+                    
+                    self.repository.createRelationSearchWithMarket(destination: currentSearchTable, from: currentMarketTable)
                 }
             }
         }
-    }
-    
-    private func createEmbeddedItem(_ data : MarketCoin) -> CoinChange {
-        
-        return CoinChange(perprice_change_percentage_24h: data.priceChangePercentage24H,
-                          low_24h: data.low24H,
-                          high_24h: data.high24H,
-                          ath: data.ath,
-                          ath_date: data.athDate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
-                          atl: data.atl,
-                          atl_date: data.atlDate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!)
-        
     }
     
 }

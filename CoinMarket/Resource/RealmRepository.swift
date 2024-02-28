@@ -17,6 +17,8 @@ final class RealmRepository {
     }
     
     
+    //MARK: - Create
+    
     // CREATE
     func createItem<T:Object>(_ item : T) {
         
@@ -67,15 +69,39 @@ final class RealmRepository {
         }
     }
     
+    func createEmbeddedItem(_ data : MarketCoin) -> CoinChange {
+        
+        return CoinChange(perprice_change_percentage_24h: data.priceChangePercentage24H,
+                          low_24h: data.low24H,
+                          high_24h: data.high24H,
+                          ath: data.ath,
+                          ath_date: data.athDate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
+                          atl: data.atl,
+                          atl_date: data.atlDate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!)
+        
+    }
     
+    func createRelationSearchWithMarket(destination : Search, from : Market) {
+        do {
+            try realm.write {
+                destination.market.append(from)
+            }
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    
+    //MARK: - Read
     // READ
-    func fetchItem() -> [Search] {
+    func fetchSearchItem() -> [Search] {
         let result = realm.objects(Search.self)
         
         return Array(result)
     }
     
-    func fetchItem(coinID : String) -> Results<Search> {
+    func fetchSearchItem(coinID : String) -> Results<Search> {
         let result = realm.objects(Search.self)
             .where {
                 $0.coinID == coinID }
@@ -93,7 +119,17 @@ final class RealmRepository {
         return Array(result)
     }
     
+    func fetchMarkethItem(coinID : String) -> Results<Market> {
+        let result = realm.objects(Market.self)
+            .where {
+                $0.coinID == coinID }
+        
+        return result
+    }
     
+    
+    
+    //MARK: - Update
     // FAVORITE TOGGLE
     func updateFavoriteToggle(_ coinID : String, _ favorite : Bool) {
         
