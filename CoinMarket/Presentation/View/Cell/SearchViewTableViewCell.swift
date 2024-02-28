@@ -12,7 +12,7 @@ import Kingfisher
 
 class SearchViewTableViewCell: BaseTableViewCell {
     
-    var viewModel : SearchViewModel? // SearchViewModel 재사용
+    var viewModel = SearchViewTableViewCellModel() // SearchViewModel 재사용
     
     let symbolImage = UIImageView().then {
         $0.contentMode = .scaleAspectFit
@@ -31,9 +31,54 @@ class SearchViewTableViewCell: BaseTableViewCell {
     let favoriteButton = UIButton().then {
         var config = UIButton.Configuration.plain()
         config.image = DesignSystem.systemImage.favorite!.applyingSymbolConfiguration(.init(pointSize: 50)) // systemImage에만 적용됨.. 추후 찾아보자
-        
         $0.configuration = config
     }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        bindData()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func bindData() {
+        
+        viewModel.search.bind { value in
+            guard let value = value else { return }
+            
+            self.viewModel.inputCoinID.value = value.coinID
+            self.symbolImage.kf.setImage(with: value.largeURL)
+            self.nameLabel.text = value.coinName
+            self.symbolLabel.text = value.conSymbol
+        }
+        
+        viewModel.outputFavoriteBool.bind { value in
+            
+            print(#function, value)
+            self.favoriteButton.setNeedsUpdateConfiguration()
+        }
+    }
+    
+    
+    override func configureView() {
+        super.configureView()
+        
+        print(#function)
+        
+        favoriteButton.addAction(UIAction(handler: { action in
+            self.viewModel.outputFavoriteBool.value.toggle()
+        }), for: .touchUpInside)
+        
+        favoriteButton.configurationUpdateHandler = { button in
+            var config = button.configuration
+            config?.image = self.viewModel.outputFavoriteBool.value ? DesignSystem.systemImage.favoriteFill : DesignSystem.systemImage.favorite
+            button.configuration = config
+        }
+    }
+    
     
     override func configureHierarchy() {
         [symbolImage, nameLabel, symbolLabel, favoriteButton].forEach{ contentView.addSubview($0)}
@@ -65,17 +110,5 @@ class SearchViewTableViewCell: BaseTableViewCell {
             make.trailing.equalTo(nameLabel)
         }
     }
-
     
-    func configureCellForRoaAt(indexPath : IndexPath) {
-        
-        guard let data = viewModel?.outputData.value else { return }
-        
-        let row = data[indexPath.row]
-        
-        symbolImage.kf.setImage(with: row.largeURL)
-        nameLabel.text = row.coinName
-        symbolLabel.text = row.conSymbol
-    }
-
 }

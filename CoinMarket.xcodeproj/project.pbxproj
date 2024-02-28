@@ -13,6 +13,7 @@
 		DB0A59A12B8E4E8E00F4A82F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A59A02B8E4E8E00F4A82F /* Observable.swift */; };
 		DB0A59A32B8E506100F4A82F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */; };
 		DB0A59B22B8EE45200F4A82F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DB0A59B12B8EE45200F4A82F /* Kingfisher */; };
+		DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */; };
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
 		DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */; };
 		DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38472B8DADB200C1D69B /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		DB0A599E2B8E445A00F4A82F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		DB0A59A02B8E4E8E00F4A82F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCellModel.swift; sourceTree = "<group>"; };
 		DBBC383B2B8DADB000C1D69B /* CoinMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */,
+				DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
 				DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */,
 				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
+				DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */,
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
 				DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */,

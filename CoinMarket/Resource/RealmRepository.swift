@@ -58,6 +58,15 @@ final class RealmRepository {
         return Array(result)
     }
     
+    func fetchItem(coinID : String) -> Results<Search> {
+        let result = realm.objects(Search.self)
+            .where {
+                $0.coinID == coinID
+            }
+        
+        return result
+    }
+    
     func searchFetchItemFilterdSorted(coinID : String) -> [Search] {
         
         let result = realm.objects(Search.self)

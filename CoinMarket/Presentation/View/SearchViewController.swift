@@ -23,7 +23,6 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         
         print(#function)
-        
         dataBind()
         
     }
@@ -34,7 +33,6 @@ class SearchViewController: BaseViewController {
             print(#function)
             self.mainView.mainTableView.reloadData()
         }
-               
     }
     
     override func configureView() {
@@ -56,18 +54,14 @@ class SearchViewController: BaseViewController {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print(#function, viewModel.outputData.value.count)
-        
         return viewModel.outputData.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewTableViewCell.identifier, for: indexPath) as! SearchViewTableViewCell
         
-        cell.viewModel = self.viewModel
-        cell.configureCellForRoaAt(indexPath: indexPath)
-
+        cell.viewModel.search.value = self.viewModel.outputData.value[indexPath.row]
+        
         return cell
     }
 }
@@ -88,9 +82,5 @@ extension SearchViewController : UISearchBarDelegate {
 
         mainView.mainTableView.isHidden = false
         viewModel.inputCoinID.value = searchBar.text
-        
-//        mainView.mainTableView.reloadData()
-        
-        
     }
 }

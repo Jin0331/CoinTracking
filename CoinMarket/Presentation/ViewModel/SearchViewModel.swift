@@ -12,6 +12,7 @@ class SearchViewModel {
     let repository = RealmRepository()
     
     var inputCoinID : Observable<String?> = Observable(nil)
+    
     var outputData : Observable<[Search]> = Observable([])
     
     init() {
