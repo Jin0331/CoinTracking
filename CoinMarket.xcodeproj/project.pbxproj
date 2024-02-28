@@ -7,23 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */; };
+		DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */; };
+		DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A599E2B8E445A00F4A82F /* SearchView.swift */; };
+		DB0A59A12B8E4E8E00F4A82F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A59A02B8E4E8E00F4A82F /* Observable.swift */; };
+		DB0A59A32B8E506100F4A82F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */; };
+		DB0A59B22B8EE45200F4A82F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DB0A59B12B8EE45200F4A82F /* Kingfisher */; };
+		DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */; };
+		DB20B4E32B8F30F70070FC5F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DB20B4E22B8F30F70070FC5F /* Toast */; };
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
 		DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */; };
-		DBBC38432B8DADB000C1D69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38422B8DADB000C1D69B /* ViewController.swift */; };
-		DBBC38462B8DADB000C1D69B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38442B8DADB000C1D69B /* Main.storyboard */; };
 		DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38472B8DADB200C1D69B /* Assets.xcassets */; };
 		DBBC384B2B8DADB200C1D69B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38492B8DADB200C1D69B /* LaunchScreen.storyboard */; };
+		DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38552B8DB1F800C1D69B /* CoinAPI.swift */; };
+		DBBC38592B8DB69D00C1D69B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DBBC38582B8DB69D00C1D69B /* Alamofire */; };
+		DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */; };
+		DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */; };
+		DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38632B8DD16400C1D69B /* SearchViewController.swift */; };
+		DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */; };
+		DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */; };
+		DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */; };
+		DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0AFD2B8E156300A33A65 /* SnapKit */; };
+		DBFF0B012B8E156C00A33A65 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0B002B8E156C00A33A65 /* Then */; };
+		DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */; };
+		DBFF0B062B8E1FDF00A33A65 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0B052B8E1FDF00A33A65 /* RealmModel.swift */; };
+		DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0B072B8E1FED00A33A65 /* RealmRepository.swift */; };
+		DBFF0B0B2B8E201200A33A65 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0B0A2B8E201200A33A65 /* Realm */; };
+		DBFF0B0D2B8E201200A33A65 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0B0C2B8E201200A33A65 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		DB0A599E2B8E445A00F4A82F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		DB0A59A02B8E4E8E00F4A82F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCellModel.swift; sourceTree = "<group>"; };
 		DBBC383B2B8DADB000C1D69B /* CoinMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DBBC38422B8DADB000C1D69B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DBBC38452B8DADB000C1D69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBBC38472B8DADB200C1D69B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBBC384A2B8DADB200C1D69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBBC384C2B8DADB200C1D69B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBBC38552B8DB1F800C1D69B /* CoinAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPI.swift; sourceTree = "<group>"; };
+		DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPIManager.swift; sourceTree = "<group>"; };
+		DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		DBBC38632B8DD16400C1D69B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCell.swift; sourceTree = "<group>"; };
+		DBFF0B052B8E1FDF00A33A65 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		DBFF0B072B8E1FED00A33A65 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,12 +66,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB0A59B22B8EE45200F4A82F /* Kingfisher in Frameworks */,
+				DBBC38592B8DB69D00C1D69B /* Alamofire in Frameworks */,
+				DBFF0B012B8E156C00A33A65 /* Then in Frameworks */,
+				DBFF0B0B2B8E201200A33A65 /* Realm in Frameworks */,
+				DBFF0B0D2B8E201200A33A65 /* RealmSwift in Frameworks */,
+				DB20B4E32B8F30F70070FC5F /* Toast in Frameworks */,
+				DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB0A599B2B8E431C00F4A82F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		DBBC38322B8DADB000C1D69B = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +106,93 @@
 		DBBC383D2B8DADB000C1D69B /* CoinMarket */ = {
 			isa = PBXGroup;
 			children = (
+				DBBC38532B8DAF6B00C1D69B /* Resource */,
+				DBBC38522B8DAF5E00C1D69B /* Presentation */,
 				DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */,
 				DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */,
-				DBBC38422B8DADB000C1D69B /* ViewController.swift */,
-				DBBC38442B8DADB000C1D69B /* Main.storyboard */,
 				DBBC38472B8DADB200C1D69B /* Assets.xcassets */,
 				DBBC38492B8DADB200C1D69B /* LaunchScreen.storyboard */,
 				DBBC384C2B8DADB200C1D69B /* Info.plist */,
 			);
 			path = CoinMarket;
+			sourceTree = "<group>";
+		};
+		DBBC38522B8DAF5E00C1D69B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DBFF0AF72B8E101600A33A65 /* Base */,
+				DBBC385E2B8DB7E900C1D69B /* View */,
+				DBBC385F2B8DB7F000C1D69B /* ViewModel */,
+				DBBC38602B8DB7F500C1D69B /* Model */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DBBC38532B8DAF6B00C1D69B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DB0A599B2B8E431C00F4A82F /* Extension */,
+				DBBC38542B8DB16200C1D69B /* NetworkManager */,
+				DBBC38652B8E0D4000C1D69B /* DesignSystem.swift */,
+				DBFF0B072B8E1FED00A33A65 /* RealmRepository.swift */,
+				DB0A59A02B8E4E8E00F4A82F /* Observable.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DBBC38542B8DB16200C1D69B /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC38552B8DB1F800C1D69B /* CoinAPI.swift */,
+				DBBC385A2B8DB78000C1D69B /* CoinAPIManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		DBBC385E2B8DB7E900C1D69B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBFF0B022B8E160A00A33A65 /* Cell */,
+				DB0A599E2B8E445A00F4A82F /* SearchView.swift */,
+				DBBC38632B8DD16400C1D69B /* SearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBBC385F2B8DB7F000C1D69B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */,
+				DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DBBC38602B8DB7F500C1D69B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC38612B8DB8BE00C1D69B /* CoinModel.swift */,
+				DBFF0B052B8E1FDF00A33A65 /* RealmModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DBFF0AF72B8E101600A33A65 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */,
+				DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */,
+				DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		DBFF0B022B8E160A00A33A65 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +211,15 @@
 			dependencies = (
 			);
 			name = CoinMarket;
+			packageProductDependencies = (
+				DBBC38582B8DB69D00C1D69B /* Alamofire */,
+				DBFF0AFD2B8E156300A33A65 /* SnapKit */,
+				DBFF0B002B8E156C00A33A65 /* Then */,
+				DBFF0B0A2B8E201200A33A65 /* Realm */,
+				DBFF0B0C2B8E201200A33A65 /* RealmSwift */,
+				DB0A59B12B8EE45200F4A82F /* Kingfisher */,
+				DB20B4E22B8F30F70070FC5F /* Toast */,
+			);
 			productName = CoinMarket;
 			productReference = DBBC383B2B8DADB000C1D69B /* CoinMarket.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +248,14 @@
 				Base,
 			);
 			mainGroup = DBBC38322B8DADB000C1D69B;
+			packageReferences = (
+				DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DBFF0AFF2B8E156C00A33A65 /* XCRemoteSwiftPackageReference "Then" */,
+				DBFF0B092B8E201200A33A65 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				DB0A59B02B8EE45200F4A82F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				DB20B4E12B8F30F70070FC5F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+			);
 			productRefGroup = DBBC383C2B8DADB000C1D69B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +272,6 @@
 			files = (
 				DBBC384B2B8DADB200C1D69B /* LaunchScreen.storyboard in Resources */,
 				DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */,
-				DBBC38462B8DADB000C1D69B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +282,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBC38432B8DADB000C1D69B /* ViewController.swift in Sources */,
+				DB0A59A12B8E4E8E00F4A82F /* Observable.swift in Sources */,
+				DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */,
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
 				DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */,
+				DBFF0B062B8E1FDF00A33A65 /* RealmModel.swift in Sources */,
+				DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */,
+				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
+				DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */,
+				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
+				DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */,
+				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
+				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
+				DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */,
+				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
+				DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */,
+				DB0A59A32B8E506100F4A82F /* SearchViewModel.swift in Sources */,
+				DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */,
+				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DBBC38442B8DADB000C1D69B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DBBC38452B8DADB000C1D69B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DBBC38492B8DADB200C1D69B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +448,7 @@
 				INFOPLIST_FILE = CoinMarket/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -330,7 +481,7 @@
 				INFOPLIST_FILE = CoinMarket/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -373,6 +524,95 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DB0A59B02B8EE45200F4A82F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		DB20B4E12B8F30F70070FC5F /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		DBFF0AFF2B8E156C00A33A65 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		DBFF0B092B8E201200A33A65 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.47.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DB0A59B12B8EE45200F4A82F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB0A59B02B8EE45200F4A82F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		DB20B4E22B8F30F70070FC5F /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB20B4E12B8F30F70070FC5F /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		DBBC38582B8DB69D00C1D69B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBBC38572B8DB69D00C1D69B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		DBFF0AFD2B8E156300A33A65 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBFF0AFC2B8E156300A33A65 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		DBFF0B002B8E156C00A33A65 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBFF0AFF2B8E156C00A33A65 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		DBFF0B0A2B8E201200A33A65 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBFF0B092B8E201200A33A65 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		DBFF0B0C2B8E201200A33A65 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBFF0B092B8E201200A33A65 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DBBC38332B8DADB000C1D69B /* Project object */;
 }
