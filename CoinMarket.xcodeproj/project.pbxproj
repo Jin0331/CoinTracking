@@ -30,6 +30,8 @@
 		DBCEB4DC2B8F60CA0073E546 /* ChartPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB4DB2B8F60CA0073E546 /* ChartPriceView.swift */; };
 		DBCEB4DF2B8F63CF0073E546 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = DBCEB4DE2B8F63CF0073E546 /* DGCharts */; };
 		DBCEB4E12B8F63CF0073E546 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = DBCEB4E02B8F63CF0073E546 /* DGChartsDynamic */; };
+		DBCEB4E32B8F66BF0073E546 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB4E22B8F66BF0073E546 /* ChartViewModel.swift */; };
+		DBCEB4E52B8F70D80073E546 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB4E42B8F70D80073E546 /* Date + Extension.swift */; };
 		DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */; };
 		DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */; };
 		DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0AFD2B8E156300A33A65 /* SnapKit */; };
@@ -62,6 +64,8 @@
 		DBBD06D02B8F497300A73E22 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		DBBD06D22B8F498F00A73E22 /* CharView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharView.swift; sourceTree = "<group>"; };
 		DBCEB4DB2B8F60CA0073E546 /* ChartPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPriceView.swift; sourceTree = "<group>"; };
+		DBCEB4E22B8F66BF0073E546 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		DBCEB4E42B8F70D80073E546 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */,
+				DBCEB4E42B8F70D80073E546 /* Date + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 			children = (
 				DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */,
 				DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */,
+				DBCEB4E22B8F66BF0073E546 /* ChartViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -319,10 +325,12 @@
 				DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */,
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
+				DBCEB4E32B8F66BF0073E546 /* ChartViewModel.swift in Sources */,
 				DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */,
 				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
 				DBCEB4DC2B8F60CA0073E546 /* ChartPriceView.swift in Sources */,
 				DBFF0B042B8E166E00A33A65 /* SearchViewTableViewCell.swift in Sources */,
+				DBCEB4E52B8F70D80073E546 /* Date + Extension.swift in Sources */,
 				DB0A59A32B8E506100F4A82F /* SearchViewModel.swift in Sources */,
 				DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */,
 				DBBD06D32B8F498F00A73E22 /* CharView.swift in Sources */,

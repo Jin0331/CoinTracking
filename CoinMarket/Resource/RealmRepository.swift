@@ -31,6 +31,7 @@ final class RealmRepository {
     }
     
     // CREATE OR UPDATE
+    ////  Search API
     func searchCreateOrUpdateItem(coinID : String, coinName : String,
                                   conSymbol : String, rank : Int?,
                                   large : String) {
@@ -44,6 +45,28 @@ final class RealmRepository {
             print(error)
         }
     }
+    
+    //// Market API
+    func searchCreateOrUpdateItem(coinID : String, coinName : String,
+                                  conSymbol : String, currentPrice : Double,
+                                  lastUpdated : Date, change : CoinChange?,
+                                  sparkline_in_7d : [Double]) {
+        do {
+            try realm.write {
+                realm.create(Market.self, value: ["coinID": coinID,
+                                                  "coinName":coinName,
+                                                  "conSymbol": conSymbol,
+                                                  "currentPrice": currentPrice,
+                                                  "lastUpdated" : lastUpdated,
+                                                  "change" : change,
+                                                  "sparkline_in_7d" : sparkline_in_7d,
+                                                  "upDate":Date()
+                                                 ], update: .modified) }
+        } catch {
+            print(error)
+        }
+    }
+    
     
     // READ
     func fetchItem() -> [Search] {

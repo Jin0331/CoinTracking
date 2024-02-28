@@ -69,6 +69,8 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         print(#function)
         
         let vc = ChartViewController()
+        vc.viewModel.inputCoinID.value = self.viewModel.outputData.value[indexPath.row].coinID
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

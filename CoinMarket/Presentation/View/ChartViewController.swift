@@ -10,6 +10,7 @@ import UIKit
 class ChartViewController: BaseViewController {
 
     let mainView = CharView()
+    let viewModel = ChartViewModel()
     
     override func loadView() {
         self.view = mainView
@@ -18,7 +19,6 @@ class ChartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    
     }
 
     
