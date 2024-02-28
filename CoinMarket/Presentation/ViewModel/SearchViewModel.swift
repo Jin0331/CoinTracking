@@ -21,7 +21,7 @@ class SearchViewModel {
     private func transform() {
         
         inputCoinID.bind { value in
-            guard let value, !value.isEmpty else { return }
+            guard let value, !value.isEmpty else { print("빈 문자들엉");return }
             
             // API request -> realm Create or Update
             CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: value)) { response, error in
@@ -30,8 +30,7 @@ class SearchViewModel {
                 } else {
                     guard let response = response else { return }
                     response.coins.forEach { item in
-                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol,
-                                                                 rank: item.marketCapRank, thumb: item.thumb)
+                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, thumb: item.thumb)
                     }
                     self.repository.realmLocation()
                 }

@@ -8,12 +8,14 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 class SearchViewTableViewCell: BaseTableViewCell {
     
+    var viewModel : SearchViewModel? // SearchViewModel 재사용
+    
     let symbolImage = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .black
     }
     
     let nameLabel = UILabel().then {
@@ -45,24 +47,35 @@ class SearchViewTableViewCell: BaseTableViewCell {
             make.size.equalTo(40)
         }
         
-        nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(symbolImage.snp.trailing).offset(10)
-            make.top.equalTo(symbolImage.snp.top)
-            make.width.equalTo(100)
-        }
-        
-        symbolLabel.snp.makeConstraints { make in
-            make.leading.equalTo(nameLabel)
-            make.top.equalTo(nameLabel.snp.bottom).offset(3)
-            make.width.equalTo(100)
-        }
-        
         favoriteButton.snp.makeConstraints { make in
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(5)
             make.centerY.equalTo(contentView.safeAreaLayoutGuide)
             make.size.equalTo(50)
         }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(symbolImage.snp.trailing).offset(10)
+            make.trailing.equalTo(favoriteButton.snp.leading).inset(5)
+            make.top.equalTo(symbolImage.snp.top)
+        }
+        
+        symbolLabel.snp.makeConstraints { make in
+            make.leading.equalTo(nameLabel)
+            make.top.equalTo(nameLabel.snp.bottom).offset(3)
+            make.trailing.equalTo(nameLabel)
+        }
     }
 
+    
+    func configureCellForRoaAt(indexPath : IndexPath) {
+        
+        guard let data = viewModel?.outputData.value else { return }
+        
+        let row = data[indexPath.row]
+        
+        symbolImage.kf.setImage(with: row.thumbURL)
+        nameLabel.text = row.coinName
+        symbolLabel.text = row.conSymbol
+    }
 
 }

@@ -36,6 +36,13 @@ class Search : Object {
         self.upDate = Date()
         self.regDate = Date()
     }
+    
+    // 연산 property
+    var thumbURL : URL {
+        get {
+            return URL(string: thumb) ?? URL(string: "")!
+        }
+    }
 }
 
 class Market : Object {

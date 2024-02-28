@@ -24,9 +24,7 @@ class SearchViewController: BaseViewController {
         
         viewModel.outputData.bind { value in
             
-            if let value {
-                print(value)
-            }
+            self.mainView.mainTableView.reloadData()
         }
                 
     }
@@ -37,6 +35,8 @@ class SearchViewController: BaseViewController {
         mainView.mainTableView.dataSource = self
         mainView.searchController.delegate = self
         mainView.searchController.searchBar.delegate = self
+        
+        mainView.mainTableView.isHidden = true
     }
     
     override func configureNavigation() {
@@ -48,16 +48,18 @@ class SearchViewController: BaseViewController {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        guard let data = viewModel.outputData.value else { return 0 }
+        
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewTableViewCell.identifier, for: indexPath) as! SearchViewTableViewCell
         
-        cell.symbolImage.image = DesignSystem.systemImage.favorite
-        cell.nameLabel.text = "BitCoin"
-        cell.symbolLabel.text = "BTC"
-
+        cell.viewModel = self.viewModel
+        cell.configureCellForRoaAt(indexPath: indexPath)
+        
         return cell
     }
     
@@ -71,13 +73,16 @@ extension SearchViewController : UISearchControllerDelegate {
 extension SearchViewController : UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
+        
+        mainView.mainTableView.isHidden = true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
 
         viewModel.inputCoinID.value = searchBar.text
-//        mainView.searchController.isActive = false
+        mainView.mainTableView.isHidden = false
+        
         
     }
 }
