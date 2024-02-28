@@ -11,7 +11,8 @@ class SearchViewModel {
     
     let repository = RealmRepository()
     
-    var inputSearchText : Observable<String?> = Observable(nil)
+    var inputCoinID : Observable<String?> = Observable(nil)
+    var outputData : Observable<[Search]?> = Observable(nil)
     
     init() {
         transform()
@@ -19,9 +20,10 @@ class SearchViewModel {
     
     private func transform() {
         
-        inputSearchText.bind { value in
+        inputCoinID.bind { value in
             guard let value, !value.isEmpty else { return }
             
+            // API request -> realm Create or Update
             CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: value)) { response, error in
                 if let error = error {
                     //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
@@ -34,10 +36,9 @@ class SearchViewModel {
                     self.repository.realmLocation()
                 }
             }
+            
+            // fetch by keyword
+            self.outputData.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
         }
-        
-        
-        
     }
-    
 }

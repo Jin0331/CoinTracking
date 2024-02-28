@@ -51,7 +51,23 @@ final class RealmRepository {
         }
     }
     
+    // READ
+    func fetchItem() -> [Search] {
+        let result = realm.objects(Search.self)
+        
+        return Array(result)
+    }
     
+    func searchFetchItemFilterdSorted(coinID : String) -> [Search] {
+        
+        let result = realm.objects(Search.self)
+            .filter("coinID CONTAINS[cd] %@ AND rank != -999", coinID)
+            .sorted(byKeyPath: "rank", ascending: true)
+            .prefix(25)
+        
+        return Array(result)
+    }
+
     
     // FAVORITE TOGGLE
     func updateFavoriteToggle(_ item : Search) {

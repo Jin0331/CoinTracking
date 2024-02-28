@@ -21,6 +21,13 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.outputData.bind { value in
+            
+            if let value {
+                print(value)
+            }
+        }
                 
     }
     
@@ -69,9 +76,8 @@ extension SearchViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
 
-        viewModel.inputSearchText.value = searchBar.text
-        
-        mainView.searchController.isActive = false
+        viewModel.inputCoinID.value = searchBar.text
+//        mainView.searchController.isActive = false
         
     }
 }
