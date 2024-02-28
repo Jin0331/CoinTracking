@@ -11,10 +11,10 @@ import Foundation
 
 class ChartViewModel {
     
-    let repository = RealmRepository()
+    private let repository = RealmRepository()
     
     var inputCoinID : Observable<String?> = Observable(nil)
-    //    var outputCointSpecific : Observable
+    var outputMarket : Observable<[Market]> = Observable([])
     
     init() {
         transform()
@@ -39,12 +39,16 @@ class ChartViewModel {
                     let embeddedItem = self.repository.createEmbeddedItem(data)
                     self.repository.searchCreateOrUpdateItem(coinID: data.id, coinName: data.name, 
                                                              conSymbol: data.symbol,
+                                                             symbolImage : data.symbolImage,
                                                              currentPrice: data.currentPrice,
                                                              lastUpdated: data.lastUpdated.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
                                                              change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
                     
                     // Search Table과 Relation 설정
                     self.repository.createRelationSearchWithMarket(coinID: value)
+                    
+                    // output 설정
+                    self.outputMarket.value = self.repository.fetchMarkethItem(coinID: value)
                 }
             }
         }

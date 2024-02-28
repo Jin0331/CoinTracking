@@ -49,6 +49,7 @@ class Market : Object {
     @Persisted(primaryKey: true) var coinID : String
     @Persisted var coinName : String
     @Persisted var conSymbol : String
+    @Persisted var symbolImage : String
     @Persisted var currentPrice : Double
     @Persisted var lastUpdated : Date
     @Persisted var change : CoinChange?
@@ -58,16 +59,23 @@ class Market : Object {
     
     @Persisted(originProperty: "market") var search : LinkingObjects<Search>
     
-    convenience init(coinID: String, coinName: String, conSymbol: String, currentPrice: Double, lastUpdated: Date, sparkline_in_7d: List<Double>) {
+    convenience init(coinID: String, coinName: String, conSymbol: String, symbolImage : String, currentPrice: Double, lastUpdated: Date, sparkline_in_7d: List<Double>) {
         self.init()
         self.coinID = coinID
         self.coinName = coinName
         self.conSymbol = conSymbol
+        self.symbolImage = symbolImage
         self.currentPrice = currentPrice
         self.lastUpdated = lastUpdated
         self.sparkline_in_7d = sparkline_in_7d
         self.upDate = Date()
         self.regDate = Date()
+    }
+    
+    var symbolImageURL : URL {
+        get {
+            return URL(string: symbolImage) ?? URL(string: "")!
+        }
     }
     
 }

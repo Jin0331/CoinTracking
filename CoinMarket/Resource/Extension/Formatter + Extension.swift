@@ -21,6 +21,18 @@ extension String {
     }
 }
 
+extension Double {
+    func toNumber(digit : Int) -> String? {
+        let numberFormatter: NumberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = digit
+
+        let result: String = numberFormatter.string(for: self)!
+        
+        return "₩\(result)"
+    }
+}
+
 extension Date {
     func toString( dateFormat format: String ) -> String {
         let dateFormatter = DateFormatter()

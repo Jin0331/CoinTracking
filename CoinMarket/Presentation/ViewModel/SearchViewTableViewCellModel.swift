@@ -9,7 +9,7 @@ import Foundation
 
 class SearchViewTableViewCellModel {
     
-    let repository = RealmRepository()
+    private let repository = RealmRepository()
     
     var search : Observable<Search?> = Observable(nil)
     

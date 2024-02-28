@@ -89,7 +89,7 @@ struct NFTData: Decodable {
 //MARK: - Market
 struct MarketCoin : Decodable {
     let id, symbol, name: String
-    let image: String
+    let symbolImage: String
     let currentPrice, high24H, low24H, priceChangePercentage24H: Double
     let ath: Double
     let athDate: String
@@ -98,7 +98,8 @@ struct MarketCoin : Decodable {
     let sparklineIn7D: SparklineIn7D
 
     enum CodingKeys: String, CodingKey {
-        case id, symbol, name, image
+        case id, symbol, name
+        case symbolImage = "image"
         case currentPrice = "current_price"
         case high24H = "high_24h"
         case low24H = "low_24h"

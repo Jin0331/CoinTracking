@@ -28,7 +28,7 @@ class SearchViewController: BaseViewController {
     }
     
     private func dataBind() {
-        viewModel.outputData.bind { value in
+        viewModel.outputSearch.bind { value in
             
             print(#function)
             self.mainView.mainTableView.reloadData()
@@ -54,13 +54,13 @@ class SearchViewController: BaseViewController {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.outputData.value.count
+        return viewModel.outputSearch.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewTableViewCell.identifier, for: indexPath) as! SearchViewTableViewCell
         
-        cell.viewModel.search.value = self.viewModel.outputData.value[indexPath.row]
+        cell.viewModel.search.value = self.viewModel.outputSearch.value[indexPath.row]
         
         return cell
     }
@@ -69,7 +69,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         print(#function)
         
         let vc = ChartViewController()
-        vc.viewModel.inputCoinID.value = self.viewModel.outputData.value[indexPath.row].coinID
+        vc.viewModel.inputCoinID.value = self.viewModel.outputSearch.value[indexPath.row].coinID
         
         navigationController?.pushViewController(vc, animated: true)
     }

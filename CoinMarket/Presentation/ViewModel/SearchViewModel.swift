@@ -9,11 +9,11 @@ import Foundation
 
 class SearchViewModel {
     
-    let repository = RealmRepository()
+    private let repository = RealmRepository()
     
     var inputCoinID : Observable<String?> = Observable(nil)
     
-    var outputData : Observable<[Search]> = Observable([])
+    var outputSearch : Observable<[Search]> = Observable([])
     
     init() {
         transform()
@@ -34,7 +34,7 @@ class SearchViewModel {
                         self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, large: item.large)
                     }
                     self.repository.realmLocation()
-                    self.outputData.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
+                    self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
                 }
             }
         }

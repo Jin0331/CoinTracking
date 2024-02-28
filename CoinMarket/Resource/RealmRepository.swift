@@ -50,14 +50,15 @@ final class RealmRepository {
     
     //// Market API
     func searchCreateOrUpdateItem(coinID : String, coinName : String,
-                                  conSymbol : String, currentPrice : Double,
-                                  lastUpdated : Date, change : CoinChange?,
-                                  sparkline_in_7d : [Double]) {
+                                  conSymbol : String, symbolImage : String,
+                                  currentPrice : Double, lastUpdated : Date,
+                                  change : CoinChange?, sparkline_in_7d : [Double]) {
         do {
             try realm.write {
                 realm.create(Market.self, value: ["coinID": coinID,
                                                   "coinName":coinName,
                                                   "conSymbol": conSymbol,
+                                                  "symbolImage": symbolImage,
                                                   "currentPrice": currentPrice,
                                                   "lastUpdated" : lastUpdated,
                                                   "change" : change,
@@ -128,6 +129,14 @@ final class RealmRepository {
                 $0.coinID == coinID }
         
         return result
+    }
+    
+    func fetchMarkethItem(coinID : String) -> [Market] {
+        let result = realm.objects(Market.self)
+            .where {
+                $0.coinID == coinID }
+        
+        return Array(result)
     }
     
     
