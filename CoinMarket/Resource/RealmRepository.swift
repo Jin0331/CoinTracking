@@ -81,15 +81,18 @@ final class RealmRepository {
         
     }
     
-    func createRelationSearchWithMarket(destination : Search, from : Market) {
+    func createRelationSearchWithMarket(coinID : String) {
+        
+        let currentSearchTable = fetchSearchItem(coinID: coinID).first!
+        let currentMarketTable = fetchMarkethItem(coinID: coinID).first!
+        
         do {
             try realm.write {
-                destination.market.append(from)
+                currentSearchTable.market.append(currentMarketTable)
             }
         } catch {
             print(error)
         }
-        
     }
     
     

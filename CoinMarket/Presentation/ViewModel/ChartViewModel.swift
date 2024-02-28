@@ -37,13 +37,14 @@ class ChartViewModel {
                     
                     // embedd class
                     let embeddedItem = self.repository.createEmbeddedItem(data)
-                    self.repository.searchCreateOrUpdateItem(coinID: data.id, coinName: data.name, conSymbol: data.symbol, currentPrice: data.currentPrice, lastUpdated: data.lastUpdated.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!, change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
+                    self.repository.searchCreateOrUpdateItem(coinID: data.id, coinName: data.name, 
+                                                             conSymbol: data.symbol,
+                                                             currentPrice: data.currentPrice,
+                                                             lastUpdated: data.lastUpdated.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
+                                                             change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
                     
-                    // Search Table과 연결
-                    let currentSearchTable = self.repository.fetchSearchItem(coinID: value).first!
-                    let currentMarketTable = self.repository.fetchMarkethItem(coinID: value).first!
-                    
-                    self.repository.createRelationSearchWithMarket(destination: currentSearchTable, from: currentMarketTable)
+                    // Search Table과 Relation 설정
+                    self.repository.createRelationSearchWithMarket(coinID: value)
                 }
             }
         }
