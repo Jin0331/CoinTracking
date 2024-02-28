@@ -20,7 +20,7 @@ class CharView: BaseView {
     
     let symbolTitleLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
-        $0.font = .systemFont(ofSize: 28, weight: .bold)
+        $0.font = .systemFont(ofSize: 33, weight: .bold)
     }
     
     let currentPriceLabel = UILabel().then {
@@ -34,7 +34,7 @@ class CharView: BaseView {
     }
     
     let updateDateLabel = UILabel().then {
-        $0.textColor = DesignSystem.colorSet.lightBlack
+        $0.textColor = DesignSystem.colorSet.gray
         $0.font = .systemFont(ofSize: 20)
     }
     
@@ -66,13 +66,11 @@ class CharView: BaseView {
     
     let newHightPriceLabel =  ChartPriceView().then {
         $0.textLabel.text = "신고점"
-        $0.subLabel.text = "1235123"
         $0.textLabel.textColor = DesignSystem.colorSet.red
     }
     
     let newLowPriceLabel =  ChartPriceView().then {
         $0.textLabel.text = "신저점"
-        $0.subLabel.text = "1235123"
         $0.textLabel.textColor = DesignSystem.colorSet.blue
     }
     
@@ -119,18 +117,18 @@ class CharView: BaseView {
         currentPriceLabel.snp.makeConstraints { make in
             make.leading.equalTo(symbolImage)
             make.top.equalTo(symbolTitleLabel.snp.bottom).offset(15)
-            make.height.equalTo(60)
+            make.height.equalTo(40)
         }
         
         athChangeLabel.snp.makeConstraints { make in
             make.leading.equalTo(currentPriceLabel)
-            make.top.equalTo(currentPriceLabel.snp.bottom).offset(10)
-            make.width.greaterThanOrEqualTo(65)
+            make.top.equalTo(currentPriceLabel.snp.bottom).offset(5)
+            make.width.greaterThanOrEqualTo(40)
         }
         
         updateDateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(athChangeLabel.snp.trailing).offset(8)
-            make.top.equalTo(currentPriceLabel.snp.bottom).offset(10)
+            make.leading.equalTo(athChangeLabel.snp.trailing).offset(5)
+            make.top.equalTo(athChangeLabel)
             make.width.lessThanOrEqualTo(150)
         }
         

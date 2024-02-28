@@ -12,12 +12,12 @@ import Then
 class ChartPriceView: BaseView {
 
     let textLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 23, weight: .bold)
+        $0.font = .systemFont(ofSize: 21, weight: .bold)
     }
     
     let subLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 23)
-        $0.textColor = DesignSystem.colorSet.lightBlack
+        $0.font = .systemFont(ofSize: 21)
+        $0.textColor = DesignSystem.colorSet.gray
     }
     
     override func configureHierarchy() {

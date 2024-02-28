@@ -22,15 +22,17 @@ extension String {
 }
 
 extension Double {
-    func toNumber(digit : Int) -> String? {
+    func toNumber(digit : Int, percentage : Bool) -> String? {
         let numberFormatter: NumberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = digit
 
         let result: String = numberFormatter.string(for: self)!
         
-        return "₩\(result)"
+        return percentage == true ? "\(result)%" : "₩\(result)"
     }
+    
+    
 }
 
 extension Date {
@@ -39,7 +41,9 @@ extension Date {
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         dateFormatter.locale = Locale.current
-        return dateFormatter.string(from: self)
+        
+        let current = Calendar.current
+        return current.isDateInToday(self) ? "Today" : "\(dateFormatter.string(from: self))-❗️최신이 아닙니다."
     }
     
     func toStringKST( dateFormat format: String ) -> String {
