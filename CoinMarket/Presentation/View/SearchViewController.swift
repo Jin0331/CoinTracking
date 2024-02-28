@@ -22,11 +22,19 @@ class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(#function)
+        
+        dataBind()
+        
+    }
+    
+    func dataBind() {
         viewModel.outputData.bind { value in
             
+            print(#function)
             self.mainView.mainTableView.reloadData()
         }
-                
+               
     }
     
     override func configureView() {
@@ -49,9 +57,9 @@ class SearchViewController: BaseViewController {
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let data = viewModel.outputData.value else { return 0 }
+        print(#function, viewModel.outputData.value.count)
         
-        return data.count
+        return viewModel.outputData.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,11 +67,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         
         cell.viewModel = self.viewModel
         cell.configureCellForRoaAt(indexPath: indexPath)
-        
+
         return cell
     }
-    
-    
 }
 
 extension SearchViewController : UISearchControllerDelegate {
@@ -80,8 +86,10 @@ extension SearchViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
 
-        viewModel.inputCoinID.value = searchBar.text
         mainView.mainTableView.isHidden = false
+        viewModel.inputCoinID.value = searchBar.text
+        
+//        mainView.mainTableView.reloadData()
         
         
     }

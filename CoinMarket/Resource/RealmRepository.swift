@@ -33,7 +33,7 @@ final class RealmRepository {
     // CREATE OR UPDATE
     func searchCreateOrUpdateItem(coinID : String, coinName : String,
                                   conSymbol : String, rank : Int?,
-                                  thumb : String) {
+                                  large : String) {
         do {
             try realm.write {
                 realm.create(Search.self,
@@ -41,7 +41,7 @@ final class RealmRepository {
                                      "coinName":coinName,
                                      "conSymbol": conSymbol,
                                      "rank" : rank,
-                                     "thumb": thumb,
+                                     "large": large,
                                      "upDate":Date()
                                     ],
                              update: .modified)

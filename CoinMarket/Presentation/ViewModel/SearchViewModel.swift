@@ -12,7 +12,7 @@ class SearchViewModel {
     let repository = RealmRepository()
     
     var inputCoinID : Observable<String?> = Observable(nil)
-    var outputData : Observable<[Search]?> = Observable(nil)
+    var outputData : Observable<[Search]> = Observable([])
     
     init() {
         transform()
@@ -21,7 +21,7 @@ class SearchViewModel {
     private func transform() {
         
         inputCoinID.bind { value in
-            guard let value, !value.isEmpty else { print("빈 문자들엉");return }
+            guard let value, !value.isEmpty else { return }
             
             // API request -> realm Create or Update
             CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: value)) { response, error in
@@ -30,14 +30,12 @@ class SearchViewModel {
                 } else {
                     guard let response = response else { return }
                     response.coins.forEach { item in
-                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, thumb: item.thumb)
+                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, large: item.large)
                     }
                     self.repository.realmLocation()
+                    self.outputData.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
                 }
             }
-            
-            // fetch by keyword
-            self.outputData.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
         }
     }
 }

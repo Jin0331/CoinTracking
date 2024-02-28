@@ -73,7 +73,7 @@ class SearchViewTableViewCell: BaseTableViewCell {
         
         let row = data[indexPath.row]
         
-        symbolImage.kf.setImage(with: row.thumbURL)
+        symbolImage.kf.setImage(with: row.largeURL)
         nameLabel.text = row.coinName
         symbolLabel.text = row.conSymbol
     }

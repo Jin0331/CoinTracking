@@ -29,7 +29,7 @@ struct SearchModel : Decodable {
 struct CoinsItems : Decodable {
     let id: String
     let coinID: Int
-    let name, symbol, small, thumb: String
+    let name, symbol, small, large, thumb: String
     let marketCapRank : Int
     let data: CoinData
     
@@ -37,7 +37,7 @@ struct CoinsItems : Decodable {
         case id
         case coinID = "coin_id"
         case marketCapRank = "market_cap_rank"
-        case name, symbol, small, thumb, data
+        case name, symbol, small, large, thumb, data
     }
     
     //TODO: - Nil 예외처리
@@ -48,6 +48,7 @@ struct CoinsItems : Decodable {
         self.name = try container.decode(String.self, forKey: .name)
         self.symbol = try container.decode(String.self, forKey: .symbol)
         self.small = (try? container.decode(String.self, forKey: .small)) ?? ""
+        self.large = (try? container.decode(String.self, forKey: .large)) ?? ""
         self.thumb = (try? container.decode(String.self, forKey: .thumb)) ?? ""
         self.marketCapRank = (try? container.decode(Int.self, forKey: .marketCapRank)) ?? -999
         self.data = (try? container.decode(CoinData.self, forKey: .data)) ?? CoinData(price: "", priceChangePercentage24H: [:], sparkline: "")
