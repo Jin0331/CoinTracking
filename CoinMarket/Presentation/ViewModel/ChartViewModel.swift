@@ -14,7 +14,12 @@ class ChartViewModel {
     private let repository = RealmRepository()
     
     var inputCoinID : Observable<String?> = Observable(nil)
+    
     var outputMarket : Observable<[Market]> = Observable([])
+    
+    var favoriteButtonClicked : Observable<Void?> = Observable(nil)
+    
+    var outputFavoriteBool : Observable<Bool?> = Observable(nil)
     
     init() {
         transform()
@@ -49,9 +54,56 @@ class ChartViewModel {
                     
                     // output 설정
                     self.outputMarket.value = self.repository.fetchMarkethItem(coinID: value)
+                    self.outputFavoriteBool.value = self.outputMarket.value.first?.search.first?.favorite
                 }
             }
         }
+        
+        // favorite button이 클릭되었을 때, realm update
+        favoriteButtonClicked.bind { _ in
+            
+            guard let coinID = self.inputCoinID.value else { return }
+            
+            self.repository.updateFavoriteToggle(coinID, self.outputFavoriteBool.value!)
+        }
+    }
+    
+    // 즐겨찾기 관련 함수
+    enum FavoriteStatus {
+        case add
+        case remove
+        case error
+        
+        var textValue : String {
+            switch self {
+            case .add:
+                return "✅ 즐겨찾기가 추가되었습니다"
+            case .remove:
+                return "❌ 즐겨찾기가 해제되었습니다"
+            case .error :
+                return "🚫 즐겨찾기 10개 초과되었습니다"
+            }
+        }
+    }
+    
+    func getCase(_ cnt : Int) -> FavoriteStatus {
+        
+        if outputFavoriteBool.value! == true {
+            outputFavoriteBool.value!.toggle()
+            favoriteButtonClicked.value = ()
+            return .remove
+        } else if outputFavoriteBool.value == false && cnt < 10 {
+            outputFavoriteBool.value!.toggle()
+            favoriteButtonClicked.value = ()
+            return .add
+        } else {
+            return .error
+        }
+    }
+    
+    func fetchFavoriteTrueRowNumber() -> Int {
+        
+        return repository.fetchSearchItem().filter { $0.favorite == true }.count
     }
     
 }

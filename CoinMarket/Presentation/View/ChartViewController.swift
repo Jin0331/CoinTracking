@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import Then
 import Kingfisher
+import Toast
 
 //TODO: - percentage 음수, 양수에 따라 색 빨간색 파란색 적용
 //TODO: - lastUpdate 오늘인지 아닌지 판단해서 오늘이면 "Today" 아니면 "Past" 또는 날짜 기입 - 완료
@@ -29,16 +31,29 @@ class ChartViewController: BaseViewController {
 
     func bindData() {
         viewModel.outputMarket.bind { value in
+            guard let first = value.first else { return }
+            self.configureUI(first)
+        }
+        
+        viewModel.outputFavoriteBool.bind { value in
             
-            // 상위 Table 접근 방법... List로 되어 있어고, optional이기 때문에 first로 접근해야 됨.
-            //dump(value.first?.search.first?.favorite)
+            guard let favorite = value else { return }
+            print(#function, favorite)
             
-            guard let first = self.viewModel.outputMarket.value.first else { return }
-            self.configureLabelText(first)
-
+            let rightButtonItem = self.viewModel.outputFavoriteBool.value! ?  UIBarButtonItem(image: DesignSystem.systemImage.favoriteFill, style: .done, target: self, action: #selector(self.rightBarButtonClicked)) : UIBarButtonItem(image: DesignSystem.systemImage.favorite, style: .plain, target: self, action: #selector(self.rightBarButtonClicked))
+            
+            rightButtonItem.tintColor = DesignSystem.colorSet.purple
+            
+            self.navigationItem.rightBarButtonItem = rightButtonItem
         }
     }
     
+    @objc func rightBarButtonClicked(_ sender : UIBarButtonItem) {
+        print(#function)
+        
+        let status = self.viewModel.getCase(self.viewModel.fetchFavoriteTrueRowNumber())
+        self.view.makeToast(status.textValue, duration: 1)        
+    }
     
     override func configureNavigation() {
         super.configureNavigation()
@@ -46,7 +61,7 @@ class ChartViewController: BaseViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    private func configureLabelText(_ first : Market) {
+    private func configureUI(_ first : Market) {
         
         self.mainView.symbolImage.kf.setImage(with: first.symbolImageURL)
         self.mainView.symbolTitleLabel.text = first.coinName

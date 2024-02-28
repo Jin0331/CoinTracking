@@ -105,7 +105,7 @@ class CharView: BaseView {
         
         symbolImage.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(3)
-            make.size.equalTo(60)
+            make.size.equalTo(45)
         }
         
         symbolTitleLabel.snp.makeConstraints { make in
@@ -135,7 +135,7 @@ class CharView: BaseView {
         // middleView
         middleStackView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
-            make.top.equalTo(topView.snp.bottom).offset(20)
+            make.top.equalTo(topView.snp.bottom).offset(15)
             make.height.equalTo(140)
         }
         
