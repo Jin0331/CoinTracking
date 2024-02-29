@@ -32,6 +32,7 @@ class SearchViewModel {
             CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: value)) { response, error in
                 if let error = error {
                     //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
+                    print("network Error")
                     self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
                 } else {
                     guard let response = response else { return }

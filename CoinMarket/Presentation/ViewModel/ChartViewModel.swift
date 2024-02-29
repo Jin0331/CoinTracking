@@ -35,7 +35,8 @@ class ChartViewModel {
             CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: value)) { response, error in
                 
                 if let error = error {
-                    //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
+                    //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨 -> Realm 조회
+                    print("network Error")
                     // output 설정
                     self.outputMarket.value = self.repository.fetchMarkethItem(coinID: value)
                     self.outputFavoriteBool.value = self.outputMarket.value.first?.search.first?.favorite
