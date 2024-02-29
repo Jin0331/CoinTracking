@@ -20,10 +20,11 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         $0.layer.masksToBounds = false
     }
     
-    let symbolImage = UIImageView().then { _ in
+    let symbolImage = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
     }
     
-    let symbolTitleLabel = UILabel().then {
+    let nameLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
@@ -35,6 +36,7 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
     
     let currentPriceLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
+        $0.textAlignment = .right
         $0.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
@@ -46,7 +48,7 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
     override func configureHierarchy() {
         contentView.addSubview(bgView)
         
-        [symbolImage, symbolTitleLabel, symbolLabel, currentPriceLabel, athChangeLabel].forEach { bgView.addSubview($0)}
+        [symbolImage, nameLabel, symbolLabel, currentPriceLabel, athChangeLabel].forEach { bgView.addSubview($0)}
     }
     
     override func configureLayout() {
@@ -56,8 +58,33 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         }
         
         symbolImage.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().inset(3)
+            make.top.leading.equalToSuperview().inset(5)
             make.size.equalTo(40)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(symbolImage.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().inset(5)
+            make.top.equalTo(symbolImage.snp.top)
+        }
+        
+        symbolLabel.snp.makeConstraints { make in
+            make.leading.equalTo(nameLabel)
+            make.top.equalTo(nameLabel.snp.bottom).offset(3)
+            make.trailing.equalTo(nameLabel)
+        }
+        
+        athChangeLabel.snp.makeConstraints { make in
+            make.bottom.trailing.equalToSuperview().inset(5)
+            make.height.equalTo(30)
+            make.width.greaterThanOrEqualTo(60)
+        }
+        
+        currentPriceLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(athChangeLabel.snp.top).offset(5)
+            make.trailing.equalTo(athChangeLabel)
+            make.leading.equalToSuperview()
+            make.height.equalTo(40)
         }
     }
     
