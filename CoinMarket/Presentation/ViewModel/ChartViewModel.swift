@@ -36,6 +36,9 @@ class ChartViewModel {
                 
                 if let error = error {
                     //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
+                    // output 설정
+                    self.outputMarket.value = self.repository.fetchMarkethItem(coinID: value)
+                    self.outputFavoriteBool.value = self.outputMarket.value.first?.search.first?.favorite
                 } else {
                     guard let response = response else { return }
                     guard let data = response.first else { return }

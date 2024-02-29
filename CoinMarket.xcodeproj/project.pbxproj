@@ -34,6 +34,8 @@
 		DBCEB4E52B8F70D80073E546 /* Formatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB4E42B8F70D80073E546 /* Formatter + Extension.swift */; };
 		DBCEB5102B90390B0073E546 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB50F2B90390B0073E546 /* FavoriteViewController.swift */; };
 		DBCEB5122B9039830073E546 /* UITabbarController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5112B9039830073E546 /* UITabbarController + Extension.swift */; };
+		DBCEB5142B9042500073E546 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5132B9042500073E546 /* FavoriteCollectionViewCell.swift */; };
+		DBCEB5162B9042620073E546 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5152B9042620073E546 /* BaseCollectionViewCell.swift */; };
 		DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */; };
 		DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */; };
 		DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0AFD2B8E156300A33A65 /* SnapKit */; };
@@ -70,6 +72,8 @@
 		DBCEB4E42B8F70D80073E546 /* Formatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter + Extension.swift"; sourceTree = "<group>"; };
 		DBCEB50F2B90390B0073E546 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		DBCEB5112B9039830073E546 /* UITabbarController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabbarController + Extension.swift"; sourceTree = "<group>"; };
+		DBCEB5132B9042500073E546 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		DBCEB5152B9042620073E546 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */,
 				DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */,
 				DB0A59992B8E3D9F00F4A82F /* BaseTableViewCell.swift */,
+				DBCEB5152B9042620073E546 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */,
+				DBCEB5132B9042500073E546 /* FavoriteCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCEB5142B9042500073E546 /* FavoriteCollectionViewCell.swift in Sources */,
 				DB0A59A12B8E4E8E00F4A82F /* Observable.swift in Sources */,
 				DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */,
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
@@ -328,6 +335,7 @@
 				DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */,
 				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
 				DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */,
+				DBCEB5162B9042620073E546 /* BaseCollectionViewCell.swift in Sources */,
 				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
 				DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */,
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
