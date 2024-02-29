@@ -23,14 +23,15 @@ class SearchViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         print(#function)
-        dataBind()
+//        dataBind()
+        mainView.mainTableView.reloadData()
     }
     
     //MARK: - viewDidLoad 시점이 아닌 View Will Appear 시점에 하는 것이 타당한것인가???
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
-//        dataBind()
+        dataBind()
     }
     
     private func dataBind() {
