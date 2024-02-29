@@ -19,16 +19,22 @@ class SearchViewController: BaseViewController {
         self.view = mainView
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         print(#function)
         dataBind()
-        
+    }
+    
+    //MARK: - viewDidLoad 시점이 아닌 View Will Appear 시점에 하는 것이 타당한것인가???
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(#function)
+//        dataBind()
     }
     
     private func dataBind() {
-        viewModel.outputData.bind { value in
+        viewModel.outputSearch.bind { value in
             
             print(#function)
             self.mainView.mainTableView.reloadData()
@@ -54,15 +60,24 @@ class SearchViewController: BaseViewController {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.outputData.value.count
+        return viewModel.outputSearch.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewTableViewCell.identifier, for: indexPath) as! SearchViewTableViewCell
         
-        cell.viewModel.search.value = self.viewModel.outputData.value[indexPath.row]
+        cell.viewModel.search.value = self.viewModel.outputSearch.value[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+        
+        let vc = ChartViewController()
+        vc.viewModel.inputCoinID.value = self.viewModel.outputSearch.value[indexPath.row].coinID
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

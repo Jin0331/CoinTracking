@@ -49,13 +49,35 @@ class Market : Object {
     @Persisted(primaryKey: true) var coinID : String
     @Persisted var coinName : String
     @Persisted var conSymbol : String
+    @Persisted var symbolImage : String
     @Persisted var currentPrice : Double
     @Persisted var lastUpdated : Date
     @Persisted var change : CoinChange?
     @Persisted var sparkline_in_7d : List<Double>
+    @Persisted var upDate : Date
     @Persisted var regDate : Date
     
     @Persisted(originProperty: "market") var search : LinkingObjects<Search>
+    
+    convenience init(coinID: String, coinName: String, conSymbol: String, symbolImage : String, currentPrice: Double, lastUpdated: Date, sparkline_in_7d: List<Double>) {
+        self.init()
+        self.coinID = coinID
+        self.coinName = coinName
+        self.conSymbol = conSymbol
+        self.symbolImage = symbolImage
+        self.currentPrice = currentPrice
+        self.lastUpdated = lastUpdated
+        self.sparkline_in_7d = sparkline_in_7d
+        self.upDate = Date()
+        self.regDate = Date()
+    }
+    
+    var symbolImageURL : URL {
+        get {
+            return URL(string: symbolImage) ?? URL(string: "")!
+        }
+    }
+    
 }
 
 class CoinChange : EmbeddedObject {
@@ -66,4 +88,15 @@ class CoinChange : EmbeddedObject {
     @Persisted var ath_date : Date
     @Persisted var atl : Double
     @Persisted var atl_date : Date
+    
+    convenience init(perprice_change_percentage_24h: Double, low_24h: Double, high_24h: Double, ath: Double, ath_date: Date, atl: Double, atl_date: Date) {
+        self.init()
+        self.perprice_change_percentage_24h = perprice_change_percentage_24h
+        self.low_24h = low_24h
+        self.high_24h = high_24h
+        self.ath = ath
+        self.ath_date = ath_date
+        self.atl = atl
+        self.atl_date = atl_date
+    }
 }

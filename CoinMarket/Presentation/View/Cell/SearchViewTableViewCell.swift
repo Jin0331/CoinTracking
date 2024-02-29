@@ -55,8 +55,6 @@ class SearchViewTableViewCell: BaseTableViewCell {
         }
         
         viewModel.outputFavoriteBool.bind { value in
-            
-            print(#function, value)
             self.favoriteButton.setNeedsUpdateConfiguration()
         }
     }

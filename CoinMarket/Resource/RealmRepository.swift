@@ -17,6 +17,8 @@ final class RealmRepository {
     }
     
     
+    //MARK: - Create
+    
     // CREATE
     func createItem<T:Object>(_ item : T) {
         
@@ -31,6 +33,7 @@ final class RealmRepository {
     }
     
     // CREATE OR UPDATE
+    ////  Search API
     func searchCreateOrUpdateItem(coinID : String, coinName : String,
                                   conSymbol : String, rank : Int?,
                                   large : String) {
@@ -45,14 +48,64 @@ final class RealmRepository {
         }
     }
     
+    //// Market API
+    func searchCreateOrUpdateItem(coinID : String, coinName : String,
+                                  conSymbol : String, symbolImage : String,
+                                  currentPrice : Double, lastUpdated : Date,
+                                  change : CoinChange?, sparkline_in_7d : [Double]) {
+        do {
+            try realm.write {
+                realm.create(Market.self, value: ["coinID": coinID,
+                                                  "coinName":coinName,
+                                                  "conSymbol": conSymbol,
+                                                  "symbolImage": symbolImage,
+                                                  "currentPrice": currentPrice,
+                                                  "lastUpdated" : lastUpdated,
+                                                  "change" : change,
+                                                  "sparkline_in_7d" : sparkline_in_7d,
+                                                  "upDate":Date()
+                                                 ], update: .modified) }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func createEmbeddedItem(_ data : MarketCoin) -> CoinChange {
+        
+        return CoinChange(perprice_change_percentage_24h: data.priceChangePercentage24H,
+                          low_24h: data.low24H,
+                          high_24h: data.high24H,
+                          ath: data.ath,
+                          ath_date: data.athDate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
+                          atl: data.atl,
+                          atl_date: data.atlDate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!)
+        
+    }
+    
+    func createRelationSearchWithMarket(coinID : String) {
+        
+        let currentSearchTable = fetchSearchItem(coinID: coinID).first!
+        let currentMarketTable = fetchMarkethItem(coinID: coinID).first!
+        
+        do {
+            try realm.write {
+                currentSearchTable.market.append(currentMarketTable)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    //MARK: - Read
     // READ
-    func fetchItem() -> [Search] {
+    func fetchSearchItem() -> [Search] {
         let result = realm.objects(Search.self)
         
         return Array(result)
     }
     
-    func fetchItem(coinID : String) -> Results<Search> {
+    func fetchSearchItem(coinID : String) -> Results<Search> {
         let result = realm.objects(Search.self)
             .where {
                 $0.coinID == coinID }
@@ -70,7 +123,25 @@ final class RealmRepository {
         return Array(result)
     }
     
+    func fetchMarkethItem(coinID : String) -> Results<Market> {
+        let result = realm.objects(Market.self)
+            .where {
+                $0.coinID == coinID }
+        
+        return result
+    }
     
+    func fetchMarkethItem(coinID : String) -> [Market] {
+        let result = realm.objects(Market.self)
+            .where {
+                $0.coinID == coinID }
+        
+        return Array(result)
+    }
+    
+    
+    
+    //MARK: - Update
     // FAVORITE TOGGLE
     func updateFavoriteToggle(_ coinID : String, _ favorite : Bool) {
         

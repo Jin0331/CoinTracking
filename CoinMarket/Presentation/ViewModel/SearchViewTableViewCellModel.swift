@@ -9,7 +9,7 @@ import Foundation
 
 class SearchViewTableViewCellModel {
     
-    let repository = RealmRepository()
+    private let repository = RealmRepository()
     
     var search : Observable<Search?> = Observable(nil)
     
@@ -28,7 +28,7 @@ class SearchViewTableViewCellModel {
         // cell에 접근할 때, ID를 추출하여 favorite status 변경
         inputCoinID.bind { value in
             guard let value = value else { return }
-            let item = self.repository.fetchItem(coinID: value).first!
+            let item = self.repository.fetchSearchItem(coinID: value).first!
             
             self.outputFavoriteBool.value = item.favorite
         }
@@ -78,6 +78,6 @@ class SearchViewTableViewCellModel {
     
     func fetchFavoriteTrueRowNumber() -> Int {
         
-        return repository.fetchItem().filter { $0.favorite == true }.count
+        return repository.fetchSearchItem().filter { $0.favorite == true }.count
     }
 }
