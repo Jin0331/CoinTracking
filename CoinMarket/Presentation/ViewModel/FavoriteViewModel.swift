@@ -54,13 +54,9 @@ class FavoriteViewModel {
                                                              currentPrice: data.currentPrice,
                                                              lastUpdated: data.lastUpdated.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
                                                              change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
-//                    print(data)
-                    
                     self.repository.createRelationSearchWithMarket(coinID: data.id)
                     return self.repository.fetchMarketItem(coinID: data.id)
                 }
-                
-                print(self.outputFavorite.value[0])
             }
         }
         

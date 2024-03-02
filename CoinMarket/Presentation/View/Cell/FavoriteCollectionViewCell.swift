@@ -15,7 +15,7 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         $0.backgroundColor = DesignSystem.colorSet.white
         $0.layer.cornerRadius = 10
         $0.layer.shadowOffset = CGSize(width: 10, height: 5)
-        $0.layer.shadowOpacity = 0.3
+        $0.layer.shadowOpacity = 0.2
         $0.layer.shadowRadius = 10
         $0.layer.masksToBounds = false
     }
@@ -26,23 +26,23 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
     
     let nameLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.font = .systemFont(ofSize: 19, weight: .bold)
     }
     
     let symbolLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.gray
-        $0.font = .systemFont(ofSize: 18, weight: .bold)
+        $0.font = .systemFont(ofSize: 15, weight: .bold)
     }
     
     let currentPriceLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
         $0.textAlignment = .right
-        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.font = .systemFont(ofSize: 19, weight: .bold)
     }
     
     let athChangeLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.red
-        $0.font = .systemFont(ofSize: 18)
+        $0.font = .systemFont(ofSize: 15)
     }
     
     override func configureHierarchy() {
@@ -87,5 +87,22 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
             make.height.equalTo(40)
         }
     }
+    
+    override func prepareForReuse() {
+        symbolImage.image = nil
+        nameLabel.text = nil
+        symbolLabel.text = nil
+        currentPriceLabel.text = nil
+        athChangeLabel.text = nil
+    }
+    
+    func configureUI(_ first : Market) {
+        symbolImage.kf.setImage(with: first.symbolImageURL)
+        nameLabel.text = first.coinName
+        symbolLabel.text = first.conSymbol
+        currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
+        athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
+    }
+    
     
 }

@@ -12,6 +12,10 @@ class FavoriteViewController: BaseViewController {
     let mainView = FavoriteView()
     let viewModel = FavoriteViewModel()
     
+    override func loadView() {
+        self.view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,6 +28,16 @@ class FavoriteViewController: BaseViewController {
     func dataBind() {
         viewModel.getCoinIDListTrigger.value = ()
         
+        viewModel.outputFavorite.bind { _ in
+            self.mainView.favoriteCollectionView.reloadData()
+        }
+        
+    }
+    
+    override func configureView() {
+        super.configureView()
+        mainView.favoriteCollectionView.dataSource = self
+        mainView.favoriteCollectionView.delegate = self
     }
     
     
@@ -32,4 +46,24 @@ class FavoriteViewController: BaseViewController {
         
         navigationItem.title = "Favorite Coin"
     }
+}
+
+extension FavoriteViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(viewModel.outputFavorite.value.count)
+        return viewModel.outputFavorite.value.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
+        
+        cell.configureUI(viewModel.outputFavorite.value[indexPath.row])
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+    }
+    
 }

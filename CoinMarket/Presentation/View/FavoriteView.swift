@@ -18,6 +18,18 @@ class FavoriteView : BaseView {
         $0.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
         
     }
+    
+    override func configureHierarchy() {
+        addSubview(favoriteCollectionView)
+    }
+    
+    override func configureLayout() {
+        favoriteCollectionView.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide)
+        }
+    }
+    
+    
 }
 
 
@@ -25,8 +37,8 @@ private func configureCellLayout() -> UICollectionViewFlowLayout {
     let layout = UICollectionViewFlowLayout()
     
     let rowCount : Double = 2
-    let sectionSpacing : CGFloat = 5
-    let itemSpacing : CGFloat = 3
+    let sectionSpacing : CGFloat = 15
+    let itemSpacing : CGFloat = 15
     let width : CGFloat = UIScreen.main.bounds.width - (itemSpacing * (rowCount - 1)) - (sectionSpacing * 2)
     let itemWidth: CGFloat = width / rowCount
     
