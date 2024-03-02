@@ -138,7 +138,7 @@ final class RealmRepository {
         return Array(result)
     }
     
-    func fetchMultipleMarketItem(coinIDs : String) -> [Market] { // ,구분자로 된 String
+    func fetchMultipleMarketItem() -> [Market] { // ,구분자로 된 String
         let searchFavoriteTrue = fetchSearchItemWithFavorite()
         
         return searchFavoriteTrue.map { return $0.market[0] }

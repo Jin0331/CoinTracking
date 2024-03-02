@@ -11,6 +11,7 @@ class FavoriteViewModel {
     
     private let repository = RealmRepository()
     
+    var fetchSearchItemWithFavoriteTrigger : Observable<Void?> = Observable(nil)
     var getCoinIDListTrigger : Observable<Void?> = Observable(nil)
     var favoriteIDList : Observable<[Search]?> = Observable([])
     var outputFavorite : Observable<[Market]> = Observable([])
@@ -21,8 +22,12 @@ class FavoriteViewModel {
     
     private func transform() {
         
-        getCoinIDListTrigger.bind { value in
+        fetchSearchItemWithFavoriteTrigger.bind { _ in
             self.favoriteIDList.value = self.repository.fetchSearchItemWithFavorite()
+        }
+        
+        getCoinIDListTrigger.bind { value in
+            self.fetchSearchItemWithFavoriteTrigger.value = ()
             self.extractCoinID(self.favoriteIDList.value)
         }
     }
@@ -30,8 +35,12 @@ class FavoriteViewModel {
     
     private func extractCoinID(_ data : [Search]?) {
         
-        guard let data = data, data.count > 0 else { return }
-        
+        guard let data = data, !data.isEmpty else {
+            print("모든 즐겨찾기값 해제됨")
+            self.outputFavorite.value = self.repository.fetchMultipleMarketItem()
+            return
+        }
+
         let coinID = data.map { return $0.coinID }.joined(separator: ",")
         print(coinID)
         
@@ -43,7 +52,7 @@ class FavoriteViewModel {
                 // output 설정
                 //TODO: - multiple 조회 - 완료
                 //TODO: - Toast 띄워야 됨.
-                self.outputFavorite.value = self.repository.fetchMultipleMarketItem(coinIDs: coinID)
+                self.outputFavorite.value = self.repository.fetchMultipleMarketItem()
             } else {
                 guard let response = response else { return }
                 self.outputFavorite.value = response.map { data in
@@ -60,9 +69,5 @@ class FavoriteViewModel {
                 }
             }
         }
-        
-        
-        
-        
     }
 }

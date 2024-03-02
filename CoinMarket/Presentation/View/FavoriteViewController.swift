@@ -21,9 +21,11 @@ class FavoriteViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         print(#function, "즐겨찾기 화면")
         dataBind()
     }
+    
     
     func dataBind() {
         viewModel.getCoinIDListTrigger.value = ()
