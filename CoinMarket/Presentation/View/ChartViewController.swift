@@ -28,8 +28,15 @@ class ChartViewController: BaseViewController {
         super.viewDidLoad()
         
         bindData()
-
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        viewModel.timerstop()
+        print("타이머 종료")
+    }
+    
 
     private func bindData() {
         viewModel.outputMarket.bind { value in

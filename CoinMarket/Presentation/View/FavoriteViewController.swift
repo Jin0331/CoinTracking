@@ -33,7 +33,6 @@ class FavoriteViewController: BaseViewController {
         viewModel.outputFavorite.bind { _ in
             self.mainView.favoriteCollectionView.reloadData()
         }
-        
     }
     
     override func configureView() {
@@ -44,6 +43,20 @@ class FavoriteViewController: BaseViewController {
         mainView.favoriteCollectionView.dragDelegate = self
         mainView.favoriteCollectionView.dropDelegate = self
         mainView.favoriteCollectionView.dragInteractionEnabled = true
+        
+        mainView.refreshControll.addTarget(self, action: #selector(refreshFunction), for: .valueChanged)
+    }
+    
+    @objc func refreshFunction(_ sender : UIRefreshControl){
+        
+        print(#function, sender.isRefreshing)
+        
+        // API 호출 끝났을 때
+        DispatchQueue.main.async {
+            self.viewModel.getCoinIDListTrigger.value = ()
+            self.mainView.refreshControll.endRefreshing()
+            print("새로고침 완료")
+        }
     }
     
     
@@ -56,7 +69,8 @@ class FavoriteViewController: BaseViewController {
 
 extension FavoriteViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(#function, viewModel.outputFavorite.value.count)
+        print(#function)
+        
         return viewModel.outputFavorite.value.count
     }
     

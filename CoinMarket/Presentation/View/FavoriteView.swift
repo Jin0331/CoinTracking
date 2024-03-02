@@ -16,8 +16,10 @@ class FavoriteView : BaseView {
         $0.backgroundColor = .clear
         $0.allowsMultipleSelection = false
         $0.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
-        
+        $0.refreshControl = refreshControll
     }
+    
+    let refreshControll = UIRefreshControl()
     
     override func configureHierarchy() {
         addSubview(favoriteCollectionView)
