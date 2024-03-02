@@ -89,6 +89,7 @@ final class RealmRepository {
         
         do {
             try realm.write {
+                currentSearchTable.market.removeAll()
                 currentSearchTable.market.append(currentMarketTable)
             }
         } catch {
