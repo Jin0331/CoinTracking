@@ -15,7 +15,7 @@ class ChartViewModel {
     
     var inputCoinID : Observable<String?> = Observable(nil)
     
-    var outputMarket : Observable<[Market]> = Observable([])
+    var outputMarket : Observable<Market?> = Observable(nil)
     
     var favoriteButtonClicked : Observable<Void?> = Observable(nil)
     
@@ -34,8 +34,12 @@ class ChartViewModel {
             
             CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: value)) { response, error in
                 
-                if let error = error {
-                    //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
+                if let error {
+                    //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨 -> Realm 조회
+                    print("network Error")
+                    // output 설정
+                    self.outputMarket.value = self.repository.fetchMarketItem(coinID: value)
+                    self.outputFavoriteBool.value = self.outputMarket.value?.search.first?.favorite
                 } else {
                     guard let response = response else { return }
                     guard let data = response.first else { return }
@@ -53,8 +57,8 @@ class ChartViewModel {
                     self.repository.createRelationSearchWithMarket(coinID: value)
                     
                     // output 설정
-                    self.outputMarket.value = self.repository.fetchMarkethItem(coinID: value)
-                    self.outputFavoriteBool.value = self.outputMarket.value.first?.search.first?.favorite
+                    self.outputMarket.value = self.repository.fetchMarketItem(coinID: value)
+                    self.outputFavoriteBool.value = self.outputMarket.value?.search.first?.favorite
                 }
             }
         }

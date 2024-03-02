@@ -156,5 +156,48 @@ class CharView: BaseView {
             make.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
     }
+    
+    func configureUI(_ first : Market) {
+        symbolImage.kf.setImage(with: first.symbolImageURL)
+        symbolTitleLabel.text = first.coinName
+        currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
+        athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
+        updateDateLabel.text = first.lastUpdated.toString(dateFormat: "M/d hh:mm")
+        hightPriceLabel.subLabel.text = first.change?.high_24h.toNumber(digit: 0, percentage: false)
+        lowPriceLabel.subLabel.text = first.change?.low_24h.toNumber(digit: 0, percentage: false)
+        newHightPriceLabel.subLabel.text = first.change?.ath.toNumber(digit: 0, percentage: false)
+        newLowPriceLabel.subLabel.text = first.change?.atl.toNumber(digit: 0, percentage: false)
+    }
+    
+    func drawChart(_ first : Market) {
+    
+        print(first.sparkline_in_7d.count)
+        var lineChartEntry = [ChartDataEntry]()
+        
+        for (hour, data) in first.sparkline_in_7d.enumerated() {
+               let value = ChartDataEntry(x: Double(hour) , y: data)
+               lineChartEntry.append(value)
+        }
+        
+        let set1 = LineChartDataSet(entries: lineChartEntry, label: "Number")
+        let gradientColors = [DesignSystem.colorSet.white.cgColor, DesignSystem.colorSet.purple.cgColor]
+        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
+        
+        set1.mode = .cubicBezier
+        set1.setColor(DesignSystem.colorSet.purple)
+        set1.fillAlpha = 0.9
+        set1.lineWidth = 2.5
+        set1.fill = LinearGradientFill(gradient: gradient, angle: 90)
+        set1.drawFilledEnabled = true
+        set1.drawCirclesEnabled = false
+
+        
+        let data = LineChartData(dataSet: set1)
+        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 9)!)
+        data.setDrawValues(false)
+        let lineChartData = LineChartData(dataSet: set1)
+
+        bottomChartView.data = lineChartData
+    }
 
 }

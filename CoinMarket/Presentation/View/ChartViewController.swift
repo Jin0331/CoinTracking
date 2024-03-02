@@ -33,9 +33,9 @@ class ChartViewController: BaseViewController {
 
     private func bindData() {
         viewModel.outputMarket.bind { value in
-            guard let first = value.first else { return }
-            self.configureUI(first)
-            self.drawChart(first)
+            guard let first = value else { return }
+            self.mainView.configureUI(first)
+            self.mainView.drawChart(first)
         }
         
         viewModel.outputFavoriteBool.bind { value in
@@ -63,49 +63,4 @@ class ChartViewController: BaseViewController {
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
-    
-    private func configureUI(_ first : Market) {
-        self.mainView.symbolImage.kf.setImage(with: first.symbolImageURL)
-        self.mainView.symbolTitleLabel.text = first.coinName
-        self.mainView.currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
-        self.mainView.athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
-        self.mainView.updateDateLabel.text = first.lastUpdated.toString(dateFormat: "M/d hh:mm")
-        self.mainView.hightPriceLabel.subLabel.text = first.change?.high_24h.toNumber(digit: 0, percentage: false)
-        self.mainView.lowPriceLabel.subLabel.text = first.change?.low_24h.toNumber(digit: 0, percentage: false)
-        self.mainView.newHightPriceLabel.subLabel.text = first.change?.ath.toNumber(digit: 0, percentage: false)
-        self.mainView.newLowPriceLabel.subLabel.text = first.change?.atl.toNumber(digit: 0, percentage: false)
-    }
-    
-    private func drawChart(_ first : Market) {
-    
-        print(first.sparkline_in_7d.count)
-        var lineChartEntry = [ChartDataEntry]()
-        
-        for (hour, data) in first.sparkline_in_7d.enumerated() {
-               let value = ChartDataEntry(x: Double(hour) , y: data)
-               lineChartEntry.append(value)
-        }
-        
-        let set1 = LineChartDataSet(entries: lineChartEntry, label: "Number")
-        let gradientColors = [DesignSystem.colorSet.white.cgColor, DesignSystem.colorSet.purple.cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
-        
-        set1.mode = .cubicBezier
-        set1.setColor(DesignSystem.colorSet.purple)
-        set1.fillAlpha = 0.9
-        set1.lineWidth = 2.5
-        set1.fill = LinearGradientFill(gradient: gradient, angle: 90)
-        set1.drawFilledEnabled = true
-        set1.drawCirclesEnabled = false
-
-        
-        let data = LineChartData(dataSet: set1)
-        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 9)!)
-        data.setDrawValues(false)
-        let lineChartData = LineChartData(dataSet: set1)
-
-        mainView.bottomChartView.data = lineChartData
-    }
-    
-
 }
