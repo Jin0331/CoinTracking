@@ -84,7 +84,9 @@ final class RealmRepository {
     
     func createRelationSearchWithMarket(coinID : String) {
         
-        let currentSearchTable = fetchSearchItem(coinID: coinID).first!
+        
+        
+        guard let currentSearchTable = fetchSearchItem(coinID: coinID)?.first else { return }
         let currentMarketTable = fetchMarketItem(coinID: coinID)
         
         do {
@@ -106,7 +108,7 @@ final class RealmRepository {
         return Array(result)
     }
     
-    func fetchSearchItem(coinID : String) -> Results<Search> {
+    func fetchSearchItem(coinID : String) -> Results<Search>? {
         let result = realm.objects(Search.self)
             .where {
                 $0.coinID == coinID }

@@ -30,7 +30,7 @@ class FavoriteViewModel {
     
     private func extractCoinID(_ data : [Search]?) {
         
-        guard let data = data else { return }
+        guard let data = data, data.count > 0 else { return }
         
         let coinID = data.map { return $0.coinID }.joined(separator: ",")
         print(coinID)
