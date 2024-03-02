@@ -15,6 +15,7 @@
 		DB0A59B22B8EE45200F4A82F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DB0A59B12B8EE45200F4A82F /* Kingfisher */; };
 		DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */; };
 		DB20B4E32B8F30F70070FC5F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DB20B4E22B8F30F70070FC5F /* Toast */; };
+		DBABE27C2B9327CF00D1E97D /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */; };
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
 		DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */; };
 		DBBC38482B8DADB200C1D69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC38472B8DADB200C1D69B /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		DBCEB5122B9039830073E546 /* UITabbarController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5112B9039830073E546 /* UITabbarController + Extension.swift */; };
 		DBCEB5142B9042500073E546 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5132B9042500073E546 /* FavoriteCollectionViewCell.swift */; };
 		DBCEB5162B9042620073E546 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5152B9042620073E546 /* BaseCollectionViewCell.swift */; };
+		DBCEB5182B93170C0073E546 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCEB5172B93170C0073E546 /* FavoriteView.swift */; };
 		DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */; };
 		DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */; };
 		DBFF0AFE2B8E156300A33A65 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFF0AFD2B8E156300A33A65 /* SnapKit */; };
@@ -54,6 +56,7 @@
 		DB0A59A02B8E4E8E00F4A82F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCellModel.swift; sourceTree = "<group>"; };
+		DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		DBBC383B2B8DADB000C1D69B /* CoinMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC38402B8DADB000C1D69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		DBCEB5112B9039830073E546 /* UITabbarController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabbarController + Extension.swift"; sourceTree = "<group>"; };
 		DBCEB5132B9042500073E546 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		DBCEB5152B9042620073E546 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		DBCEB5172B93170C0073E546 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		DBFF0AF82B8E103100A33A65 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBFF0AFA2B8E10A600A33A65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				DBBC38632B8DD16400C1D69B /* SearchViewController.swift */,
 				DBBD06D22B8F498F00A73E22 /* CharView.swift */,
 				DBBD06D02B8F497300A73E22 /* ChartViewController.swift */,
+				DBCEB5172B93170C0073E546 /* FavoriteView.swift */,
 				DBCEB50F2B90390B0073E546 /* FavoriteViewController.swift */,
 			);
 			path = View;
@@ -193,6 +198,7 @@
 				DB0A59A22B8E506100F4A82F /* SearchViewModel.swift */,
 				DB20B4DF2B8F22810070FC5F /* SearchViewTableViewCellModel.swift */,
 				DBCEB4E22B8F66BF0073E546 /* ChartViewModel.swift */,
+				DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 				DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */,
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,
+				DBCEB5182B93170C0073E546 /* FavoriteView.swift in Sources */,
 				DBCEB4E32B8F66BF0073E546 /* ChartViewModel.swift in Sources */,
 				DB0A599F2B8E445A00F4A82F /* SearchView.swift in Sources */,
 				DBBC385B2B8DB78000C1D69B /* CoinAPIManager.swift in Sources */,
@@ -349,6 +356,7 @@
 				DB0A59A32B8E506100F4A82F /* SearchViewModel.swift in Sources */,
 				DB0A599A2B8E3D9F00F4A82F /* BaseTableViewCell.swift in Sources */,
 				DBBD06D32B8F498F00A73E22 /* CharView.swift in Sources */,
+				DBABE27C2B9327CF00D1E97D /* FavoriteViewModel.swift in Sources */,
 				DBCEB5102B90390B0073E546 /* FavoriteViewController.swift in Sources */,
 				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 			);

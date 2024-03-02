@@ -9,9 +9,17 @@ import UIKit
 
 class FavoriteViewController: BaseViewController {
 
+    let mainView = FavoriteView()
+    let viewModel = FavoriteViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dataBind()
+    }
+    
+    func dataBind() {
+        viewModel.getCoinIDListTrigger.value = ()
     }
     
     
