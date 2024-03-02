@@ -20,6 +20,7 @@ class Search : Object {
     @Persisted var rank : Int?
     @Persisted var large : String // 썸네일 이미지
     @Persisted var favorite : Bool
+    @Persisted var favoriteRank : Int?
     @Persisted var upDate : Date
     @Persisted var regDate : Date
     

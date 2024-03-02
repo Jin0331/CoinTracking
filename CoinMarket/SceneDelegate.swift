@@ -17,8 +17,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UINavigationController(rootViewController: SearchViewController())
+        
+        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        let favoriteVC = UINavigationController(rootViewController: FavoriteViewController())
+        
+        
+        // Tabbar controller
+        let tabbarController = UITabBarController()
+        tabbarController.setViewControllers([searchVC, favoriteVC], animated: true)
+        tabbarController.configureItemDesing(tabBar: tabbarController.tabBar)
+        
+        window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

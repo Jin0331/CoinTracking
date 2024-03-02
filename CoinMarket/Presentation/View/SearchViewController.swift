@@ -19,18 +19,19 @@ class SearchViewController: BaseViewController {
         self.view = mainView
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
         
         print(#function)
-        dataBind()
+        mainView.mainTableView.reloadData()
     }
     
     //MARK: - viewDidLoad 시점이 아닌 View Will Appear 시점에 하는 것이 타당한것인가???
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
-//        dataBind()
+        dataBind()
     }
     
     private func dataBind() {
