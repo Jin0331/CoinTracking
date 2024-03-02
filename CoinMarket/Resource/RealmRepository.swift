@@ -137,9 +137,11 @@ final class RealmRepository {
     }
     
     func fetchMultipleMarketItem() -> [Market] { // ,구분자로 된 String
-        let searchFavoriteTrue = fetchSearchItemWithFavorite()
+        let searchFavoriteTrue = fetchSearchItemWithFavorite().map { return $0.market[0] }
         
-        return searchFavoriteTrue.map { return $0.market[0] }
+        return searchFavoriteTrue.sorted {
+            ($0.search.first?.favoriteRank!)! < ($1.search.first?.favoriteRank!)!
+        }
     }
     
     //MARK: - Update
@@ -174,15 +176,56 @@ final class RealmRepository {
         }
     }
     
-    func updateFavoriteRankSwitching(lhs : String, rhs : String) {
-        if let lhs = fetchSearchItem(coinID: lhs)?.first, let rhs = fetchSearchItem(coinID: rhs)?.first {
-            
-            let lhsRankValue = lhs.favoriteRank!
-            let rhsRankValue = rhs.favoriteRank!
-            
-            updateFavoriteRank(lhs.coinID, rhsRankValue)
-            updateFavoriteRank(rhs.coinID, lhsRankValue)
+    func updateFavoriteRankSwitching(_ targetCoinID : String, _ source : IndexPath, _ destination : IndexPath) {
+        
+        print(targetCoinID)
+        print(destination.item)
+        
+        // source가 밑에 있으면 true
+        let flag = source.item - destination.item > 0 ? true : false
+        let favoriteTrue = flag ? realm.objects(Search.self).where {$0.favorite == true }
+            .sorted(byKeyPath: "favoriteRank", ascending: true)
+            .where {
+                $0.favoriteRank.contains(destination.item...source.item)
+            } : realm.objects(Search.self).where {$0.favorite == true }
+            .sorted(byKeyPath: "favoriteRank", ascending: true)
+            .where {
+                $0.favoriteRank.contains(source.item...destination.item)
+            }
+        
+        print(favoriteTrue)
+        
+        // 위로 올라감 ---> destination까지 +1
+        if flag {
+            favoriteTrue.enumerated().forEach { index, value in
+                do {
+                    try realm.write {
+                        value.favoriteRank! += 1
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        } else {
+            favoriteTrue.enumerated().forEach { index, value in
+                do {
+                    try realm.write {
+                        value.favoriteRank! -= 1
+                    }
+                } catch {
+                    print(error)
+                }
+            }
         }
+        
+        // target 업데이트
+        do {
+            try realm.write {
+                realm.create(Search.self, value: ["coinID": targetCoinID, "favoriteRank": destination.item, "upDate":Date()], update: .modified) }
+        } catch {
+            print(error)
+        }
+        
     }
     
     

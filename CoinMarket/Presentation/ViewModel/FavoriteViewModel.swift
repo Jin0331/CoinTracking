@@ -33,8 +33,17 @@ class FavoriteViewModel {
     }
     
     
-    func updateFavoriteRank(lhs : Market, rhs : Market) {
-        repository.updateFavoriteRankSwitching(lhs: lhs.coinID, rhs: rhs.coinID)
+    func updateFavoriteRank(targetCoinID : String, source : IndexPath, destination : IndexPath) {
+        
+        
+        repository.updateFavoriteRankSwitching(targetCoinID, source, destination)
+        
+        // target은 우선 source, destination 바꾼다.
+        // 위에서 아래는 -1
+        // 아래에서 위는 +1
+        
+        
+        
     }
     
     private func extractCoinID(_ data : [Search]?) {

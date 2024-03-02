@@ -105,14 +105,16 @@ extension FavoriteViewController : UICollectionViewDragDelegate, UICollectionVie
             if let item = coordinator.items.first, let sourceIndexPath = item.sourceIndexPath {
                 collectionView.performBatchUpdates {
                     
-                    print(#function, sourceIndexPath, destinationIndexPath)
+                    let targetID = viewModel.outputFavorite.value[sourceIndexPath.item].coinID
+                    print(#function, "soruce ID : ", targetID, "source : ",sourceIndexPath, "target : ",destinationIndexPath)
                     
                     // 화면에서 지워지는 것처럼 보여지는 코드
                     viewModel.outputFavorite.value.remove(at: sourceIndexPath.item)
                     viewModel.outputFavorite.value.insert(item.dragItem.localObject as! Market, at: destinationIndexPath.item)
                     
+                    
                     // 실제 값이 바뀌는
-                    viewModel.updateFavoriteRank(lhs: viewModel.outputFavorite.value[sourceIndexPath.item], rhs: viewModel.outputFavorite.value[destinationIndexPath.item])
+                    viewModel.updateFavoriteRank(targetCoinID: targetID, source: sourceIndexPath, destination: destinationIndexPath)
                     
                     collectionView.deleteItems(at: [sourceIndexPath])
                     collectionView.insertItems(at: [destinationIndexPath])
