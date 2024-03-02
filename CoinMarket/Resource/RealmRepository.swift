@@ -85,7 +85,7 @@ final class RealmRepository {
     func createRelationSearchWithMarket(coinID : String) {
         
         let currentSearchTable = fetchSearchItem(coinID: coinID).first!
-        let currentMarketTable = fetchMarketItem(coinID: coinID).first!
+        let currentMarketTable = fetchMarketItem(coinID: coinID)
         
         do {
             try realm.write {
@@ -123,20 +123,20 @@ final class RealmRepository {
         return Array(result)
     }
     
-    func fetchMarketItem(coinID : String) -> Results<Market> {
-        let result = realm.objects(Market.self)
-            .where {
-                $0.coinID == coinID }
-        
-        return result
-    }
+//    func fetchMarketItem(coinID : String) -> Results<Market> {
+//        let result = realm.objects(Market.self)
+//            .where {
+//                $0.coinID == coinID }
+//        
+//        return result
+//    }
     
-    func fetchMarketItem(coinID : String) -> [Market] {
+    func fetchMarketItem(coinID : String) -> Market {
         let result = realm.objects(Market.self)
             .where {
                 $0.coinID == coinID }
         
-        return Array(result)
+        return Array(result)[0]
     }
     
     func fetchSearchItemWithFavorite() -> [Search] {

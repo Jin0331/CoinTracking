@@ -33,7 +33,7 @@ class ChartViewController: BaseViewController {
 
     private func bindData() {
         viewModel.outputMarket.bind { value in
-            guard let first = value.first else { return }
+            guard let first = value else { return }
             self.mainView.configureUI(first)
             self.mainView.drawChart(first)
         }

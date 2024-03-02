@@ -15,7 +15,7 @@ class ChartViewModel {
     
     var inputCoinID : Observable<String?> = Observable(nil)
     
-    var outputMarket : Observable<[Market]> = Observable([])
+    var outputMarket : Observable<Market?> = Observable(nil)
     
     var favoriteButtonClicked : Observable<Void?> = Observable(nil)
     
@@ -39,7 +39,7 @@ class ChartViewModel {
                     print("network Error")
                     // output 설정
                     self.outputMarket.value = self.repository.fetchMarketItem(coinID: value)
-                    self.outputFavoriteBool.value = self.outputMarket.value.first?.search.first?.favorite
+                    self.outputFavoriteBool.value = self.outputMarket.value?.search.first?.favorite
                 } else {
                     guard let response = response else { return }
                     guard let data = response.first else { return }
@@ -58,7 +58,7 @@ class ChartViewModel {
                     
                     // output 설정
                     self.outputMarket.value = self.repository.fetchMarketItem(coinID: value)
-                    self.outputFavoriteBool.value = self.outputMarket.value.first?.search.first?.favorite
+                    self.outputFavoriteBool.value = self.outputMarket.value?.search.first?.favorite
                 }
             }
         }

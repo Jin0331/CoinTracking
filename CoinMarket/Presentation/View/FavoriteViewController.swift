@@ -14,12 +14,16 @@ class FavoriteViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print(#function, "즐겨찾기 화면")
         dataBind()
     }
     
     func dataBind() {
         viewModel.getCoinIDListTrigger.value = ()
+        
     }
     
     
