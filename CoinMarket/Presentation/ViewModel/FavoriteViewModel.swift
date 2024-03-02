@@ -41,8 +41,9 @@ class FavoriteViewModel {
                 //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨 -> Realm 조회
                 print("network Error")
                 // output 설정
-                //TODO: - multiple 조회
-//                self.outputFavorite.value = self.repository.fetchMarketItem(coinID: coinID)
+                //TODO: - multiple 조회 - 완료
+                //TODO: - Toast 띄워야 됨.
+                self.outputFavorite.value = self.repository.fetchMultipleMarketItem(coinIDs: coinID)
             } else {
                 guard let response = response else { return }
                 self.outputFavorite.value = response.map { data in

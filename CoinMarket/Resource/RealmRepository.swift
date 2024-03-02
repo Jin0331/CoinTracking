@@ -126,31 +126,31 @@ final class RealmRepository {
         return Array(result)
     }
     
-//    func fetchMarketItem(coinID : String) -> Results<Market> {
-//        let result = realm.objects(Market.self)
-//            .where {
-//                $0.coinID == coinID }
-//        
-//        return result
-//    }
+    //    func fetchMarketItem(coinID : String) -> Results<Market> {
+    //        let result = realm.objects(Market.self)
+    //            .where {
+    //                $0.coinID == coinID }
+    //
+    //        return result
+    //    }
     
     func fetchMarketItem(coinID : String) -> Market {
-        let result = realm.objects(Market.self)
-            .where {
-                $0.coinID == coinID }
+        let result = realm.objects(Market.self).where { $0.coinID == coinID }
         
         return Array(result)[0]
     }
     
     func fetchSearchItemWithFavorite() -> [Search] {
-        let result = realm.objects(Search.self)
-            .where {
-                $0.favorite == true }
+        let result = realm.objects(Search.self).where {$0.favorite == true }
         
         return Array(result)
     }
     
-    
+    func fetchMultipleMarketItem(coinIDs : String) -> [Market] { // ,구분자로 된 String
+        let searchFavoriteTrue = fetchSearchItemWithFavorite()
+        
+        return searchFavoriteTrue.map { return $0.market[0] }
+    }
     
     //MARK: - Update
     // FAVORITE TOGGLE
