@@ -126,14 +126,6 @@ final class RealmRepository {
         return Array(result)
     }
     
-    //    func fetchMarketItem(coinID : String) -> Results<Market> {
-    //        let result = realm.objects(Market.self)
-    //            .where {
-    //                $0.coinID == coinID }
-    //
-    //        return result
-    //    }
-    
     func fetchMarketItem(coinID : String) -> Market {
         let result = realm.objects(Market.self).where { $0.coinID == coinID }
         
@@ -156,12 +148,51 @@ final class RealmRepository {
     // FAVORITE TOGGLE
     func updateFavoriteToggle(_ coinID : String, _ favorite : Bool) {
         
-        do {
-            try realm.write {
-                realm.create(Search.self, value: ["coinID": coinID, "favorite" : favorite, "upDate":Date()], update: .modified) }
-        } catch {
-            print(error)
+        // false -> true, 즐겨찾기가 새롭게 설정되는 경우
+        // 기존의 true 값의 순서를 가져와서 총 개수에 +1을 한다
+        if favorite {
+            
+            let favoriteTrue = realm.objects(Search.self).where {$0.favorite == true }
+                .sorted(byKeyPath: "favoriteRank", ascending: true)
+            
+            do {
+                try realm.write {
+                    realm.create(Search.self, value: ["coinID": coinID, "favorite" : favorite, "favoriteRank": favoriteTrue.count, "upDate":Date()], update: .modified) }
+            } catch {
+                print(error)
+            }
+        // 즐겨찾기가 해제되는 경우, 전체 테이블의 랭크를 초기화 한다
+        // realm.write가 실행된 이후
+        } else {
+            do {
+                try realm.write {
+                    realm.create(Search.self, value: ["coinID": coinID, "favorite" : favorite,  "favoriteRank": nil, "upDate":Date()], update: .modified) }
+            } catch {
+                print(error)
+            }
+            
+            updateFavorriteRank()
+            
         }
+    }
+    
+    //TODO: - favorite Rank re-order
+    private func updateFavorriteRank() {
+        let favoriteTrue = realm.objects(Search.self).where {$0.favorite == true }
+            .sorted(byKeyPath: "favoriteRank", ascending: true)
+
+        
+        favoriteTrue.enumerated().forEach { index, value in
+            do {
+                try realm.write {
+                    value.favoriteRank = index
+                }
+            } catch {
+                print(error)
+            }
+        }
+
+        
     }
     
     
