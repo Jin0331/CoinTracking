@@ -55,7 +55,10 @@ class FavoriteViewModel {
                 self.outputFavorite.value = self.repository.fetchMultipleMarketItem()
             } else {
                 guard let response = response else { return }
+                
+                // output
                 self.outputFavorite.value = response.map { data in
+                    
                     // embedd class
                     let embeddedItem = self.repository.createEmbeddedItem(data)
                     self.repository.searchCreateOrUpdateItem(coinID: data.id, coinName: data.name,
@@ -66,6 +69,11 @@ class FavoriteViewModel {
                                                              change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
                     self.repository.createRelationSearchWithMarket(coinID: data.id)
                     return self.repository.fetchMarketItem(coinID: data.id)
+                }
+                
+                // output sort by favorite rank
+                self.outputFavorite.value.sort {
+                    ($0.search.first?.favoriteRank!)! < ($1.search.first?.favoriteRank!)!
                 }
             }
         }
