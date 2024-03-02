@@ -19,7 +19,9 @@ class FavoriteView : BaseView {
         $0.refreshControl = refreshControll
     }
     
-    let refreshControll = UIRefreshControl()
+    let refreshControll = UIRefreshControl().then {
+        $0.attributedTitle = NSAttributedString(string: "당겨서 새로고침")
+    }
     
     override func configureHierarchy() {
         addSubview(favoriteCollectionView)

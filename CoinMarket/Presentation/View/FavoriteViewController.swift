@@ -51,12 +51,8 @@ class FavoriteViewController: BaseViewController {
         
         print(#function, sender.isRefreshing)
         
-        // API 호출 끝났을 때
-        DispatchQueue.main.async {
-            self.viewModel.getCoinIDListTrigger.value = ()
-            self.mainView.refreshControll.endRefreshing()
-            print("새로고침 완료")
-        }
+        self.viewModel.getCoinIDListTrigger.value = ()
+        self.mainView.refreshControll.endRefreshing()
     }
     
     

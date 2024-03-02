@@ -18,13 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
+        let trendingVC = UINavigationController(rootViewController: TrendingViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
         let favoriteVC = UINavigationController(rootViewController: FavoriteViewController())
         
         
         // Tabbar controller
         let tabbarController = UITabBarController()
-        tabbarController.setViewControllers([searchVC, favoriteVC], animated: true)
+        tabbarController.setViewControllers([trendingVC,searchVC, favoriteVC], animated: true)
         tabbarController.configureItemDesing(tabBar: tabbarController.tabBar)
         
         window?.rootViewController = tabbarController
