@@ -38,6 +38,10 @@ class FavoriteViewController: BaseViewController {
         super.configureView()
         mainView.favoriteCollectionView.dataSource = self
         mainView.favoriteCollectionView.delegate = self
+        
+        mainView.favoriteCollectionView.dragDelegate = self
+        mainView.favoriteCollectionView.dropDelegate = self
+        mainView.favoriteCollectionView.dragInteractionEnabled = true
     }
     
     
@@ -70,5 +74,40 @@ extension FavoriteViewController : UICollectionViewDelegate, UICollectionViewDat
         
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+extension FavoriteViewController : UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        
+        let dragItem = UIDragItem(itemProvider: NSItemProvider())
+        dragItem.localObject = viewModel.outputFavorite.value[indexPath.row]
+        
+        return [dragItem]
+    }
+    
+    // 셀이 이동이 가능한지 여부,, 무조건 된다는 가정
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+            return true
+        }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+            guard collectionView.hasActiveDrag else { return UICollectionViewDropProposal(operation: .forbidden) }
+            return UICollectionViewDropProposal(operation: .move)
+        }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+            
+            if let destinationIndexPath = coordinator.destinationIndexPath {
+                if let item = coordinator.items.first, let sourceIndexPath = item.sourceIndexPath {
+                    collectionView.performBatchUpdates {
+                        viewModel.outputFavorite.value.remove(at: sourceIndexPath.item)
+                        viewModel.outputFavorite.value.insert(item.dragItem.localObject as! Market, at: destinationIndexPath.item)
+
+                        collectionView.deleteItems(at: [sourceIndexPath])
+                        collectionView.insertItems(at: [destinationIndexPath])
+                    }
+                }
+            }
+        }
     
 }
