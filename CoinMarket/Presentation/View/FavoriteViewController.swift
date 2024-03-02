@@ -8,7 +8,7 @@
 import UIKit
 
 class FavoriteViewController: BaseViewController {
-
+    
     let mainView = FavoriteView()
     let viewModel = FavoriteViewModel()
     
@@ -56,7 +56,7 @@ class FavoriteViewController: BaseViewController {
 
 extension FavoriteViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(viewModel.outputFavorite.value.count)
+        print(#function, viewModel.outputFavorite.value.count)
         return viewModel.outputFavorite.value.count
     }
     
@@ -78,7 +78,9 @@ extension FavoriteViewController : UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
+//MARK: -collection View drag drop
 extension FavoriteViewController : UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         
         let dragItem = UIDragItem(itemProvider: NSItemProvider())
@@ -89,27 +91,33 @@ extension FavoriteViewController : UICollectionViewDragDelegate, UICollectionVie
     
     // 셀이 이동이 가능한지 여부,, 무조건 된다는 가정
     func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
-            return true
-        }
+        return true
+    }
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-            guard collectionView.hasActiveDrag else { return UICollectionViewDropProposal(operation: .forbidden) }
-            return UICollectionViewDropProposal(operation: .move)
-        }
+        guard collectionView.hasActiveDrag else { return UICollectionViewDropProposal(operation: .forbidden) }
+        return UICollectionViewDropProposal(operation: .move)
+    }
     
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-            
-            if let destinationIndexPath = coordinator.destinationIndexPath {
-                if let item = coordinator.items.first, let sourceIndexPath = item.sourceIndexPath {
-                    collectionView.performBatchUpdates {
-                        viewModel.outputFavorite.value.remove(at: sourceIndexPath.item)
-                        viewModel.outputFavorite.value.insert(item.dragItem.localObject as! Market, at: destinationIndexPath.item)
-
-                        collectionView.deleteItems(at: [sourceIndexPath])
-                        collectionView.insertItems(at: [destinationIndexPath])
-                    }
+        
+        if let destinationIndexPath = coordinator.destinationIndexPath {
+            if let item = coordinator.items.first, let sourceIndexPath = item.sourceIndexPath {
+                collectionView.performBatchUpdates {
+                    
+                    print(#function, sourceIndexPath, destinationIndexPath)
+                    
+                    // 화면에서 지워지는 것처럼 보여지는 코드
+                    viewModel.outputFavorite.value.remove(at: sourceIndexPath.item)
+                    viewModel.outputFavorite.value.insert(item.dragItem.localObject as! Market, at: destinationIndexPath.item)
+                    
+                    // 실제 값이 바뀌는
+                    viewModel.updateFavoriteRank(lhs: viewModel.outputFavorite.value[sourceIndexPath.item], rhs: viewModel.outputFavorite.value[destinationIndexPath.item])
+                    
+                    collectionView.deleteItems(at: [sourceIndexPath])
+                    collectionView.insertItems(at: [destinationIndexPath])
                 }
             }
         }
-    
+    }
 }

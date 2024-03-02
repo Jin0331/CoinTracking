@@ -109,9 +109,7 @@ final class RealmRepository {
     }
     
     func fetchSearchItem(coinID : String) -> Results<Search>? {
-        let result = realm.objects(Search.self)
-            .where {
-                $0.coinID == coinID }
+        let result = realm.objects(Search.self).where { $0.coinID == coinID }
         
         return result
     }
@@ -161,8 +159,8 @@ final class RealmRepository {
             } catch {
                 print(error)
             }
-        // 즐겨찾기가 해제되는 경우, 전체 테이블의 랭크를 초기화 한다
-        // realm.write가 실행된 이후
+            // 즐겨찾기가 해제되는 경우, 전체 테이블의 랭크를 초기화 한다
+            // realm.write가 실행된 이후
         } else {
             do {
                 try realm.write {
@@ -171,16 +169,28 @@ final class RealmRepository {
                 print(error)
             }
             
-            updateFavorriteRank()
+            updateFavoriteRankAll()
             
         }
     }
     
+    func updateFavoriteRankSwitching(lhs : String, rhs : String) {
+        if let lhs = fetchSearchItem(coinID: lhs)?.first, let rhs = fetchSearchItem(coinID: rhs)?.first {
+            
+            let lhsRankValue = lhs.favoriteRank!
+            let rhsRankValue = rhs.favoriteRank!
+            
+            updateFavoriteRank(lhs.coinID, rhsRankValue)
+            updateFavoriteRank(rhs.coinID, lhsRankValue)
+        }
+    }
+    
+    
     //TODO: - favorite Rank re-order
-    private func updateFavorriteRank() {
+    private func updateFavoriteRankAll() {
         let favoriteTrue = realm.objects(Search.self).where {$0.favorite == true }
             .sorted(byKeyPath: "favoriteRank", ascending: true)
-
+        
         
         favoriteTrue.enumerated().forEach { index, value in
             do {
@@ -191,11 +201,16 @@ final class RealmRepository {
                 print(error)
             }
         }
-
-        
     }
     
-    
-    
-    
+    private func updateFavoriteRank(_ coinID : String, _ rank : Int) {
+        
+        
+        do {
+            try realm.write {
+                realm.create(Search.self, value: ["coinID": coinID, "favoriteRank": rank, "upDate":Date()], update: .modified) }
+        } catch {
+            print(error)
+        }
+    }
 }

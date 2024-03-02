@@ -11,10 +11,10 @@ class FavoriteViewModel {
     
     private let repository = RealmRepository()
     
-    var fetchSearchItemWithFavoriteTrigger : Observable<Void?> = Observable(nil)
     var getCoinIDListTrigger : Observable<Void?> = Observable(nil)
     var favoriteIDList : Observable<[Search]?> = Observable([])
     var outputFavorite : Observable<[Market]> = Observable([])
+    var fetchSearchItemWithFavoriteTrigger : Observable<Void?> = Observable(nil)
     
     init() {
         transform()
@@ -33,6 +33,10 @@ class FavoriteViewModel {
     }
     
     
+    func updateFavoriteRank(lhs : Market, rhs : Market) {
+        repository.updateFavoriteRankSwitching(lhs: lhs.coinID, rhs: rhs.coinID)
+    }
+    
     private func extractCoinID(_ data : [Search]?) {
         
         guard let data = data, !data.isEmpty else {
@@ -46,7 +50,7 @@ class FavoriteViewModel {
         
         CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: coinID)) { response, error in
             
-            if let error = error {
+            if let error {
                 //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨 -> Realm 조회
                 print("network Error")
                 // output 설정
@@ -78,4 +82,8 @@ class FavoriteViewModel {
             }
         }
     }
+    
 }
+
+
+
