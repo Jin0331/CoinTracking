@@ -99,7 +99,7 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
     func configureUI(_ first : Market) {
         symbolImage.kf.setImage(with: first.symbolImageURL)
         nameLabel.text = first.coinName
-        symbolLabel.text = first.conSymbol
+        symbolLabel.text = first.conSymbol.uppercased()
         currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
         athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
     }
