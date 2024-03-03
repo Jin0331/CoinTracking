@@ -34,6 +34,13 @@ class TrendingViewController: BaseViewController {
         viewModel.outputFavorite.bind { _ in
             self.mainView.mainTableView.reloadData()
         }
+        
+        viewModel.outputNFTTrending.bind { value in
+            
+            print(value)
+            print(value.count)
+            self.mainView.mainTableView.reloadData()
+        }
     }
     
     override func configureView() {
@@ -107,9 +114,9 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         case .favorite:
             return viewModel.outputFavorite.value.count
         case .coin:
-            return 5
+            return viewModel.outputCoinTrending.value.count
         case .nft:
-            return 5
+            return viewModel.outputNFTTrending.value.count
         }
     }
     
@@ -126,9 +133,13 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         case .coin:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
             
+            cell.viewModel.coinTrend.value = viewModel.outputCoinTrending.value[indexPath.row]
+            
             return cell
         case .nft:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
+            
+            cell.viewModel.nftTrend.value = viewModel.outputNFTTrending.value[indexPath.row]
             
             return cell
         }

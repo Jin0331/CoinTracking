@@ -17,15 +17,15 @@ final class RealmRepository {
     }
     
     
-    //MARK: - Create
-    
+    //MARK: - CREATE
     // CREATE
-    func createItem<T:Object>(_ item : T) {
+    func trendCreateItem<T:Object>(_ item : T) {
         
+        // 해당 Table 전체 지웠다가 다시 추가하기.
+        // 데이터를 유지할 필요가 없음
         do {
             try realm.write {
                 realm.add(item)
-                print("Realm Create")
             }
         } catch {
             print(error)
@@ -100,8 +100,21 @@ final class RealmRepository {
     }
     
     
-    //MARK: - Read
+    //MARK: - READ
     // READ
+    func fetchCoinTrendItem() -> [CoinTrend] {
+        let result = realm.objects(CoinTrend.self)
+        
+        return Array(result)
+    }
+    
+    func fetchNFTTrendItem() -> [NFTTrend] {
+        let result = realm.objects(NFTTrend.self)
+        
+        return Array(result)
+    }
+    
+    
     func fetchSearchItem() -> [Search] {
         let result = realm.objects(Search.self)
         
@@ -144,7 +157,7 @@ final class RealmRepository {
         }
     }
     
-    //MARK: - Update
+    //MARK: - UPDATE
     // FAVORITE TOGGLE
     func updateFavoriteToggle(_ coinID : String, _ favorite : Bool) {
         
@@ -252,6 +265,42 @@ final class RealmRepository {
         do {
             try realm.write {
                 realm.create(Search.self, value: ["coinID": coinID, "favoriteRank": rank, "upDate":Date()], update: .modified) }
+        } catch {
+            print(error)
+        }
+    }
+    
+    //MARK: - DELETE
+    
+    func allTableRemove<T:Object>(type : T) {
+        do {
+            try realm.write {
+                let allItem = realm.objects(T.self)
+                realm.delete(allItem)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func allCoinTrendTableRemove() {
+        do {
+            try realm.write {
+                let allItem = realm.objects(CoinTrend.self)
+                realm.delete(allItem)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    func allNFTTrendTableRemove() {
+        do {
+            try realm.write {
+                let allItem = realm.objects(NFTTrend.self)
+                realm.delete(allItem)
+            }
         } catch {
             print(error)
         }

@@ -21,6 +21,8 @@
 		DBA626EA2B945472006DB9B3 /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626E92B945472006DB9B3 /* TopCollectionViewCell.swift */; };
 		DBA626EC2B945480006DB9B3 /* TopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626EB2B945480006DB9B3 /* TopTableViewCell.swift */; };
 		DBA626EE2B945A13006DB9B3 /* CommonTrendingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626ED2B945A13006DB9B3 /* CommonTrendingLabel.swift */; };
+		DBA626F02B947DF3006DB9B3 /* TopCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626EF2B947DF3006DB9B3 /* TopCollectionViewModel.swift */; };
+		DBA626F22B94816D006DB9B3 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626F12B94816D006DB9B3 /* Array + Extension.swift */; };
 		DBABE27C2B9327CF00D1E97D /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */; };
 		DBABE2802B93A87700D1E97D /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABE27F2B93A87700D1E97D /* TrendingViewController.swift */; };
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
@@ -69,6 +71,8 @@
 		DBA626E92B945472006DB9B3 /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		DBA626EB2B945480006DB9B3 /* TopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTableViewCell.swift; sourceTree = "<group>"; };
 		DBA626ED2B945A13006DB9B3 /* CommonTrendingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTrendingLabel.swift; sourceTree = "<group>"; };
+		DBA626EF2B947DF3006DB9B3 /* TopCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewModel.swift; sourceTree = "<group>"; };
+		DBA626F12B94816D006DB9B3 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		DBABE27F2B93A87700D1E97D /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		DBBC383B2B8DADB000C1D69B /* CoinMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +129,7 @@
 				DB0A599C2B8E434700F4A82F /* UIView + Extension.swift */,
 				DBCEB4E42B8F70D80073E546 /* Formatter + Extension.swift */,
 				DBCEB5112B9039830073E546 /* UITabbarController + Extension.swift */,
+				DBA626F12B94816D006DB9B3 /* Array + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				DBCEB4E22B8F66BF0073E546 /* ChartViewModel.swift */,
 				DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */,
 				DBA626E72B94327D006DB9B3 /* TrendingViewModel.swift */,
+				DBA626EF2B947DF3006DB9B3 /* TopCollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				DBCEB5122B9039830073E546 /* UITabbarController + Extension.swift in Sources */,
 				DBFF0B062B8E1FDF00A33A65 /* RealmModel.swift in Sources */,
 				DBBD06D12B8F497300A73E22 /* ChartViewController.swift in Sources */,
+				DBA626F02B947DF3006DB9B3 /* TopCollectionViewModel.swift in Sources */,
 				DB0A599D2B8E434700F4A82F /* UIView + Extension.swift in Sources */,
 				DBBC38662B8E0D4000C1D69B /* DesignSystem.swift in Sources */,
 				DBA626E82B94327D006DB9B3 /* TrendingViewModel.swift in Sources */,
@@ -387,6 +394,7 @@
 				DBA626E62B942FD9006DB9B3 /* FavoriteTableViewCell.swift in Sources */,
 				DBBC38562B8DB1F800C1D69B /* CoinAPI.swift in Sources */,
 				DBA626E42B942E79006DB9B3 /* TrendingView.swift in Sources */,
+				DBA626F22B94816D006DB9B3 /* Array + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,9 +29,9 @@ class FavoriteViewModel {
             self.favoriteIDList.value = self.repository.fetchSearchItemWithFavorite()
         }
         
-        getCoinIDListTrigger.bind { value in
+        getCoinIDListTrigger.bind { _ in
             self.fetchSearchItemWithFavoriteTrigger.value = ()
-            self.extractCoinID(self.favoriteIDList.value)
+            self.callRequest(self.favoriteIDList.value)
         }
     }
     
@@ -42,7 +42,7 @@ class FavoriteViewModel {
 
     }
     
-    private func extractCoinID(_ data : [Search]?) {
+    private func callRequest(_ data : [Search]?) {
         
         guard let data = data, !data.isEmpty else {
             print("모든 즐겨찾기값 해제됨")

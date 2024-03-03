@@ -11,57 +11,39 @@ import Then
 
 class CommonTrendingLabel : BaseView {
     
-    let bgView = UIView().then {
-        $0.backgroundColor = .brown
+    let bgView = UIView().then { _ in
     }
     
     let rankLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
         $0.font = .systemFont(ofSize: 22, weight: .bold)
         $0.textAlignment = .center
-        
-        $0.text = "1"
-        $0.backgroundColor = .red
     }
     
     let symbolImage = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        
-        $0.backgroundColor = .yellow
     }
     
     let nameLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
         $0.font = .systemFont(ofSize: 17, weight: .bold)
-        
-        $0.text = "d"
-        $0.backgroundColor = .gray
     }
     
     let symbolLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.gray
         $0.font = .systemFont(ofSize: 14)
-        
-        $0.text = "LTC"
-        $0.backgroundColor = .green
     }
     
     let priceLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
         $0.font = .systemFont(ofSize: 17, weight: .bold)
         $0.textAlignment = .right
-        
-        $0.text = "0.4175"
-        $0.backgroundColor = .magenta
     }
     
     let percentLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.red
         $0.font = .systemFont(ofSize: 14)
         $0.textAlignment = .right
-        
-        $0.text = "%21.18%"
-        $0.backgroundColor = .systemPink
     }
     
     
@@ -91,7 +73,7 @@ class CommonTrendingLabel : BaseView {
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(symbolImage.snp.top)
             make.trailing.equalToSuperview().inset(5)
-            make.width.lessThanOrEqualTo(90)
+            make.width.lessThanOrEqualTo(110)
             make.height.equalTo(20)
         }
         

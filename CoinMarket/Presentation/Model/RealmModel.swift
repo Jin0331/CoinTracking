@@ -33,6 +33,12 @@ class CoinTrend : Object {
         self.upDate = Date()
         self.regDate = Date()
     }
+    
+    var largeURL : URL {
+        get {
+            return URL(string: large) ?? URL(string: "")!
+        }
+    }
 }
 
 class NFTTrend : Object {
@@ -40,20 +46,28 @@ class NFTTrend : Object {
     @Persisted(primaryKey: true) var nftID : String // 중복되지 않는 coin의 아이디
     @Persisted var nftName : String
     @Persisted var nftSymbol : String
-    @Persisted var floorPrice : Double
-    @Persisted var percentage : Double
+    @Persisted var thumb : String
+    @Persisted var floorPrice : String
+    @Persisted var percentage : String
     @Persisted var upDate : Date
     @Persisted var regDate : Date
     
-    convenience init(nftID: String, nftName: String, nftSymbol: String, floorPrice: Double, percentage: Double) {
+    convenience init(nftID: String, nftName: String, nftSymbol: String, thumb : String, floorPrice: String, percentage: String) {
         self.init()
         self.nftID = nftID
         self.nftName = nftName
         self.nftSymbol = nftSymbol
+        self.thumb = thumb
         self.floorPrice = floorPrice
         self.percentage = percentage
         self.upDate = Date()
         self.regDate = Date()
+    }
+    
+    var thumbURL : URL {
+        get {
+            return URL(string: thumb) ?? URL(string: "")!
+        }
     }
     
 }
