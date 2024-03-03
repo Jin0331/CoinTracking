@@ -11,6 +11,7 @@ import Then
 
 class FavoriteCollectionViewCell: BaseCollectionViewCell {
     
+    let viewModel = FavoriteCollectionViewModel()
     let bgView = UIView().then {
         $0.backgroundColor = DesignSystem.colorSet.white
         $0.layer.cornerRadius = 10
@@ -47,6 +48,26 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         $0.clipsToBounds = true
         $0.font = .systemFont(ofSize: 15, weight: .bold)
     }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        bindData()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func bindData() {
+        
+        viewModel.favorite.bind { value in
+            guard let value = value else { return }
+            self.configureUI(value)
+        }
+    }
+    
     
     override func configureHierarchy() {
         contentView.addSubview(bgView)

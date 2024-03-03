@@ -8,6 +8,9 @@
 import UIKit
 
 class FavoriteTableViewCell: BaseTableViewCell {
+    
+    let viewModel = FavoriteCollectionViewModel()
+    
     lazy var favoriteCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCellLayout() ).then {
         
         $0.backgroundColor = .clear
@@ -22,6 +25,18 @@ class FavoriteTableViewCell: BaseTableViewCell {
         favoriteCollectionView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
         }
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        viewModel.reloadCollectionViewTrigger.bind { _ in
+            self.favoriteCollectionView.reloadData()
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func configureCellLayout() -> UICollectionViewFlowLayout {

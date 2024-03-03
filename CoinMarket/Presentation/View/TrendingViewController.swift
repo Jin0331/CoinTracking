@@ -32,22 +32,14 @@ class TrendingViewController: BaseViewController {
         dataBind()
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        print(#function, "trending")
-    //        dataBind()
-    //    }
-    
     func dataBind() {
         viewModel.fetchFavoriteTrigger.value = ()
         print(viewModel.outputFavorite.value.count)
         
-        DispatchQueue.main.async {
-            self.viewModel.outputFavorite.bind { _ in
-                self.mainView.mainTableView.reloadData()
-            }
+        viewModel.outputFavorite.bind { _ in
+            self.mainView.mainTableView.reloadData()
         }
-        
+
         viewModel.outputNFTTrending.bind { value in
             self.mainView.mainTableView.reloadData()
         }
@@ -114,7 +106,8 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
             cell.favoriteCollectionView.delegate = self
             cell.favoriteCollectionView.dataSource = self
             cell.favoriteCollectionView.tag = indexPath.section
-            cell.favoriteCollectionView.reloadData()
+            
+            cell.viewModel.reloadCollectionViewTrigger.value = ()
             
             return cell
         default :
@@ -151,9 +144,9 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         case .favorite:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
             
-            if let first = viewModel.outputFavorite.value[indexPath.row].market.first {
-                cell.configureUI(first)
-            }
+            cell.viewModel.favorite.value = viewModel.outputFavorite.value[indexPath.row].market.first
+            cell.reloadInputViews()
+            
             return cell
         case .coin:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
