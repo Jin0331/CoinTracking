@@ -39,7 +39,7 @@ class TrendingViewController: BaseViewController {
         viewModel.outputFavorite.bind { _ in
             self.mainView.mainTableView.reloadData()
         }
-
+        
         viewModel.outputNFTTrending.bind { value in
             self.mainView.mainTableView.reloadData()
         }
@@ -164,12 +164,13 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         }
     }
     
+    
+    //MARK: - 중복되는 코드, 추후 Recatoring 해야됨
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch TrendingViewModel.SettingType.getSection(collectionView.tag) {
         case .favorite:
-            let vc = ChartViewController()
-            vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
-            navigationController?.pushViewController(vc, animated: true)
+            let coinId = self.viewModel.outputFavorite.value[indexPath.row].coinID
+            chartViewTransition(coinID: coinId, marketExist: self.viewModel.searchMarket(coinID:coinId))
         case .nft, .coin:
             return
         }
@@ -179,9 +180,9 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
 
 extension TrendingViewController : PassTransitionProtocol {
     func didSeletButton(_ buttonTag: Int) {
+         
+        let coinID = self.viewModel.outputCoinTrendingSimple.value[buttonTag].coinID
+        chartViewTransition(coinID: coinID, marketExist: self.viewModel.searchMarket(coinID: coinID))
         
-        let vc = ChartViewController()
-        vc.viewModel.inputCoinID.value = self.viewModel.outputCoinTrendingSimple.value[buttonTag].coinID
-        navigationController?.pushViewController(vc, animated: true)
     }
 }

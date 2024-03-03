@@ -8,15 +8,13 @@
 import UIKit
 import Then
 import Kingfisher
-import Toast
-//import Charts
 import DGCharts
 
 //TODO: - percentage 음수, 양수에 따라 색 빨간색 파란색 적용
 //TODO: - lastUpdate 오늘인지 아닌지 판단해서 오늘이면 "Today" 아니면 "Past" 또는 날짜 기입 - 완료
 
 class ChartViewController: BaseViewController {
-
+    
     let mainView = CharView()
     let viewModel = ChartViewModel()
     
@@ -27,6 +25,7 @@ class ChartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(#function)
         bindData()
     }
     
@@ -37,8 +36,9 @@ class ChartViewController: BaseViewController {
         print("타이머 종료")
     }
     
-
+    
     private func bindData() {
+    
         viewModel.outputMarket.bind { value in
             guard let first = value else { return }
             self.mainView.configureUI(first)
@@ -56,13 +56,20 @@ class ChartViewController: BaseViewController {
             
             self.navigationItem.rightBarButtonItem = rightButtonItem
         }
+        
+        viewModel.outputDataAccess.bind{ value in
+            
+            if !value {
+                self.showToast(message: "❗️API Limit 입니다. 저장된 데이터를 호출합니다", seconds: 3)
+            }
+        }
     }
     
     @objc func rightBarButtonClicked(_ sender : UIBarButtonItem) {
         print(#function)
         
         let status = self.viewModel.getCase(self.viewModel.fetchFavoriteTrueRowNumber())
-        self.view.makeToast(status.textValue, duration: 1)        
+        self.view.makeToast(status.textValue, duration: 1)
     }
     
     override func configureNavigation() {

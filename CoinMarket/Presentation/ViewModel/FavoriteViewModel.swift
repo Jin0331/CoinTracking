@@ -88,6 +88,13 @@ class FavoriteViewModel {
         }
     }
     
+    func searchMarket(coinID : String) -> Bool {
+        
+        print("데이터 존재 여부", !repository.fetchMarketItemExist(coinID: coinID))
+        
+        return !repository.fetchMarketItemExist(coinID: coinID)
+    }
+    
 }
 
 

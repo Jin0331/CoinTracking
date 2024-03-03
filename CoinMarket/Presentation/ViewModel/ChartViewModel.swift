@@ -21,6 +21,9 @@ class ChartViewModel {
     
     var callRequestTringger : Observable<String?> = Observable(nil)
     
+    var inputDataAccess : Observable<Bool> = Observable(true)
+    var outputDataAccess : Observable<Bool> = Observable(true)
+    
     private var favoriteButtonClicked : Observable<Void?> = Observable(nil)
     
     private var apiTimer = Timer()
@@ -32,6 +35,11 @@ class ChartViewModel {
     
     private func transform() {
 
+        inputDataAccess.bind { value in
+            self.outputDataAccess.value = value
+        }
+        
+        
         inputCoinID.bind { value in
             guard let value else { return }
             

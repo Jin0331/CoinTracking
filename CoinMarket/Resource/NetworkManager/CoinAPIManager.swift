@@ -38,26 +38,15 @@ class CoinAPIManager {
         }
     }
     
+    func callRequestStatus(api : CoinAPI, completaionHandler : @escaping (Bool) -> Void) {
+        
+        AF.request(api.endPoint).validate().responseJSON { response in
+            print(response.response!.statusCode)
+            if (400...499).contains(response.response!.statusCode) {
+                completaionHandler(false)
+            } else {
+                completaionHandler(true)
+            }
+        }
+    }
 }
-
-
-/*
- 
- //trend API
- CoinAPIManager.shared.callRequest(type: SearchTrendingModel.self, api: .trend) { value, error in
-     
- dump(value)
- }
-
- CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: "bitcoinpow")) { value, error in
-
-     dump(value)
- }
- 
- //TODO: - market에서 ids 받을 때, Array -> join 형태로 진행하면 될 듯
- CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: "bitcoinpow")) { value, error in
-
-     dump(value)
- }
- 
- */

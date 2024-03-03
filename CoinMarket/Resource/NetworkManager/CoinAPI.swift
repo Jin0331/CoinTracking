@@ -23,6 +23,7 @@ enum CoinAPI : CaseIterable {
     case trend
     case search(coinName : String)
     case market(ids : String) //TODO: - 나라별 언어 추후 반영?
+    case ping //MARK: - API 호출이 가능한지
     
     var endPoint : URL {
         switch self {
@@ -32,6 +33,8 @@ enum CoinAPI : CaseIterable {
             return URL(string: CoinAPI.baseURL + "search")!
         case .market:
             return URL(string: CoinAPI.baseURL + "coins/markets")!
+        case .ping:
+            return URL(string: CoinAPI.baseURL + "ping/")!
         }
     }
     

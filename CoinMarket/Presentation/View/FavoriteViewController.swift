@@ -80,10 +80,9 @@ extension FavoriteViewController : UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
         
-        let vc = ChartViewController()
-        vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
+        let coinID = self.viewModel.outputFavorite.value[indexPath.row].coinID
+        chartViewTransition(coinID: coinID, marketExist: self.viewModel.searchMarket(coinID: coinID))
         
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
