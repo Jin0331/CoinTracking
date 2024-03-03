@@ -74,11 +74,10 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+
+        let coinID = self.viewModel.outputSearch.value[indexPath.row].coinID
+        chartViewTransition(coinID: coinID, marketExist: viewModel.searchMarket(coinID: coinID))
         
-        let vc = ChartViewController()
-        vc.viewModel.inputCoinID.value = self.viewModel.outputSearch.value[indexPath.row].coinID
-        
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

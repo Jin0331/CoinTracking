@@ -137,6 +137,12 @@ final class RealmRepository {
         return Array(result)
     }
     
+    func fetchMarketItemExist(coinID : String) -> Bool {
+        let result = realm.objects(Market.self).where { $0.coinID == coinID }.isEmpty
+        
+        return result
+    }
+    
     func fetchMarketItem(coinID : String) -> Market {
         let result = realm.objects(Market.self).where { $0.coinID == coinID }
         
