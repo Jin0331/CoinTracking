@@ -10,21 +10,25 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let repository = RealmRepository()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
+        repository.realmLocation()
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
         
+        let trendingVC = UINavigationController(rootViewController: TrendingViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
         let favoriteVC = UINavigationController(rootViewController: FavoriteViewController())
         
         
         // Tabbar controller
         let tabbarController = UITabBarController()
-        tabbarController.setViewControllers([searchVC, favoriteVC], animated: true)
+        tabbarController.setViewControllers([trendingVC,searchVC, favoriteVC], animated: true)
         tabbarController.configureItemDesing(tabBar: tabbarController.tabBar)
         
         window?.rootViewController = tabbarController

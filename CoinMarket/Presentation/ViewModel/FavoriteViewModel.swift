@@ -23,13 +23,15 @@ class FavoriteViewModel {
     
     private func transform() {
         
+        print(#function, "Favorite")
+        
         fetchSearchItemWithFavoriteTrigger.bind { _ in
             self.favoriteIDList.value = self.repository.fetchSearchItemWithFavorite()
         }
         
-        getCoinIDListTrigger.bind { value in
+        getCoinIDListTrigger.bind { _ in
             self.fetchSearchItemWithFavoriteTrigger.value = ()
-            self.extractCoinID(self.favoriteIDList.value)
+            self.callRequest(self.favoriteIDList.value)
         }
     }
     
@@ -40,7 +42,7 @@ class FavoriteViewModel {
 
     }
     
-    private func extractCoinID(_ data : [Search]?) {
+    private func callRequest(_ data : [Search]?) {
         
         guard let data = data, !data.isEmpty else {
             print("모든 즐겨찾기값 해제됨")
@@ -49,7 +51,7 @@ class FavoriteViewModel {
         }
 
         let coinID = data.map { return $0.coinID }.joined(separator: ",")
-        print(coinID)
+        print(coinID, "즐겨찾기 화면이야?")
         
         CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: coinID)) { response, error in
             

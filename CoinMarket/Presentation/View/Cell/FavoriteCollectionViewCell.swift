@@ -11,6 +11,7 @@ import Then
 
 class FavoriteCollectionViewCell: BaseCollectionViewCell {
     
+    let viewModel = FavoriteCollectionViewModel()
     let bgView = UIView().then {
         $0.backgroundColor = DesignSystem.colorSet.white
         $0.layer.cornerRadius = 10
@@ -42,8 +43,31 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
     
     let athChangeLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.red
-        $0.font = .systemFont(ofSize: 15)
+        $0.textAlignment = .center
+        $0.layer.cornerRadius = 7
+        $0.clipsToBounds = true
+        $0.font = .systemFont(ofSize: 15, weight: .bold)
     }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        bindData()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func bindData() {
+        
+        viewModel.favorite.bind { value in
+            guard let value = value else { return }
+            self.configureUI(value)
+        }
+    }
+    
     
     override func configureHierarchy() {
         contentView.addSubview(bgView)
@@ -75,7 +99,7 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         }
         
         athChangeLabel.snp.makeConstraints { make in
-            make.bottom.trailing.equalToSuperview().inset(5)
+            make.bottom.trailing.equalToSuperview().inset(10)
             make.height.equalTo(30)
             make.width.greaterThanOrEqualTo(60)
         }
@@ -100,8 +124,20 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         symbolImage.kf.setImage(with: first.symbolImageURL)
         nameLabel.text = first.coinName
         symbolLabel.text = first.conSymbol.uppercased()
-        currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
-        athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
+        currentPriceLabel.text = first.currentPrice.toPoint()
+        
+        if let value = first.change?.perprice_change_percentage_24h {
+            if value >= 0 {
+                athChangeLabel.backgroundColor = DesignSystem.colorSet.pink
+                athChangeLabel.textColor = DesignSystem.colorSet.red
+                athChangeLabel.text = "+\(value.toNumber(digit: 2, percentage: true)!)"
+            } else {
+                athChangeLabel.backgroundColor = DesignSystem.colorSet.lightBlue
+                athChangeLabel.textColor = DesignSystem.colorSet.blue
+                athChangeLabel.text = value.toNumber(digit: 2, percentage: true)
+            }
+        }
+        
     }
     
     

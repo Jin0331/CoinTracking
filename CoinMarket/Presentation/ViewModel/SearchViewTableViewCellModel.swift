@@ -38,7 +38,35 @@ class SearchViewTableViewCellModel {
             
             guard let coinID = self.inputCoinID.value else { return }
             
+            print("여긴가?")
+            
             self.repository.updateFavoriteToggle(coinID, self.outputFavoriteBool.value)
+            self.callRequestMarketWithFavorite(coinID)
+        }
+    }
+    
+    private func callRequestMarketWithFavorite(_ value : String) {
+        CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: value)) { response, error in
+            
+            if let error {
+                //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨 -> Realm 조회
+                print("network Error")
+            } else {
+                guard let response = response else { return }
+                guard let data = response.first else { return }
+                
+                // embedd class
+                let embeddedItem = self.repository.createEmbeddedItem(data)
+                self.repository.searchCreateOrUpdateItem(coinID: data.id, coinName: data.name,
+                                                         conSymbol: data.symbol,
+                                                         symbolImage : data.symbolImage,
+                                                         currentPrice: data.currentPrice,
+                                                         lastUpdated: data.lastUpdated.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSz")!,
+                                                         change: embeddedItem , sparkline_in_7d: data.sparklineIn7D.price)
+                
+                // Search Table과 Relation 설정
+                self.repository.createRelationSearchWithMarket(coinID: value)
+            }
         }
     }
     

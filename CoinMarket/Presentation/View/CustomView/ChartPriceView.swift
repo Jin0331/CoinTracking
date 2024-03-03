@@ -16,7 +16,7 @@ class ChartPriceView: BaseView {
     }
     
     let subLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 21)
+        $0.font = .systemFont(ofSize: 21, weight: .semibold)
         $0.textColor = DesignSystem.colorSet.gray
     }
     

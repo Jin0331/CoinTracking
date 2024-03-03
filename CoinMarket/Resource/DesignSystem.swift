@@ -28,16 +28,16 @@ enum DesignSystem {
     }
     
     enum tabbarImage {
-        static let trend = UIImage(named: "tab_trend")
-        static let trendInactive = UIImage(named: "tab_user_inactive")
+        static let trend = UIImage(named: "tab_trend")?.withRenderingMode(.alwaysOriginal)
+        static let trendInactive = UIImage(named: "tab_trend_inactive")?.withRenderingMode(.alwaysOriginal)
         
-        static let portfolio = UIImage(named: "tab_portfolio")
-        static let portfolioInactive = UIImage(named: "tab_portfolio_inactive")
+        static let portfolio = UIImage(named: "tab_portfolio")?.withRenderingMode(.alwaysOriginal)
+        static let portfolioInactive = UIImage(named: "tab_portfolio_inactive")?.withRenderingMode(.alwaysOriginal)
         
-        static let search = UIImage(named: "tab_search")
-        static let searchInactive = UIImage(named: "tab_search_inactive")
+        static let search = UIImage(named: "tab_search")?.withRenderingMode(.alwaysOriginal)
+        static let searchInactive = UIImage(named: "tab_search_inactive")?.withRenderingMode(.alwaysOriginal)
         
-        static let user = UIImage(named: "tab_user")
-        static let userInactive = UIImage(named: "tab_user_inactive")
+        static let user = UIImage(named: "tab_user")?.withRenderingMode(.alwaysOriginal)
+        static let userInactive = UIImage(named: "tab_user_inactive")?.withRenderingMode(.alwaysOriginal)
     }
 }

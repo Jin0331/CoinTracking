@@ -20,16 +20,15 @@ class FavoriteViewController: BaseViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        print(#function, "즐겨찾기 화면")
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function, "즐겨찾기화면")
         dataBind()
     }
     
-    
     func dataBind() {
         viewModel.getCoinIDListTrigger.value = ()
-        
         viewModel.outputFavorite.bind { _ in
             self.mainView.favoriteCollectionView.reloadData()
         }
@@ -51,12 +50,8 @@ class FavoriteViewController: BaseViewController {
         
         print(#function, sender.isRefreshing)
         
-        // API 호출 끝났을 때
-        DispatchQueue.main.async {
-            self.viewModel.getCoinIDListTrigger.value = ()
-            self.mainView.refreshControll.endRefreshing()
-            print("새로고침 완료")
-        }
+        self.viewModel.getCoinIDListTrigger.value = ()
+        self.mainView.refreshControll.endRefreshing()
     }
     
     
