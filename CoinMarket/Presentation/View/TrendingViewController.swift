@@ -26,17 +26,26 @@ class TrendingViewController: BaseViewController {
         dataBind()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(#function, "trending")
-        dataBind()
-    }
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            print(#function, "trending")
+            dataBind()
+        }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        print(#function, "trending")
+//        dataBind()
+//    }
     
     func dataBind() {
         viewModel.fetchFavoriteTrigger.value = ()
-        viewModel.outputFavorite.bind { _ in
-            self.mainView.mainTableView.reloadData()
+        print(viewModel.outputFavorite.value.count)
+        
+        DispatchQueue.main.async {
+            self.viewModel.outputFavorite.bind { _ in
+                self.mainView.mainTableView.reloadData()
+            }
         }
         
         viewModel.outputNFTTrending.bind { value in
@@ -65,9 +74,27 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        switch TrendingViewModel.SettingType.getSection(section) {
+            
+        case .favorite :
+            return viewModel.outputFavorite.value.count >= 2 ? 1 : 0
+        default :
+            return 1
+        }
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        switch TrendingViewModel.SettingType.getSection(section) {
+        case .favorite :
+            return viewModel.outputFavorite.value.count >= 2 ? 25 : CGFloat.leastNonzeroMagnitude
+        default :
+            return 25
+        }
+    }
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let myLabel = UILabel()
         myLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
@@ -78,7 +105,7 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
         
         return headerView
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch TrendingViewModel.SettingType.getSection(indexPath.section) {
             
@@ -124,8 +151,9 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         case .favorite:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
             
-            cell.configureUI(viewModel.outputFavorite.value[indexPath.row])
-            
+            if let first = viewModel.outputFavorite.value[indexPath.row].market.first {
+                cell.configureUI(first)
+            }
             return cell
         case .coin:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
@@ -158,7 +186,7 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
 
 extension TrendingViewController : PassTransitionProtocol {
     func didSeletButton(_ buttonTag: Int) {
-                
+        
         let vc = ChartViewController()
         vc.viewModel.inputCoinID.value = self.viewModel.outputCoinTrendingSimple.value[buttonTag].coinID
         navigationController?.pushViewController(vc, animated: true)

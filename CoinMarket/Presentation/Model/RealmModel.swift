@@ -81,12 +81,13 @@ class Search : Object {
     @Persisted var large : String // 썸네일 이미지
     @Persisted var favorite : Bool
     @Persisted var favoriteRank : Int?
+    @Persisted var searchKeyword : String?
     @Persisted var upDate : Date
     @Persisted var regDate : Date
     
     @Persisted var market : List<Market>
     
-    convenience init(coinID: String, coinName: String, conSymbol: String, rank: Int?, large: String) {
+    convenience init(coinID: String, coinName: String, conSymbol: String, rank: Int?, large: String, searchKeyword : String?) {
         self.init()
         self.coinID = coinID
         self.coinName = coinName
@@ -94,6 +95,7 @@ class Search : Object {
         self.rank = rank
         self.large = large
         self.favorite = false
+        self.searchKeyword = searchKeyword
         self.upDate = Date()
         self.regDate = Date()
     }

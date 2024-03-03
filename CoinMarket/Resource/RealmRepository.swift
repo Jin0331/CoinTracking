@@ -36,12 +36,12 @@ final class RealmRepository {
     ////  Search API
     func searchCreateOrUpdateItem(coinID : String, coinName : String,
                                   conSymbol : String, rank : Int?,
-                                  large : String) {
+                                  searchKeyword : String?, large : String) {
         do {
             try realm.write {
                 realm.create(Search.self, value: ["coinID": coinID, "coinName":coinName,
                                                   "conSymbol": conSymbol,"rank" : rank,
-                                                  "large": large,"upDate":Date()
+                                                  "large": large,"searchKeyword":searchKeyword,"upDate":Date()
                                                  ], update: .modified) }
         } catch {
             print(error)
@@ -145,6 +145,7 @@ final class RealmRepository {
     
     func fetchSearchItemWithFavorite() -> [Search] {
         let result = realm.objects(Search.self).where {$0.favorite == true }
+            .sorted(byKeyPath: "favoriteRank", ascending: true)
         
         return Array(result)
     }

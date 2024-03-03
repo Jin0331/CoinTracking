@@ -28,9 +28,13 @@ extension Double {
         numberFormatter.maximumFractionDigits = digit
 
         let result: String = numberFormatter.string(for: self)!
-        
         return percentage == true ? "\(result)%" : "₩\(result)"
     }
+    
+    func toPoint() -> String? {
+        return self >= 10 ? self.toNumber(digit: 0, percentage: false) : "₩\(String(format:"%.5f", self))"
+    }
+    
     
     
 }

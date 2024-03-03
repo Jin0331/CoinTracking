@@ -77,7 +77,7 @@ class CommonTrendingLabel : BaseView {
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(symbolImage.snp.top)
             make.trailing.equalToSuperview().inset(5)
-            make.width.lessThanOrEqualTo(110)
+            make.width.lessThanOrEqualTo(125)
             make.height.equalTo(20)
         }
         

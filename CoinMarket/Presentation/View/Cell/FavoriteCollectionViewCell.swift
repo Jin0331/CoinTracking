@@ -42,7 +42,10 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
     
     let athChangeLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.red
-        $0.font = .systemFont(ofSize: 15)
+        $0.textAlignment = .center
+        $0.layer.cornerRadius = 7
+        $0.clipsToBounds = true
+        $0.font = .systemFont(ofSize: 15, weight: .bold)
     }
     
     override func configureHierarchy() {
@@ -75,7 +78,7 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         }
         
         athChangeLabel.snp.makeConstraints { make in
-            make.bottom.trailing.equalToSuperview().inset(5)
+            make.bottom.trailing.equalToSuperview().inset(10)
             make.height.equalTo(30)
             make.width.greaterThanOrEqualTo(60)
         }
@@ -100,7 +103,17 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
         symbolImage.kf.setImage(with: first.symbolImageURL)
         nameLabel.text = first.coinName
         symbolLabel.text = first.conSymbol.uppercased()
-        currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
+        currentPriceLabel.text = first.currentPrice.toPoint()
+        
+        if let value = first.change?.perprice_change_percentage_24h {
+            if value >= 0 {
+                athChangeLabel.backgroundColor = DesignSystem.colorSet.pink
+                athChangeLabel.textColor = DesignSystem.colorSet.red
+            } else {
+                athChangeLabel.backgroundColor = DesignSystem.colorSet.lightBlue
+                athChangeLabel.textColor = DesignSystem.colorSet.blue
+            }
+        }
         athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
     }
     

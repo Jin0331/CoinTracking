@@ -30,12 +30,12 @@ class CharView: BaseView {
     
     let athChangeLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.red
-        $0.font = .systemFont(ofSize: 20)
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     let updateDateLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.gray
-        $0.font = .systemFont(ofSize: 20)
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     // middleView
@@ -160,13 +160,24 @@ class CharView: BaseView {
     func configureUI(_ first : Market) {
         symbolImage.kf.setImage(with: first.symbolImageURL)
         symbolTitleLabel.text = first.coinName
-        currentPriceLabel.text = first.currentPrice.toNumber(digit: 0, percentage: false)
-        athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
+        
+        currentPriceLabel.text = first.currentPrice.toPoint()
+        
+        if let value = first.change?.perprice_change_percentage_24h {
+            if value >= 0 {
+                athChangeLabel.textColor = DesignSystem.colorSet.red
+                athChangeLabel.text = "+\(value.toNumber(digit: 2, percentage: true)!)"
+            } else {
+                athChangeLabel.textColor = DesignSystem.colorSet.blue
+                athChangeLabel.text = "\(value.toNumber(digit: 2, percentage: true)!)"
+            }
+        }
+        
         updateDateLabel.text = first.lastUpdated.toString(dateFormat: "M/d hh:mm")
-        hightPriceLabel.subLabel.text = first.change?.high_24h.toNumber(digit: 0, percentage: false)
-        lowPriceLabel.subLabel.text = first.change?.low_24h.toNumber(digit: 0, percentage: false)
-        newHightPriceLabel.subLabel.text = first.change?.ath.toNumber(digit: 0, percentage: false)
-        newLowPriceLabel.subLabel.text = first.change?.atl.toNumber(digit: 0, percentage: false)
+        hightPriceLabel.subLabel.text = first.change?.high_24h.toPoint()
+        lowPriceLabel.subLabel.text = first.change?.low_24h.toPoint()
+        newHightPriceLabel.subLabel.text = first.change?.ath.toPoint()
+        newLowPriceLabel.subLabel.text = first.change?.atl.toPoint()
     }
     
     func drawChart(_ first : Market) {

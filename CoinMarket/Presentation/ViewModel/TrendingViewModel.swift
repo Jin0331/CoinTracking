@@ -11,7 +11,7 @@ class TrendingViewModel {
     
     private let repository = RealmRepository()
     
-    var outputFavorite : Observable<[Market]> = Observable([])
+    var outputFavorite : Observable<[Search]> = Observable([])
     var outputCoinTrending : Observable<[[(Int, CoinTrend)]]> = Observable([])
     var outputNFTTrending : Observable<[[(Int, NFTTrend)]]> = Observable([])
     
@@ -28,16 +28,15 @@ class TrendingViewModel {
         
         print(#function, " - Trending")
         
-        // Favorite 값 가져오기
-        fetchFavoriteTrigger.bind { _ in
-            DispatchQueue.main.async {
-                self.outputFavorite.value = self.repository.fetchMultipleMarketItem()
-            }
-        }
-        
         getTrendListTrigger.bind { _ in
             self.callRequest()
         }
+        
+        // Favorite 값 가져오기
+        fetchFavoriteTrigger.bind { _ in
+            self.outputFavorite.value = self.repository.fetchSearchItemWithFavorite()
+        }
+        
     }
     
     private func callRequest() {
@@ -64,7 +63,7 @@ class TrendingViewModel {
                     self.repository.trendCreateItem(table)
                     
                     // Search Table Update
-                    self.repository.searchCreateOrUpdateItem(coinID: row.item.id, coinName: row.item.name, conSymbol: row.item.symbol, rank: row.item.marketCapRank, large: row.item.large)
+                    self.repository.searchCreateOrUpdateItem(coinID: row.item.id, coinName: row.item.name, conSymbol: row.item.symbol, rank: row.item.marketCapRank, searchKeyword: nil,  large: row.item.large)
                     
                 }
                 

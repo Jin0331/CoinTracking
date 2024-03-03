@@ -37,7 +37,7 @@ class SearchViewModel {
                 } else {
                     guard let response = response else { return }
                     response.coins.forEach { item in
-                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, large: item.large)
+                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, searchKeyword: value, large: item.large)
                     }
                     self.repository.realmLocation()
                     self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: value)

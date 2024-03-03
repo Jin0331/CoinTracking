@@ -51,6 +51,15 @@ class SearchViewTableViewCell: BaseTableViewCell {
             self.viewModel.inputCoinID.value = value.coinID
             self.symbolImage.kf.setImage(with: value.largeURL)
             self.nameLabel.text = value.coinName
+            
+            if let searchKeyword = value.searchKeyword {
+                let attributedStr = NSMutableAttributedString(string: self.nameLabel.text!)
+                attributedStr.addAttribute(.foregroundColor, value: DesignSystem.colorSet.purple, 
+                                           range: (self.nameLabel.text! as NSString).range(of:searchKeyword, options: .caseInsensitive))
+                self.nameLabel.attributedText = attributedStr
+            }
+            
+            
             self.symbolLabel.text = value.conSymbol
         }
         

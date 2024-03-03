@@ -11,11 +11,11 @@ import Then
 
 class TrendingView: BaseView {
     
-    lazy var mainTableView = UITableView().then {
+    lazy var mainTableView = UITableView(frame: .zero, style: .grouped).then {
         $0.backgroundColor = DesignSystem.colorSet.white
         $0.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
         $0.register(TopTableViewCell.self, forCellReuseIdentifier: TopTableViewCell.identifier)
-        $0.rowHeight = 210
+        $0.rowHeight = 220
         $0.separatorStyle = .none
     }
     
