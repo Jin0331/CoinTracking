@@ -36,9 +36,6 @@ class TrendingViewController: BaseViewController {
         }
         
         viewModel.outputNFTTrending.bind { value in
-            
-            print(value)
-            print(value.count)
             self.mainView.mainTableView.reloadData()
         }
     }
@@ -83,7 +80,6 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
             
         case .favorite :
             let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.identifier, for: indexPath) as! FavoriteTableViewCell
-            
             cell.favoriteCollectionView.delegate = self
             cell.favoriteCollectionView.dataSource = self
             cell.favoriteCollectionView.tag = indexPath.section
@@ -91,7 +87,6 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
             
             return cell
         default :
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: TopTableViewCell.identifier, for: indexPath) as! TopTableViewCell
             cell.topCollectionView.delegate = self
             cell.topCollectionView.dataSource = self
@@ -108,8 +103,6 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
 extension TrendingViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(#function)
-        
         switch TrendingViewModel.SettingType.getSection(collectionView.tag) {
         case .favorite:
             return viewModel.outputFavorite.value.count
@@ -145,13 +138,19 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(#function)
-//        
-//        let vc = ChartViewController()
-//        vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
-//        
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch TrendingViewModel.SettingType.getSection(collectionView.tag) {
+        case .favorite:
+            let vc = ChartViewController()
+            vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
+            navigationController?.pushViewController(vc, animated: true)
+        case .coin:
+            let vc = ChartViewController()
+            vc.viewModel.inputCoinID.value = self.viewModel.outputCoinTrendingSimple.value[indexPath.row].coinID
+            navigationController?.pushViewController(vc, animated: true)
+        case .nft:
+            return 
+        }
+    }
     
 }

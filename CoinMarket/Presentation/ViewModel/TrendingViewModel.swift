@@ -15,6 +15,8 @@ class TrendingViewModel {
     var outputCoinTrending : Observable<[[(Int, CoinTrend)]]> = Observable([])
     var outputNFTTrending : Observable<[[(Int, NFTTrend)]]> = Observable([])
     
+    var outputCoinTrendingSimple : Observable<[CoinTrend]> = Observable([])
+    
     var fetchFavoriteTrigger : Observable<Void?> = Observable(nil)
     var getTrendListTrigger : Observable<Void?> = Observable(nil)
     
@@ -44,6 +46,9 @@ class TrendingViewModel {
             
             if let error {
                 print("network error")
+                self.outputCoinTrendingSimple.value = self.repository.fetchCoinTrendItem()
+                self.outputCoinTrending.value = self.repository.fetchCoinTrendItem().splitIntoSubarrays(ofSize: 3)
+                self.outputNFTTrending.value = self.repository.fetchNFTTrendItem().splitIntoSubarrays(ofSize: 3)
             } else {
                 guard let response = response else { return }
                 
@@ -57,6 +62,10 @@ class TrendingViewModel {
                     let table = CoinTrend(coinID: row.item.id, coinName: row.item.name, conSymbol: row.item.symbol, large: row.item.large, price: row.item.data.price, percentage: row.item.data.priceChangePercentage24H["krw"]!)
                     
                     self.repository.trendCreateItem(table)
+                    
+                    // Search Table Update
+                    self.repository.searchCreateOrUpdateItem(coinID: row.item.id, coinName: row.item.name, conSymbol: row.item.symbol, rank: row.item.marketCapRank, large: row.item.large)
+                    
                 }
                 
                 response.nfts.forEach { row in
@@ -65,6 +74,7 @@ class TrendingViewModel {
                     self.repository.trendCreateItem(table)
                 }
                 
+                self.outputCoinTrendingSimple.value = self.repository.fetchCoinTrendItem()
                 self.outputCoinTrending.value = self.repository.fetchCoinTrendItem().splitIntoSubarrays(ofSize: 3)
                 self.outputNFTTrending.value = self.repository.fetchNFTTrendItem().splitIntoSubarrays(ofSize: 3)
                 
