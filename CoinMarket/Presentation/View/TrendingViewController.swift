@@ -67,16 +67,10 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
         myLabel.text = TrendingViewModel.SettingType.getSection(section).title
         let headerView = UIView()
         headerView.addSubview(myLabel)
+        
         return headerView
     }
-//
-//    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let caseType = TrendingViewModel.SettingType.getSection(section)
-//        
-//        return caseType.title
-//    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch TrendingViewModel.SettingType.getSection(indexPath.section) {
             
@@ -85,14 +79,17 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
             
             cell.favoriteCollectionView.delegate = self
             cell.favoriteCollectionView.dataSource = self
+            cell.favoriteCollectionView.tag = indexPath.section
             cell.favoriteCollectionView.reloadData()
             
             return cell
         default :
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: BaseTableViewCell.identifier)!
-            cell.textLabel?.text = "test"
-            cell.detailTextLabel?.text = "test"
+            let cell = tableView.dequeueReusableCell(withIdentifier: TopTableViewCell.identifier, for: indexPath) as! TopTableViewCell
+            cell.topCollectionView.delegate = self
+            cell.topCollectionView.dataSource = self
+            cell.topCollectionView.tag = indexPath.section
+            cell.topCollectionView.reloadData()
             
             return cell
             
@@ -100,30 +97,50 @@ extension TrendingViewController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - Favorite
+//MARK: - Collection View
 extension TrendingViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(#function)
         
-        return viewModel.outputFavorite.value.count
+        switch TrendingViewModel.SettingType.getSection(collectionView.tag) {
+        case .favorite:
+            return viewModel.outputFavorite.value.count
+        case .coin:
+            return 15
+        case .nft:
+            return 15
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
         
-        cell.configureUI(viewModel.outputFavorite.value[indexPath.row])
-        
-        return cell
+        switch TrendingViewModel.SettingType.getSection(collectionView.tag) {
+        case .favorite:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as! FavoriteCollectionViewCell
+            
+            cell.configureUI(viewModel.outputFavorite.value[indexPath.row])
+            
+            return cell
+        case .coin:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
+            
+            return cell
+        case .nft:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
+            
+            return cell
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        
-        let vc = ChartViewController()
-        vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
-        
-        navigationController?.pushViewController(vc, animated: true)
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print(#function)
+//        
+//        let vc = ChartViewController()
+//        vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
+//        
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
     
 }

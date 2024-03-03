@@ -18,6 +18,9 @@
 		DBA626E42B942E79006DB9B3 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626E32B942E79006DB9B3 /* TrendingView.swift */; };
 		DBA626E62B942FD9006DB9B3 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626E52B942FD9006DB9B3 /* FavoriteTableViewCell.swift */; };
 		DBA626E82B94327D006DB9B3 /* TrendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626E72B94327D006DB9B3 /* TrendingViewModel.swift */; };
+		DBA626EA2B945472006DB9B3 /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626E92B945472006DB9B3 /* TopCollectionViewCell.swift */; };
+		DBA626EC2B945480006DB9B3 /* TopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626EB2B945480006DB9B3 /* TopTableViewCell.swift */; };
+		DBA626EE2B945A13006DB9B3 /* CommonTrendingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA626ED2B945A13006DB9B3 /* CommonTrendingLabel.swift */; };
 		DBABE27C2B9327CF00D1E97D /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */; };
 		DBABE2802B93A87700D1E97D /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABE27F2B93A87700D1E97D /* TrendingViewController.swift */; };
 		DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC383E2B8DADB000C1D69B /* AppDelegate.swift */; };
@@ -63,6 +66,9 @@
 		DBA626E32B942E79006DB9B3 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
 		DBA626E52B942FD9006DB9B3 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		DBA626E72B94327D006DB9B3 /* TrendingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewModel.swift; sourceTree = "<group>"; };
+		DBA626E92B945472006DB9B3 /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
+		DBA626EB2B945480006DB9B3 /* TopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTableViewCell.swift; sourceTree = "<group>"; };
+		DBA626ED2B945A13006DB9B3 /* CommonTrendingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTrendingLabel.swift; sourceTree = "<group>"; };
 		DBABE27B2B9327CF00D1E97D /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		DBABE27F2B93A87700D1E97D /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		DBBC383B2B8DADB000C1D69B /* CoinMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				DBCEB4DB2B8F60CA0073E546 /* ChartPriceView.swift */,
+				DBA626ED2B945A13006DB9B3 /* CommonTrendingLabel.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -248,6 +255,8 @@
 				DBFF0B032B8E166E00A33A65 /* SearchViewTableViewCell.swift */,
 				DBCEB5132B9042500073E546 /* FavoriteCollectionViewCell.swift */,
 				DBA626E52B942FD9006DB9B3 /* FavoriteTableViewCell.swift */,
+				DBA626E92B945472006DB9B3 /* TopCollectionViewCell.swift */,
+				DBA626EB2B945480006DB9B3 /* TopTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -342,11 +351,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA626EA2B945472006DB9B3 /* TopCollectionViewCell.swift in Sources */,
 				DBCEB5142B9042500073E546 /* FavoriteCollectionViewCell.swift in Sources */,
 				DB0A59A12B8E4E8E00F4A82F /* Observable.swift in Sources */,
 				DBBC38642B8DD16400C1D69B /* SearchViewController.swift in Sources */,
 				DBBC383F2B8DADB000C1D69B /* AppDelegate.swift in Sources */,
 				DBBC38412B8DADB000C1D69B /* SceneDelegate.swift in Sources */,
+				DBA626EC2B945480006DB9B3 /* TopTableViewCell.swift in Sources */,
 				DBCEB5122B9039830073E546 /* UITabbarController + Extension.swift in Sources */,
 				DBFF0B062B8E1FDF00A33A65 /* RealmModel.swift in Sources */,
 				DBBD06D12B8F497300A73E22 /* ChartViewController.swift in Sources */,
@@ -356,6 +367,7 @@
 				DBFF0B082B8E1FED00A33A65 /* RealmRepository.swift in Sources */,
 				DBCEB5162B9042620073E546 /* BaseCollectionViewCell.swift in Sources */,
 				DBBC38622B8DB8BE00C1D69B /* CoinModel.swift in Sources */,
+				DBA626EE2B945A13006DB9B3 /* CommonTrendingLabel.swift in Sources */,
 				DB20B4E02B8F22810070FC5F /* SearchViewTableViewCellModel.swift in Sources */,
 				DBFF0AF92B8E103100A33A65 /* BaseViewController.swift in Sources */,
 				DBFF0AFB2B8E10A600A33A65 /* BaseView.swift in Sources */,

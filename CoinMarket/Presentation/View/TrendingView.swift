@@ -13,8 +13,8 @@ class TrendingView: BaseView {
     
     lazy var mainTableView = UITableView().then {
         $0.backgroundColor = DesignSystem.colorSet.white
-        $0.register(BaseTableViewCell.self, forCellReuseIdentifier: BaseTableViewCell.identifier)
         $0.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
+        $0.register(TopTableViewCell.self, forCellReuseIdentifier: TopTableViewCell.identifier)
         $0.rowHeight = 210
         $0.separatorStyle = .none
     }
