@@ -27,30 +27,7 @@ class SearchViewModel {
         
         inputCoinID.bind { value in
             guard let value, !value.isEmpty else { return }
-            
-            // API request -> realm Create or Update
-            CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: value)) { response, error in
-                if let error {
-                    //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
-                    print("network Error")
-                    self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
-                } else {
-                    guard let response = response else { return }
-                    response.coins.forEach { item in
-                        self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, searchKeyword: value, large: item.large)
-                    }
-                    self.repository.realmLocation()
-                    self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: value)
-                }
-            }
-        }
-        
-        // favorite button이 클릭되었을 때, realm update
-        favoriteButtonClicked.bind { _ in
-            
-            guard let coinID = self.inputCoinID.value else { return }
-            
-            self.repository.updateFavoriteToggle(coinID, self.outputFavoriteBool.value)
+            self.callRequest(value)
         }
     }
     
@@ -68,6 +45,23 @@ class SearchViewModel {
                 return "❌ 즐겨찾기가 해제되었습니다"
             case .error :
                 return "🚫 즐겨찾기 10개 초과되었습니다"
+            }
+        }
+    }
+    
+    private func callRequest(_ coinID : String) {
+        // API request -> realm Create or Update
+        CoinAPIManager.shared.callRequest(type: SearchModel.self, api: .search(coinName: coinID)) { response, error in
+            if let error {
+                //TODO: - 네트워크가 안 될 때, 에러 핸들링 진행해야 됨
+                print("network Error")
+                self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: coinID)
+            } else {
+                guard let response = response else { return }
+                response.coins.forEach { item in
+                    self.repository.searchCreateOrUpdateItem(coinID: item.id, coinName: item.name,conSymbol: item.symbol, rank: item.marketCapRank, searchKeyword: coinID, large: item.large)
+                }
+                self.outputSearch.value = self.repository.searchFetchItemFilterdSorted(coinID: coinID)
             }
         }
     }
