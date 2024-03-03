@@ -8,11 +8,57 @@
 import Foundation
 import RealmSwift
 
-//MARK: - SearchTrend
-//class SearchTrend : Object {
-//    
-//}
+//MARK: - Trend
+class CoinTrend : Object {
+    
+    @Persisted(primaryKey: true) var coinID : String // 중복되지 않는 coin의 아이디
+    @Persisted var coinName : String
+    @Persisted var conSymbol : String
+    @Persisted var rank : Int?
+    @Persisted var large : String // 썸네일 이미지
+    @Persisted var price : String
+    @Persisted var percentage : Double
+    @Persisted var upDate : Date
+    @Persisted var regDate : Date
+    
+    convenience init(coinID: String, coinName: String, conSymbol: String, rank: Int? = nil, large: String, price: String, percentage: Double) {
+        self.init()
+        self.coinID = coinID
+        self.coinName = coinName
+        self.conSymbol = conSymbol
+        self.rank = rank
+        self.large = large
+        self.price = price
+        self.percentage = percentage
+        self.upDate = Date()
+        self.regDate = Date()
+    }
+}
 
+class NFTTrend : Object {
+    
+    @Persisted(primaryKey: true) var nftID : String // 중복되지 않는 coin의 아이디
+    @Persisted var nftName : String
+    @Persisted var nftSymbol : String
+    @Persisted var floorPrice : Double
+    @Persisted var percentage : Double
+    @Persisted var upDate : Date
+    @Persisted var regDate : Date
+    
+    convenience init(nftID: String, nftName: String, nftSymbol: String, floorPrice: Double, percentage: Double) {
+        self.init()
+        self.nftID = nftID
+        self.nftName = nftName
+        self.nftSymbol = nftSymbol
+        self.floorPrice = floorPrice
+        self.percentage = percentage
+        self.upDate = Date()
+        self.regDate = Date()
+    }
+    
+}
+
+//MARK: - Search
 class Search : Object {
     @Persisted(primaryKey: true) var coinID : String // 중복되지 않는 coin의 아이디
     @Persisted var coinName : String

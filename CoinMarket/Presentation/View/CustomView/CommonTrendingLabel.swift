@@ -17,7 +17,7 @@ class CommonTrendingLabel : BaseView {
     
     let rankLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
-        $0.font = .systemFont(ofSize: 25, weight: .bold)
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
         $0.textAlignment = .center
         
         $0.text = "1"
@@ -32,15 +32,15 @@ class CommonTrendingLabel : BaseView {
     
     let nameLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .systemFont(ofSize: 17, weight: .bold)
         
-        $0.text = "asdzxcasdzxcasd"
+        $0.text = "d"
         $0.backgroundColor = .gray
     }
     
     let symbolLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.gray
-        $0.font = .systemFont(ofSize: 17)
+        $0.font = .systemFont(ofSize: 14)
         
         $0.text = "LTC"
         $0.backgroundColor = .green
@@ -48,7 +48,8 @@ class CommonTrendingLabel : BaseView {
     
     let priceLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.black
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .systemFont(ofSize: 17, weight: .bold)
+        $0.textAlignment = .right
         
         $0.text = "0.4175"
         $0.backgroundColor = .magenta
@@ -56,7 +57,8 @@ class CommonTrendingLabel : BaseView {
     
     let percentLabel = UILabel().then {
         $0.textColor = DesignSystem.colorSet.red
-        $0.font = .systemFont(ofSize: 17)
+        $0.font = .systemFont(ofSize: 14)
+        $0.textAlignment = .right
         
         $0.text = "%21.18%"
         $0.backgroundColor = .systemPink
@@ -77,19 +79,19 @@ class CommonTrendingLabel : BaseView {
         rankLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(5)
             make.centerY.equalToSuperview()
-            make.size.equalTo(45)
+            make.size.equalTo(40)
         }
         
         symbolImage.snp.makeConstraints { make in
-            make.leading.equalTo(rankLabel.snp.trailing).offset(10)
+            make.leading.equalTo(rankLabel.snp.trailing).offset(5)
             make.centerY.equalTo(rankLabel)
-            make.size.equalTo(45)
+            make.size.equalTo(35)
         }
         
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(symbolImage.snp.top)
             make.trailing.equalToSuperview().inset(5)
-            make.width.greaterThanOrEqualTo(80)
+            make.width.lessThanOrEqualTo(90)
             make.height.equalTo(20)
         }
         

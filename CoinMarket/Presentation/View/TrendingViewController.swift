@@ -107,9 +107,9 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
         case .favorite:
             return viewModel.outputFavorite.value.count
         case .coin:
-            return 15
+            return 5
         case .nft:
-            return 15
+            return 5
         }
     }
     

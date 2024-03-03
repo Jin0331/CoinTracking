@@ -12,6 +12,7 @@ class TrendingViewModel {
     private let repository = RealmRepository()
     
     var outputFavorite : Observable<[Market]> = Observable([])
+//    var outputTrending : Observable<[T]
     
     var fetchFavoriteTrigger : Observable<Void?> = Observable(nil)
     
@@ -30,6 +31,10 @@ class TrendingViewModel {
         }
         
     }
+    
+    
+    
+    
     
     // mainTableView 관련
     enum SettingType: CaseIterable {
