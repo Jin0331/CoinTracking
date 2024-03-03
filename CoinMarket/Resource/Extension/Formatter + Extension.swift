@@ -40,18 +40,23 @@ extension Double {
 }
 
 extension Date {
-    func toString( dateFormat format: String ) -> String {
+    func toString( dateFormat format: String, raw : Bool) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         dateFormatter.locale = Locale.current
         
         let current = Calendar.current
-        return current.isDateInToday(self) ? "Today" : "\(dateFormatter.string(from: self))-❗️최신이 아닙니다."
+        
+        if raw {
+            return dateFormatter.string(from: self)
+        } else {
+            return current.isDateInToday(self) ? "Today" : "\(dateFormatter.string(from: self))-❗️최신이 아닙니다."
+        }
     }
     
     func toStringKST( dateFormat format: String ) -> String {
-        return self.toString(dateFormat: format)
+        return self.toString(dateFormat: format, raw: true)
     }
     
     func toStringUTC(_ timezone: Int ) -> String {

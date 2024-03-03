@@ -69,9 +69,15 @@ class CharView: BaseView {
         $0.textLabel.textColor = DesignSystem.colorSet.red
     }
     
-    let newLowPriceLabel =  ChartPriceView().then {
+    let newLowPriceLabel = ChartPriceView().then {
         $0.textLabel.text = "신저점"
         $0.textLabel.textColor = DesignSystem.colorSet.blue
+    }
+    
+    let updateBottom = UILabel().then {
+        $0.textColor = DesignSystem.colorSet.gray
+        $0.textAlignment = .right
+        $0.font = .systemFont(ofSize: 16, weight: .bold)
     }
     
     let bottomChartView = LineChartView(frame: .zero).then {
@@ -92,7 +98,7 @@ class CharView: BaseView {
     }
     
     override func configureHierarchy() {
-        [topView, middleStackView, bottomChartView].forEach{ addSubview($0)}
+        [topView, middleStackView, bottomChartView, updateBottom].forEach{ addSubview($0)}
         
         // topView
         [symbolImage, symbolTitleLabel, currentPriceLabel, athChangeLabel, updateDateLabel].forEach { topView.addSubview($0)}
@@ -153,8 +159,14 @@ class CharView: BaseView {
         
         bottomChartView.snp.makeConstraints { make in
             make.top.equalTo(middleStackView.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        updateBottom.snp.makeConstraints { make in
+            make.top.equalTo(bottomChartView.snp.bottom)
             make.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
+        
     }
     
     func configureUI(_ first : Market) {
@@ -173,11 +185,13 @@ class CharView: BaseView {
             }
         }
         
-        updateDateLabel.text = first.lastUpdated.toString(dateFormat: "M/d hh:mm")
+        updateDateLabel.text = first.lastUpdated.toString(dateFormat: "M/d hh:mm",raw: false)
         hightPriceLabel.subLabel.text = first.change?.high_24h.toPoint()
         lowPriceLabel.subLabel.text = first.change?.low_24h.toPoint()
         newHightPriceLabel.subLabel.text = first.change?.ath.toPoint()
         newLowPriceLabel.subLabel.text = first.change?.atl.toPoint()
+        
+        updateBottom.text = "\(first.upDate.toString(dateFormat: "M/d hh:mm:ss",raw: true)) 업데이트"
     }
     
     func drawChart(_ first : Market) {
