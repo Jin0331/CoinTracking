@@ -109,12 +109,14 @@ class FavoriteCollectionViewCell: BaseCollectionViewCell {
             if value >= 0 {
                 athChangeLabel.backgroundColor = DesignSystem.colorSet.pink
                 athChangeLabel.textColor = DesignSystem.colorSet.red
+                athChangeLabel.text = "+\(value.toNumber(digit: 2, percentage: true)!)"
             } else {
                 athChangeLabel.backgroundColor = DesignSystem.colorSet.lightBlue
                 athChangeLabel.textColor = DesignSystem.colorSet.blue
+                athChangeLabel.text = value.toNumber(digit: 2, percentage: true)
             }
         }
-        athChangeLabel.text = first.change?.perprice_change_percentage_24h.toNumber(digit: 2, percentage: true)
+        
     }
     
     

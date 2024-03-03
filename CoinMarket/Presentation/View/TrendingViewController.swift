@@ -26,17 +26,17 @@ class TrendingViewController: BaseViewController {
         dataBind()
     }
     
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            print(#function, "trending")
-            dataBind()
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function, "trending")
+        dataBind()
+    }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        print(#function, "trending")
-//        dataBind()
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        print(#function, "trending")
+    //        dataBind()
+    //    }
     
     func dataBind() {
         viewModel.fetchFavoriteTrigger.value = ()

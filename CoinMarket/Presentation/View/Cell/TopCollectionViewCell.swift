@@ -52,7 +52,9 @@ class TopCollectionViewCell: BaseCollectionViewCell {
                 item.nameLabel.text = value[index].1.coinName
                 item.symbolLabel.text = value[index].1.conSymbol
                 item.priceLabel.text = value[index].1.price
-                item.percentLabel.text = value[index].1.percentage.toNumber(digit: 2, percentage: true)
+                
+                item.percentLabel.textColor = value[index].1.percentage >= 0 ? DesignSystem.colorSet.red : DesignSystem.colorSet.blue
+                item.percentLabel.text = value[index].1.percentage >= 0 ? "+\(value[index].1.percentage.toNumber(digit: 2, percentage: true) ?? "")": value[index].1.percentage.toNumber(digit: 2, percentage: true)
                 
                 item.transitionButtn.tag = value[index].0
                 item.transitionButtn.addTarget(self, action: #selector(transitionButtnClicked), for: .touchUpInside)
@@ -62,7 +64,7 @@ class TopCollectionViewCell: BaseCollectionViewCell {
         
         viewModel.nftTrend.bind{ [self] value in
             guard let value = value else { return }
-
+            
             let labelList = value.count > 1 ? [topLabel, middleLabel, bottomLabel] : [topLabel]
             labelList.enumerated().forEach { index, item in
                 
@@ -71,7 +73,11 @@ class TopCollectionViewCell: BaseCollectionViewCell {
                 item.nameLabel.text = value[index].1.nftName
                 item.symbolLabel.text = value[index].1.nftSymbol
                 item.priceLabel.text = value[index].1.floorPrice
-                item.percentLabel.text = Double(value[index].1.percentage)?.toNumber(digit: 2, percentage: true)
+                
+                if let value = Double(value[index].1.percentage) {
+                    item.percentLabel.textColor = value >= 0 ? DesignSystem.colorSet.red : DesignSystem.colorSet.blue
+                    item.percentLabel.text = value >= 0 ? "+\(value.toNumber(digit: 2, percentage: true) ?? "")": value.toNumber(digit: 2, percentage: true)
+                }
             }
             
         }
