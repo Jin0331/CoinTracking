@@ -19,8 +19,6 @@ class CoinAPIManager {
     
     func callRequest<T:Decodable>(type : T.Type, api : CoinAPI, completionHandler : @escaping (T?, AFError?) -> Void) {
         
-        print(api.endPoint)
-        
         AF.request(api.endPoint,
                    method: CoinAPI.method,
                    parameters: api.parameter,
@@ -29,7 +27,7 @@ class CoinAPIManager {
             
             switch response.result {
             case .success(let success):
-                print("API 조회 성공")
+                print(api.endPoint, " - API 조회 성공")
                 
                 completionHandler(success, nil)
             case .failure(let faiure):

@@ -20,16 +20,15 @@ class FavoriteViewController: BaseViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        print(#function, "즐겨찾기 화면")
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function, "즐겨찾기화면")
         dataBind()
     }
     
-    
     func dataBind() {
         viewModel.getCoinIDListTrigger.value = ()
-        
         viewModel.outputFavorite.bind { _ in
             self.mainView.favoriteCollectionView.reloadData()
         }

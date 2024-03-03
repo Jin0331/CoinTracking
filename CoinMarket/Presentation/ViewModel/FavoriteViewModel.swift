@@ -23,6 +23,8 @@ class FavoriteViewModel {
     
     private func transform() {
         
+        print(#function, "Favorite")
+        
         fetchSearchItemWithFavoriteTrigger.bind { _ in
             self.favoriteIDList.value = self.repository.fetchSearchItemWithFavorite()
         }
@@ -49,7 +51,7 @@ class FavoriteViewModel {
         }
 
         let coinID = data.map { return $0.coinID }.joined(separator: ",")
-        print(coinID)
+        print(coinID, "즐겨찾기 화면이야?")
         
         CoinAPIManager.shared.callRequest(type: MarketCoinModel.self, api: .market(ids: coinID)) { response, error in
             
