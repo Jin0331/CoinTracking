@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PassTransitionProtocol : AnyObject {
+    func didSeletButton(_ buttonTag : Int)
+}
+
 class TrendingViewController: BaseViewController {
     
     let mainView = TrendingView()
@@ -127,6 +131,7 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.identifier, for: indexPath) as! TopCollectionViewCell
             
             cell.viewModel.coinTrend.value = viewModel.outputCoinTrending.value[indexPath.row]
+            cell.senderDelegate = self
             
             return cell
         case .nft:
@@ -144,13 +149,18 @@ extension TrendingViewController : UICollectionViewDataSource, UICollectionViewD
             let vc = ChartViewController()
             vc.viewModel.inputCoinID.value = self.viewModel.outputFavorite.value[indexPath.row].coinID
             navigationController?.pushViewController(vc, animated: true)
-        case .coin:
-            let vc = ChartViewController()
-            vc.viewModel.inputCoinID.value = self.viewModel.outputCoinTrendingSimple.value[indexPath.row].coinID
-            navigationController?.pushViewController(vc, animated: true)
-        case .nft:
-            return 
+        case .nft, .coin:
+            return
         }
     }
     
+}
+
+extension TrendingViewController : PassTransitionProtocol {
+    func didSeletButton(_ buttonTag: Int) {
+                
+        let vc = ChartViewController()
+        vc.viewModel.inputCoinID.value = self.viewModel.outputCoinTrendingSimple.value[buttonTag].coinID
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

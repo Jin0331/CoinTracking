@@ -46,10 +46,14 @@ class CommonTrendingLabel : BaseView {
         $0.textAlignment = .right
     }
     
+    let transitionButtn = UIButton().then {
+        $0.backgroundColor = .clear
+    }
+    
     
     override func configureHierarchy() {
         addSubview(bgView)
-        [rankLabel, symbolImage, priceLabel, percentLabel, nameLabel, symbolLabel].forEach{bgView.addSubview($0)}
+        [rankLabel, symbolImage, priceLabel, percentLabel, nameLabel, symbolLabel, transitionButtn].forEach{bgView.addSubview($0)}
     }
     
     override func configureLayout() {
@@ -94,6 +98,10 @@ class CommonTrendingLabel : BaseView {
             make.leading.equalTo(nameLabel)
             make.top.equalTo(nameLabel.snp.bottom).offset(3)
             make.trailing.equalTo(nameLabel)
+        }
+        
+        transitionButtn.snp.makeConstraints { make in
+            make.edges.equalTo(bgView)
         }
     }
 }

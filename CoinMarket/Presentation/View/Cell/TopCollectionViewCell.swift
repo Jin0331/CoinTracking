@@ -13,6 +13,7 @@ import Kingfisher
 class TopCollectionViewCell: BaseCollectionViewCell {
     
     let viewModel = TopCollectionViewModel()
+    weak var senderDelegate : PassTransitionProtocol?
     
     let mainStackView = UIStackView().then {
         $0.distribution = .fillEqually
@@ -52,6 +53,10 @@ class TopCollectionViewCell: BaseCollectionViewCell {
                 item.symbolLabel.text = value[index].1.conSymbol
                 item.priceLabel.text = value[index].1.price
                 item.percentLabel.text = value[index].1.percentage.toNumber(digit: 2, percentage: true)
+                
+                item.transitionButtn.tag = value[index].0
+                item.transitionButtn.addTarget(self, action: #selector(transitionButtnClicked), for: .touchUpInside)
+                
             }
         }
         
@@ -83,6 +88,11 @@ class TopCollectionViewCell: BaseCollectionViewCell {
         mainStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    @objc func transitionButtnClicked(_ sender : UIButton) {
+        print(#function, sender.tag)
+        senderDelegate?.didSeletButton(sender.tag)
     }
     
 }
