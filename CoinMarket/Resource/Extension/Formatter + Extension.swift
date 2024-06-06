@@ -35,6 +35,10 @@ extension Double {
         return self >= 10 ? self.toNumber(digit: 0, percentage: false) : "₩\(String(format:"%.5f", self))"
     }
     
+    func toPointUSD() -> String? {
+        return "$\(String(format:"%.4f", self))"
+    }
+    
     
     
 }

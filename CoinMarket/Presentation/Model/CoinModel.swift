@@ -51,13 +51,13 @@ struct CoinsItems : Decodable {
         self.large = (try? container.decode(String.self, forKey: .large)) ?? ""
         self.thumb = (try? container.decode(String.self, forKey: .thumb)) ?? ""
         self.marketCapRank = (try? container.decode(Int.self, forKey: .marketCapRank)) ?? -999
-        self.data = (try? container.decode(CoinData.self, forKey: .data)) ?? CoinData(price: "", priceChangePercentage24H: [:], sparkline: "")
+        self.data = (try? container.decode(CoinData.self, forKey: .data)) ?? CoinData(price: 0, priceChangePercentage24H: [:], sparkline: "")
     }
     
 }
 
 struct CoinData : Decodable {
-    let price : String
+    let price : Double
     let priceChangePercentage24H: [String: Double]
     let sparkline: String
 

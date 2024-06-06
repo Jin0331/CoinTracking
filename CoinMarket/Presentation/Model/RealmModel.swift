@@ -16,12 +16,12 @@ class CoinTrend : Object {
     @Persisted var conSymbol : String
     @Persisted var rank : Int?
     @Persisted var large : String // 썸네일 이미지
-    @Persisted var price : String
+    @Persisted var price : Double
     @Persisted var percentage : Double
     @Persisted var upDate : Date
     @Persisted var regDate : Date
     
-    convenience init(coinID: String, coinName: String, conSymbol: String, rank: Int? = nil, large: String, price: String, percentage: Double) {
+    convenience init(coinID: String, coinName: String, conSymbol: String, rank: Int? = nil, large: String, price: Double, percentage: Double) {
         self.init()
         self.coinID = coinID
         self.coinName = coinName

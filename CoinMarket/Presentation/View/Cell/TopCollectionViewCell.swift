@@ -46,13 +46,11 @@ class TopCollectionViewCell: BaseCollectionViewCell {
             guard let value = value else { return }
             
             [topLabel, middleLabel, bottomLabel].enumerated().forEach { index, item in
-                
                 item.rankLabel.text = String(value[index].0 + 1)
                 item.symbolImage.kf.setImage(with: value[index].1.largeURL)
                 item.nameLabel.text = value[index].1.coinName
                 item.symbolLabel.text = value[index].1.conSymbol
-                item.priceLabel.text = value[index].1.price
-                
+                item.priceLabel.text = String(value[index].1.price.toPointUSD()!)
                 item.percentLabel.textColor = value[index].1.percentage >= 0 ? DesignSystem.colorSet.red : DesignSystem.colorSet.blue
                 item.percentLabel.text = value[index].1.percentage >= 0 ? "+\(value[index].1.percentage.toNumber(digit: 2, percentage: true) ?? "")": value[index].1.percentage.toNumber(digit: 2, percentage: true)
                 
