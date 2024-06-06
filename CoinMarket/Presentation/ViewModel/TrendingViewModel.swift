@@ -103,7 +103,7 @@ class TrendingViewModel {
         var title: String {
             switch self {
             case .favorite:
-                return "My Favorite"
+                return "즐겨찾기"
             case .coin:
                 return "Top15 Coin"
             case .nft:

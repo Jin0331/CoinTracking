@@ -58,7 +58,7 @@ class FavoriteViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         
-        navigationItem.title = "Favorite Coin"
+        navigationItem.title = "즐겨찾기"
     }
 }
 

@@ -32,6 +32,11 @@ class TrendingViewController: BaseViewController {
         dataBind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     func dataBind() {
         viewModel.fetchFavoriteTrigger.value = ()
         print(viewModel.outputFavorite.value.count)
@@ -54,7 +59,7 @@ class TrendingViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         
-        navigationItem.title = "Crypto Coin"
+        navigationItem.title = "Coin Tracking"
     }
 }
 
