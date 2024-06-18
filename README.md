@@ -1,4 +1,4 @@
-# 🔎 **Coin Tracking - 빠른 암호화폐 추적**
+# 🪙 **Coin Tracking - 빠른 암호화폐 추적**
 
 ![merge](https://github.com/Jin0331/CoinTracking/assets/42958809/0b39e0ee-67e8-4959-996e-5bc73ca144a7)
 
@@ -80,34 +80,14 @@
 
 * 비동기 Event의 관리를 위한 `RxSwift`와 `Combine`를 이용한 Reactive Programming 구현
 
+***Realm***
+
+* Repository Pattern 기반의 데이터 로직 추상화
+
+* 아래와 같은 Database Schema 구성 (**1:1, 1:N**)
+
+  ![Untitled](https://github.com/Jin0331/CoinTracking/assets/42958809/d2adee0f-eec0-4743-9164-bb73c026ec3b)
+
 ***Alamofire***
 
 * `URLRequestConvertible`을 활용한 `Router 패턴` 기반의 네트워크 통신 추상화
-
-***UserDefault***
-
-* 사용자의 로그인, 검색, 프로필 기록 저장을 위한 `User Default` 사용
-
-* `propertyWrapper`와 `Generic`의 사용으로 반복되는 코드 사용의 최소화
-
-```swift
-@propertyWrapper
-struct UserDefault<T> {
-    let key: String
-    let defaultValue: T
-    
-    var wrappedValue: T {
-        get {
-            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
-    }
-}
-
-'''
-@UserDefault(key: UDKey.profileImage.rawValue, defaultValue: "")
-var profileImage: String
-
-```
