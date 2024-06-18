@@ -2,7 +2,7 @@
 
 ![merge](https://github.com/Jin0331/CoinTracking/assets/42958809/0b39e0ee-67e8-4959-996e-5bc73ca144a7)
 
-> 출시 기간 : 2024.01.17 - 01.22 (약 2주)
+> 출시 기간 : 2024.02.27 - 03.14 (약 3주)
 >
 > 개발 1인
 >
@@ -37,9 +37,9 @@
 
   ​	MVVM
 
-* ***오픈 소스***(Cocoapods)
+* ***오픈 소스***
 
-  ​	RxSwift / Realm / Alamofire / Kingfisher / SnapKit / UserDefault
+  ​	RxSwift / Realm / Alamofire / Kingfisher / SnapKit / DGChart
 
 * ***버전 관리***
 
@@ -83,3 +83,21 @@
 <br>
 
 ## 🪙 트러블슈팅
+
+### 1. CoinGecko API(Public plan)의 호출 Limit 대응
+
+* **문제 상황**
+
+  > ​	CoinGecko의 Public API는 분당 5~15회 호출로 제한되어 있음. 상위 API Plans을 비용을 지불할 경우 간단하게 해결될 수 있지만, $129 ~ $499/mo의 비용으로 분포됨
+  >
+  > 해당 앱의 경우, 사용자에게 빠른 검색과 조회를 제공함에 따라 사용자의 앱 사용 유지시간이 길지 않으므로, 해당 API Plans을 사용하여 지속적으로 API 호출하는 것은 부담되는 상황
+
+* **해결 방법**
+
+  1. ``Realm``을 활용하여, API 호출이 정상적으로 이루어졌을 때, 해당 정보를 ``Market``, ``CoinChange`` Table에 해당 정보를 저장하며, ``lastUpdated`` Column에 API가 정상적으로 호출된 시점을 저장
+
+  2. ``Custom Toast View``를 활용하여, API Rate Limit이 Error가 발생했을 경우, Toast View를 통하여 사용자에게 알림 전송하며, API가 정상적으로 호출되었을 때의 데이터를 나타냄
+
+  <p align="center">
+      <img src="https://github.com/Jin0331/CoinTracking/assets/42958809/a6ef4d3f-8491-4aab-8351-883ec7344310" width="30%" height="30%"/>
+  </p>
