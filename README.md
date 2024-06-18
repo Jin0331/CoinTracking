@@ -62,23 +62,11 @@
         associatedtype Output
         func transform(input : Input) -> Output
     }
-
-    protocol CombineViewModelType : AnyObject, ObservableObject {
-        associatedtype Input
-        associatedtype Output
-        
-        var cancellables : Set<AnyCancellable> {get set}
-        
-        var input : Input {get set}
-        var output : Output {get set}
-        
-        func transform()
-    }
     ```
 
 ***Reactive Programming***
 
-* 비동기 Event의 관리를 위한 `RxSwift`와 `Combine`를 이용한 Reactive Programming 구현
+* 비동기 Event의 관리를 위한 `RxSwift`를 이용한 Reactive Programming 구현
 
 ***Realm***
 
@@ -91,3 +79,7 @@
 ***Alamofire***
 
 * `URLRequestConvertible`을 활용한 `Router 패턴` 기반의 네트워크 통신 추상화
+
+<br>
+
+## 🪙 트러블슈팅
