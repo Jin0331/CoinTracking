@@ -1,4 +1,4 @@
-# 🪙 **Coin Tracking - 빠른 암호화폐 추적**
+# 🪙 **Coin Tracking - 암호화폐 추적**
 
 ![merge](https://github.com/Jin0331/CoinTracking/assets/42958809/0b39e0ee-67e8-4959-996e-5bc73ca144a7)
 
